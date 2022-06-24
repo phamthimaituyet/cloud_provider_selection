@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
+    <link rel = "icon" href = "https://cdn-icons-png.flaticon.com/512/7794/7794360.png" type = "image/x-icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -31,6 +32,7 @@
     <link rel="stylesheet" href="{{ asset('vendors/plugins/summernote/summernote-bs4.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -44,7 +46,8 @@
                 'dashboard' => $dashboard ?? '',
                 'user' => $user ?? '',
                 'category' => $category ?? '',
-                'product' => $product ?? ''
+                'product' => $product ?? '',
+                'criteria' => $criteria ?? ''
             ])
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -99,5 +102,6 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('vendors/dist/js/demo.js') }}"></script>
     <script src="{{ asset('assets/js/admin/admin.js') }}"></script>
+    @yield('script')
 </body>
 </html>

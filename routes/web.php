@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CriteriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,10 @@ Route::prefix('admin')->group(function () {
     Route::prefix('product')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('product');
         Route::get('/new', [ProductController::class, 'new'])->name('product.new');
-    });
+        Route::post('/new', [ProductController::class, 'postNew'])->name('product.new.post');
+    }); 
 
-    
+    Route::prefix('criteria')->group(function () {
+        Route::get('/', [CriteriaController::class, 'index'])->name('criteria');
+    }); 
 });

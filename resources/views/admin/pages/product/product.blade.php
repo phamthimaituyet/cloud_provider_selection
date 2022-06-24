@@ -24,7 +24,6 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin: 10px;">
     <a href="{{route('product.new')}}" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i> Add product</a>
 </button>
-
 <section class="content">
 
     <!-- Default box -->
@@ -73,7 +72,7 @@
                             <p>{{$product->name}}</p>
                         </td>
                         <td>
-                            <p>{{$product->category_id}}</p>
+                            <p>{{$product->category->name}}</p>
                         </td>
                         <td>
                         </td>

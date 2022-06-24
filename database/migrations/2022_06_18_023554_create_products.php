@@ -21,9 +21,8 @@ class CreateProducts extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('vendor_id')->unsigned();
             $table->integer('price_id')->unsigned();
-            $table->integer('criteria_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');   
-            // $table->foreign('vendor_id')->references('id')->on('vendors'); 
+            $table->foreign('vendor_id')->references('id')->on('vendors'); 
             $table->timestamps();
         });
     }

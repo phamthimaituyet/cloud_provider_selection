@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use App\Models\Category;
 
 class CategorySeeder extends Seeder
 {
@@ -16,16 +14,16 @@ class CategorySeeder extends Seeder
     public function run()
     {
         \DB::table('categories')->insert([
-            ['name' => 'Storage'],
-            ['name' => 'Serverless'],
-            ['name' => 'Databases'],
-            ['name' => 'Networking & Content Delivery'],
-            ['name' => 'Analytics'],
-            ['name' => 'Compute'],
-            ['name' => 'Developer Tools'],
-            ['name' => 'Games'],
-            ['name' => 'Migration & Transfer'],
-            ['name' => 'Security, Identity, & Compliance'],
+            ['name' => 'Storage', 'created_at' => new \DateTime()],
+            ['name' => 'Serverless', 'created_at' => new \DateTime()],
+            ['name' => 'Databases', 'created_at' => new \DateTime()],
+            ['name' => 'Networking & Content Delivery', 'created_at' => new \DateTime()],
+            ['name' => 'Analytics', 'created_at' => new \DateTime()],
+            ['name' => 'Compute', 'created_at' => new \DateTime()],
+            ['name' => 'Developer Tools', 'created_at' => new \DateTime()],
+            ['name' => 'Games', 'created_at' => new \DateTime()],
+            ['name' => 'Migration & Transfer', 'created_at' => new \DateTime()],
+            ['name' => 'Security, Identity, & Compliance', 'created_at' => new \DateTime()],
         ]);   
     }
 }

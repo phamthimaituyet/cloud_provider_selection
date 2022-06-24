@@ -9,13 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $table = "products";
-
-    protected $fillable = [
-        'name',
-        'description',
-        'support',
-    ];
+    // protected $table = "products";
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -23,5 +17,9 @@ class Product extends Model
 
     public function vendor(){
         return $this->belongsTo(Vendor::class);
+    }
+
+    public function criterias(){
+        return $this->belongsToMany(Criteria::class, 'product_criterias', 'product_id', 'criteria_id');
     }
 }

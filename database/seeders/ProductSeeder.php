@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use App\Models\Product;
 
 class ProductSeeder extends Seeder
 {
@@ -23,7 +21,6 @@ class ProductSeeder extends Seeder
                 'price_id' => 1,
                 'vendor_id' => 1,
                 'category_id' => 1,
-                'criteria_id' => 1,
             ],
             [
                 'name' => 'N2WS Backup & Recovery for AWS Free Trial/BYOL',
@@ -32,7 +29,6 @@ class ProductSeeder extends Seeder
                 'price_id' => 1,
                 'vendor_id' => 1,
                 'category_id' => 1,
-                'criteria_id' => 1,
             ],
             [
                 'name' => 'Veeam Backup for AWS FREE Trial & BYOL Edition',
@@ -41,7 +37,6 @@ class ProductSeeder extends Seeder
                 'price_id' => 1,
                 'vendor_id' => 1,
                 'category_id' => 1,
-                'criteria_id' => 1,
             ],
         ]);   
     }

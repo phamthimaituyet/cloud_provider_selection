@@ -55,6 +55,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('criteria')}}" class="nav-link {{$criteria}}">
+                        <i class="nav-icon fa fa-certificate"></i>
+                        <p>
+                        Criterias
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
