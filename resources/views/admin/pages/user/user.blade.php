@@ -27,17 +27,19 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Created_at</th>
             </tr>
             </thead>
             <tbody>
-                <?php foreach($users as $user){ ?>
+                @foreach($users as $user)
                     <tr>
-                        <td><?php echo $user->name?> </td>
-                        <td><?php echo $user->email?> </td>
-                        <td><?php echo $user->created_at?> </td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->nameRole($user->role)}}</td>
+                        <td>{{$user->created_at}}</td>
                     </tr>
-                <?php }  ?>
+                @endforeach
             </tbody>
         </table>
     </div>

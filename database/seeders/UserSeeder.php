@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -15,12 +15,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0; $i < 10; $i++){
-            \DB::table('users')->insert([
-                'name' => Str::random(10),
-                'email' => Str::random(10).'@gmail.com',
-                'password' => Hash::make('123456'),
-            ]);
-        }      
+        \DB::table('users')->insert([
+            'name' => 'Mai Tuyết',
+            'email' => 'maituyet00@gmail.com',
+            'role' => '1',                      // role 1 :admin , role 2 :user
+            'password' => Hash::make('123456'),
+        ]);
+        User::factory()->count(50)->create();
     }
 }

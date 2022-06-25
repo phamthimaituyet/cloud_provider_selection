@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function nameRole($role) {
+        if($role == 1){
+            return 'admin';
+        }
+
+        return 'user';
+    }
 }
