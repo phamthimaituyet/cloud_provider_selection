@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\CriteriaController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CriteriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +17,11 @@ use App\Http\Controllers\Admin\CriteriaController;
 |
 */
 
-Route::get('/', function(){
-    return view('test');
-});
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
+
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [UserController::class, 'postRegister'])->name('register.post');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', function(){
@@ -28,7 +30,6 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('user');
-        Route::get('/new', [UserController::class, 'new']);
     });
 
     Route::prefix('category')->group(function () {
