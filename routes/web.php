@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,20 +25,24 @@ Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/register', [UserController::class, 'postRegister'])->name('register.post');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', function(){
-        return view('admin.pages.dashboard.dashboard');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('user');
+        Route::get('/view/{id}', [UserController::class, 'view'])->name('user.view');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+        Route::post('/edit/{id}', [UserController::class, 'editPost'])->name('user.edit.post');
+        Route::post('/delete', [UserController::class, 'delete'])->name('user.delete');
     });
 
     Route::prefix('category')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('category');
         Route::get('/new', [CategoryController::class, 'new']);
         Route::get('/view/{id}', [CategoryController::class, 'view'])->name('category.view');
-
-
+        Route::post('/new', [CategoryController::class, 'postNew'])->name('category.new.post');
+        Route::post('/edit', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::post('/delete', [CategoryController::class, 'delete'])->name('category.delete');
+    
     });
 
     Route::prefix('product')->group(function () {

@@ -37,7 +37,6 @@ class ProductController extends Controller
         $product->vendor_id = $request->input('vendor_id');
         $product->criteria_id = 1;
         $product->save();
-
         return redirect()->back()->with('thongbao',"Đăng ký thành công");
     }
 }

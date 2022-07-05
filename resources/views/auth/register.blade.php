@@ -6,7 +6,7 @@
     {{session('thongbao')}}
 </div>
 @endif
-<div class="register-box">
+<div class="register-box" style=" width: 400px;">
     <div class="register-logo">
         <b>Register</b>
     </div>

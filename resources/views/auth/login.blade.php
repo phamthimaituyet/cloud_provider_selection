@@ -1,7 +1,7 @@
 @extends('auth.index')
 
 @section('content')
-<div class="login-box">
+<div class="login-box" style=" width: 400px;">
     <div class="login-logo">
         <b>Login</b>
     </div>
@@ -65,7 +65,7 @@
                 <a href="forgot-password.html">I forgot my password</a>
             </p>
             <p class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
+                <a href="{{route('register')}}" class="text-center">Register a new membership</a>
             </p>
         </div>
         <!-- /.login-card-body -->

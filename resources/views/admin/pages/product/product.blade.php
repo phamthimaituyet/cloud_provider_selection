@@ -58,7 +58,7 @@
                         <th style="width: 8%">
                             Price
                         </th>
-                        <th style="width: 17%">
+                        <th style="width: 19%">
                         </th>
                     </tr>
                 </thead>
