@@ -71,13 +71,9 @@
                 <div class="form-group">
                     <label for="inputStatus">Vendor</label>
                     <select class="form-control select2" name="vendor_id" style="width: 100%;">
-                        <option value="1" selected="selected">Alabama</option>
-                        <option value="1">California</option>
-                        <option value="1">Alaska</option>
-                        <option value="1">Delaware</option>
-                        <option value="1">Tennessee</option>
-                        <option value="1">Texas</option>
-                        <option value="1">Washington</option>
+                        @foreach ($vendors as $vendor )
+                        <option value="{{$vendor->id}}">{{$vendor->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

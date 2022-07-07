@@ -1,18 +1,18 @@
-@extends('admin.layouts.index', ['product' => 'active'])
+@extends('admin.layouts.index', ['vendor' => 'active'])
 
-@section('title','Product')
+@section('title','Vendor')
 
 @section('content_header')
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Products</h1>
+                <h1 class="m-0 text-dark">Vendor</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Products</li>
+                    <li class="breadcrumb-item active">Vendor</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -21,15 +21,12 @@
 @endsection
 
 @section('content')
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin: 10px;">
-    <a href="{{route('product.new')}}" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i> Add product</a>
-</button>
 <section class="content">
 
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Products</h3>
+            <h3 class="card-title">Vendors</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -43,56 +40,42 @@
             <table class="table table-striped projects">
                 <thead>
                     <tr>
-                        <th style="width: 1%">
-                            #
+                        <th>
+                            ID
                         </th>
-                        <th style="width: 40%">
-                            Products Name
+                        <th>
+                            Vendor Name
                         </th>
-                        <th style="width: 20%">
-                            Category
-                        </th>
-                        <th style="width: 12%">
+                        <th>
                             Address
                         </th>
-                        <th style="width: 8%">
-                            Price
-                        </th>
-                        <th style="width: 19%">
+                        <th>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($products as $product){ ?>
+                    <?php foreach($vendors as $vendor){ ?>
                     <tr>
                         <td>
-                            #
+                            {{$vendor->id}}
                         </td>
                         <td>
-                            <p>{{$product->name}}</p>
+                            {{$vendor->name}}
                         </td>
                         <td>
-                            <p>{{$product->category->name}}</p>
+                            {{$vendor->address}}
                         </td>
                         <td>
-                            <p>{{$product->vendor->name}}</p>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <a href="{{route('product.view', ['id' => $product->id])}}" class="btn btn-sm btn-primary">
-                                <i class="fas fa-user"></i> View
-                            </a>
-                            <a class="btn btn-info btn-sm" href="#">
+                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm" href="#">
+                            </button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
-                            </a>
+                            </button>
                         </td>
                     </tr>
                     <?php }  ?>

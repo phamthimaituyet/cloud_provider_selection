@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\Http;
 
 
@@ -23,8 +24,9 @@ class ProductController extends Controller
 
     public function new(){
         $categories = Category::all();
+        $vendors = Vendor::all();
 
-        return view('admin.pages.product.new', ['categories' => $categories]);
+        return view('admin.pages.product.new', ['categories' => $categories, 'vendors' => $vendors]);
     }
 
     public function postNew(Request $request){
@@ -38,5 +40,10 @@ class ProductController extends Controller
         $product->criteria_id = 1;
         $product->save();
         return redirect()->back()->with('thongbao',"Đăng ký thành công");
+    }
+
+    public function view($id = null){
+        $product = Product::find($id);
+        return view('admin.pages.product.view', ['product' => $product]);
     }
 }

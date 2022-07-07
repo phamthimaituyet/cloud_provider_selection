@@ -64,11 +64,11 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                <li class="nav-item">
+                    <a href="{{route('vendor')}}" class="nav-link {{$vendor}}">
+                        <i class="nav-icon fa fa-cogs"></i>
                         <p>
-                            Layout Options
+                            Vendor
                         </p>
                     </a>
                 </li>

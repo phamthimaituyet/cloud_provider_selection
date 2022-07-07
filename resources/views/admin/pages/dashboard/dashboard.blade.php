@@ -2,7 +2,7 @@
 
 @extends('admin.layouts.index', ['dashboard' => 'active'])
 
-@section('title','dashboard')
+@section('title','Dashboard')
 
 @section('content_header')
 @if (session('thongbao'))

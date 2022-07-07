@@ -1,6 +1,6 @@
 @extends('admin.layouts.index', ['user' => 'active'])
 
-@section('title','user')
+@section('title','User')
 
 @section('content_header')
 <div class="content-header">

@@ -47,7 +47,8 @@
                 'user' => $user ?? '',
                 'category' => $category ?? '',
                 'product' => $product ?? '',
-                'criteria' => $criteria ?? ''
+                'criteria' => $criteria ?? '',
+                'vendor' => $vendor ?? ''
             ])
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

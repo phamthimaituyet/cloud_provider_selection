@@ -71,7 +71,7 @@
                         </td>
                         <td>
                             <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal"
-                                data-id="{{$category->id}}">
+                                data-id="{{$category->id}}" data-name="{{$category->name}}" >
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
@@ -134,9 +134,9 @@
                 <input id="idCategoryEdit" type="hidden" name="id" value="">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="inputName">Name category</label>
-                        <input type="text" id="inputName" class="form-control" name="name"
-                            value="{{$category->name}}" />
+                        <label for="editName">Name category</label>
+                        <input type="text" id="editName" class="form-control" name="name"
+                            value="" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -179,8 +179,7 @@
 @section('script')
 <script>
 const button1 = document.querySelectorAll('.btn.btn-danger.btn-sm');
-const button2 = document.querySelectorAll('btn.btn-info.btn-sm');
-
+const button2 = document.querySelectorAll('.btn.btn-info.btn-sm');
 button1.forEach(button => {
     button.onclick = function() {
         const input = document.querySelector('#idCategoryDelete');
@@ -191,6 +190,8 @@ button1.forEach(button => {
 button2.forEach(button => {
     button.onclick = function() {
         const input = document.querySelector('#idCategoryEdit');
+        const editName = document.querySelector('#editName');
+        editName.value = button.getAttribute('data-name');
         input.value = button.getAttribute('data-id');
     }
 })

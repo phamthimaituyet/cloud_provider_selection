@@ -35,7 +35,6 @@ class CategoryController extends Controller
     public function edit(Request $request){
         $categories = Category::find($request->id);
         $datas = $request->only('name');
-        dd($categories);
         $categories->update($datas);
 
         return redirect()->back()->withInput()->with('thongbao', 'Update category success');

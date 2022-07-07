@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +50,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('product');
         Route::get('/new', [ProductController::class, 'new'])->name('product.new');
         Route::post('/new', [ProductController::class, 'postNew'])->name('product.new.post');
+        Route::get('/view/{id}', [ProductController::class, 'view'])->name('product.view');
     }); 
 
     Route::prefix('criteria')->group(function () {
         Route::get('/', [CriteriaController::class, 'index'])->name('criteria');
     }); 
+
+    Route::prefix('vendor')->group(function () {
+        Route::get('/', [VendorController::class, 'index'])->name('vendor');
+    });
 });
