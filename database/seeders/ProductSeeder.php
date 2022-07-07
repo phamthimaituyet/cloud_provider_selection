@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         DB::table('products')->insert([
             [
                 'name' => 'Cloud Manager - Manual Installation without access keys',
-                'description' => "This listing lets you manually launch a Cloud Manager instance without providing your AWS credentials. After launching the Cloud Manager software in AWS, you can access it by entering the instance's IP address in a web browser. If you subscribe here, you still need to subscribe on the listing below for PAYGO charges.",
+                'description' => "This listing lets you manually launch a Cloud Manager instance without providing your AWS credentials. After launching the Cloud Manager software in AWS, you can access it by entering the instance's IP address in a web browser. \n If you subscribe here, you still need to subscribe on the listing below for PAYGO charges.",
                 'support' => "Cloud Manager - Manual Installation without access keys. Software support for NetApp Cloud Manager is provided as part of Cloud Volumes ONTAP for AWS support.  With the purchase of Cloud Volumes ONTAP Hourly or BYOL platforms, you will get support for your Cloud Manager software. NetApp has extensive self-support options that are available 24x7. NetApp customers can also get support from our tech support team via chat, web tickets or phone. 
                             Support Portal:  https://mysupport.netapp.com  Community and Forums:  http://community.netapp.com/hybrid-cloud 
                             AWS Infrastructure
@@ -49,6 +49,20 @@ class ProductSeeder extends Seeder
                 'vendor_id' => 1,
                 'category_id' => 1,
             ],
+            [
+                'name' => 'Azure Backup',
+                'description' => 'zure Backup is a cost-effective, secure, one-click backup solution that’s scalable based on your backup storage needs. The centralized management interface makes it easy to define backup policies and protect a wide range of enterprise workloads, including Azure Virtual Machines, SQL and SAP databases, and Azure file shares.',
+                'support' => 'You can use Azure Backup to back up data to the Microsoft Azure cloud platform. This article summarizes the general support settings and limitations for Azure Backup scenarios and deployments.',
+                'vendor_id' => 2,
+                'category_id' => 1,
+            ],
+            [
+                'name' => 'Azure Disk Storage',
+                'description' => 'Designed to be used with Azure Virtual Machines and Azure VMware Solution (in preview), Azure Disk Storage offers high-performance, durable block storage for your mission- and business-critical applications. Confidently migrate to Azure infrastructure with four disk storage options for the cloud—–Ultra Disk Storage, Premium SSD, Standard SSD, and Standard HDD—to optimize costs and performance for your workload. Get high performance with sub-millisecond latency for throughput and transaction-intensive workloads such as SAP HANA, SQL Server, and Oracle.',
+                'support' => '',
+                'vendor_id' => 2,
+                'category_id' => 1,
+            ]
         ]);   
     }
 }
