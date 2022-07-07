@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('products')->insert([
+        DB::table('products')->insert([
             [
                 'name' => 'Cloud Manager - Manual Installation without access keys',
                 'description' => "This listing lets you manually launch a Cloud Manager instance without providing your AWS credentials. After launching the Cloud Manager software in AWS, you can access it by entering the instance's IP address in a web browser. If you subscribe here, you still need to subscribe on the listing below for PAYGO charges.",
@@ -22,7 +22,6 @@ class ProductSeeder extends Seeder
                             AWS Infrastructure
                             AWS Support is a one-on-one support channel that is staffed 24x7x365 with experienced support engineers. AWS Support offers four support plans: Basic, Developer, Business, and Enterprise. The Basic plan is free of charge and offers support for account and billing questions and service limit increases. The other plans offer an unlimited number of technical support cases with pay-by-the-month pricing and no long term contracts, providing the level of support that meets your needs",
                             
-                'price_id' => 1,
                 'vendor_id' => 1,
                 'category_id' => 1,
             ],
@@ -35,7 +34,6 @@ class ProductSeeder extends Seeder
                                 Stay on top of cloud costs with automated resource scheduling and monitor EBS policy spend from the N2WS dashboard.",
                 'support' => "AWS Infrastructure
                             AWS Support is a one-on-one support channel that is staffed 24x7x365 with experienced support engineers. AWS Support offers four support plans: Basic, Developer, Business, and Enterprise. The Basic plan is free of charge and offers support for account and billing questions and service limit increases. The other plans offer an unlimited number of technical support cases with pay-by-the-month pricing and no long term contracts, providing the level of support that meets your needs.",
-                'price_id' => 1,
                 'vendor_id' => 1,
                 'category_id' => 1,
             ],
@@ -48,7 +46,6 @@ class ProductSeeder extends Seeder
                                 Stay on top of cloud backup costs with automated resource scheduling, automate backup to low-cost Amazon S3 for long-term retention and compliance and monitor EBS policy spend from the N2WS dashboard.",
                 'support' => "AWS Infrastructure
                             AWS Support is a one-on-one support channel that is staffed 24x7x365 with experienced support engineers. AWS Support offers four support plans: Basic, Developer, Business, and Enterprise. The Basic plan is free of charge and offers support for account and billing questions and service limit increases. The other plans offer an unlimited number of technical support cases with pay-by-the-month pricing and no long term contracts, providing the level of support that meets your needs.",
-                'price_id' => 1,
                 'vendor_id' => 1,
                 'category_id' => 1,
             ],

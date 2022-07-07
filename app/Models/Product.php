@@ -22,4 +22,8 @@ class Product extends Model
     public function criterias(){
         return $this->belongsToMany(Criteria::class, 'product_criterias', 'product_id', 'criteria_id');
     }
+
+    public function prices(){
+        return $this->hasMany(Price::class);
+    }
 }

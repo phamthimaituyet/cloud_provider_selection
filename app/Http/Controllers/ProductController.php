@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Vendor;
+use App\Models\Price;
 use Illuminate\Support\Facades\Http;
 
 
@@ -44,6 +45,7 @@ class ProductController extends Controller
 
     public function view($id = null){
         $product = Product::find($id);
-        return view('admin.pages.product.view', ['product' => $product]);
+        $prices = Price::find($id);
+        return view('admin.pages.product.view', ['product' => $product, 'prices' => $prices]);
     }
 }

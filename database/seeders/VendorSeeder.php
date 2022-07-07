@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class VendorSeeder extends Seeder
@@ -13,7 +13,7 @@ class VendorSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('vendors')->insert([
+        DB::table('vendors')->insert([
             ['name' => 'Amazon Web Services', 'address' => '1900 University Ave', 'created_at' => new \DateTime()],
             ['name' => 'Microsoft Azure','address' => '1 Microsoft Way', 'created_at' => new \DateTime()],
             ['name' => 'Google Cloud Platform', 'address' => 'Hoa Kỳ', 'created_at' => new \DateTime()],

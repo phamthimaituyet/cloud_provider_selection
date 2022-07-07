@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('categories')->insert([
+        DB::table('categories')->insert([
             ['name' => 'Storage', 'created_at' => new \DateTime()],
             ['name' => 'Serverless', 'created_at' => new \DateTime()],
             ['name' => 'Databases', 'created_at' => new \DateTime()],

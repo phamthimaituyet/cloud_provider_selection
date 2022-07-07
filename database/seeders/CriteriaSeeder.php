@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class CriteriaSeeder extends Seeder
@@ -13,7 +13,7 @@ class CriteriaSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('criterias')->insert([
+        DB::table('criterias')->insert([
             ['id' => 1, 'name' => 'Agility', 'parent_id' => null], 
             ['id' => 2, 'name' => 'Risk', 'parent_id' => null], 
             ['id' => 3, 'name' => 'Security', 'parent_id' => null], 

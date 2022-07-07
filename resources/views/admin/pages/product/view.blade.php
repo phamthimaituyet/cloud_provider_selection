@@ -44,32 +44,6 @@
 
             <div>
                 <div class="row">
-                    <div class="col-12 col-sm-4">
-                        <div class="info-box bg-light">
-                            <div class="info-box-content">
-                                <span class="info-box-text text-center text-muted">Estimated budget</span>
-                                <span class="info-box-number text-center text-muted mb-0">2300</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-4">
-                        <div class="info-box bg-light">
-                            <div class="info-box-content">
-                                <span class="info-box-text text-center text-muted">Total amount spent</span>
-                                <span class="info-box-number text-center text-muted mb-0">2000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-4">
-                        <div class="info-box bg-light">
-                            <div class="info-box-content">
-                                <span class="info-box-text text-center text-muted">Estimated project duration</span>
-                                <span class="info-box-number text-center text-muted mb-0">20 <span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-12">
                         <div class="post">
                             <h3 style="color: #0D6EFD;">Description</h3>
@@ -81,10 +55,34 @@
                             <p>{{$product->support}}</p>
                         </div>
 
-                        <!-- <div class="post">
-                            <h3 style="color: #0D6EFD;">Support</h3>
-                            <p>{{$product->support}}</p>
-                        </div> -->
+                        <div class="post">
+                            <h3 style="color: #0D6EFD;">Pricing</h3>
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <table class="table">
+                                        <thead style="background-color: #DBDBDB;">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Type price</th>
+                                                <th>Date use (date)</th>
+                                                <th>Price (USD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           @foreach ($product->prices as $price)
+                                           <tr>
+                                                <td>#</td>
+                                                <td>{{$price->type}}</td>
+                                                <td>{{$price->date_use}}</td>
+                                                <td>{{$price->price}}</td>
+                                            </tr>
+                                           @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
