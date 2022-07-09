@@ -83,7 +83,7 @@
                             <a href="{{route('product.view', ['id' => $product->id])}}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-user"></i> View
                             </a>
-                            <a class="btn btn-info btn-sm" href="#">
+                            <a class="btn btn-info btn-sm" href="{{route('product.edit', ['id' => $product->id])}}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit

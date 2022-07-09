@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Vendor;
 use App\Models\Price;
+use App\Models\Criteria;
 use Illuminate\Support\Facades\Http;
 
 
@@ -46,6 +47,12 @@ class ProductController extends Controller
     public function view($id = null){
         $product = Product::find($id);
         $prices = Price::find($id);
-        return view('admin.pages.product.view', ['product' => $product, 'prices' => $prices]);
+        $criterias = Criteria::all();
+        return view('admin.pages.product.view', ['product' => $product, 'prices' => $prices, 'criterias' => $criterias]);
+    }
+
+    public function edit($id = null){
+        $product = Product::find($id);
+        return view('admin.pages.product.edit', ['product' => $product]);
     }
 }

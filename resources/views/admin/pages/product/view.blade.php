@@ -83,6 +83,35 @@
                                 <!-- /.card-body -->
                             </div>
                         </div>
+
+                        <div class="post">
+                            <h3 style="color: #0D6EFD;">Criteria</h3>
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <table class="table">
+                                        <thead style="background-color: #DBDBDB;">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name criteria</th>
+                                                <th>Name Factor</th>                                         
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           @foreach ($product->criterias as $criteria)
+                                           <tr>
+                                                <td>#</td>
+                                                <td>{{$criteria->name}}</td>
+                                                <td>{{$criteria->getNameRootParent($criteria->parent_id)}}</td>                                                
+                                                <td>{{$criteria->pivot->value}}</td>
+                                            </tr>
+                                           @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -51,6 +51,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/new', [ProductController::class, 'new'])->name('product.new');
         Route::post('/new', [ProductController::class, 'postNew'])->name('product.new.post');
         Route::get('/view/{id}', [ProductController::class, 'view'])->name('product.view');
+        Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+        Route::post('/edit/{id}', [ProductController::class, 'editPost'])->name('product.edit.post');
     }); 
 
     Route::prefix('criteria')->group(function () {
