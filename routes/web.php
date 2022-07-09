@@ -18,14 +18,13 @@ use App\Http\Controllers\VendorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
-
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/register', [UserController::class, 'postRegister'])->name('register.post');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->group(function () {
+Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('user')->group(function () {

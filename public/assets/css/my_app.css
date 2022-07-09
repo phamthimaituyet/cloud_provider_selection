@@ -1,0 +1,16 @@
+header {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.main-header {
+    width: 75%;
+    border: none;
+    z-index: 10;
+}
+
+.user-panel {
+    float: right;
+    cursor: pointer;
+}
