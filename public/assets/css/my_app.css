@@ -14,3 +14,27 @@ header {
     float: right;
     cursor: pointer;
 }
+
+.price{
+    display: flex;  
+    width: 100%;
+    align-items: end;
+}
+
+.prod_price{
+    width: 40%;
+    padding-right: 10px;
+}
+
+span .fas{
+    padding: 10px;
+}
+
+span.price-icon:hover {
+    cursor: pointer;
+    color: red;
+}
+
+span.price-icon +span.price-icon {
+    margin-left: 10px;
+}

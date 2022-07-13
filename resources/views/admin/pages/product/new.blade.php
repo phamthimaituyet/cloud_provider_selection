@@ -41,16 +41,26 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <div class="head" style="display: flex;">
-                        <div class="prod_name" style="width: 70%; padding-right: 10px;">
-                            <label for="inputName">Product Name</label>
-                            <input type="text" name="name" id="inputName" class="form-control">
-                        </div>
-                        <div class="prod_price" style="width: 30%;">
-                            <label for="inputName">Price</label>
-                            <input type="number" name="price_id" id="inputName" class="form-control">
-                        </div>
+                    <div class="prod_name">
+                        <label for="inputName">Product Name</label>
+                        <input type="text" name="name" id="inputName" class="form-control">
                     </div>
+                </div>
+                <div class="form-group">
+                    <div class="parent-price">
+                        <div class="price" id="price">
+                            <div class="prod_price">
+                                <label for="inputType">Type</label>
+                                <input type="text" name="type" id="inputType" class="form-control">
+                            </div>
+                            <div class="prod_price">
+                                <label for="inputPrice">Price</label>
+                                <input type="number" name="price_id" id="inputPrice" class="form-control">
+                            </div>
+                        </div>                      
+                    </div>
+                    <span class="add-product-icon price-icon"><i class="fas fa-plus"></i>Add</span>
+                    <span class="remove-product-icon price-icon"><i class="fas fa-minus"></i>Remove</span>
                 </div>
                 <div class="form-group">
                     <label for="inputDescription">Product Description</label>
@@ -87,4 +97,8 @@
         </div>
     </form>
 </section>
+@endsection
+
+@section('script')
+    <script src="{{ asset('assets/js/admin/product.js')}}"></script>
 @endsection
