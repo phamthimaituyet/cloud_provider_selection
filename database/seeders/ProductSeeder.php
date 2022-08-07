@@ -62,7 +62,30 @@ class ProductSeeder extends Seeder
                 'support' => '',
                 'vendor_id' => 2,
                 'category_id' => 1,
-            ]
+            ],
+            [
+                'name' => 'Red Hat Enterprise Linux 8.4 with High Availability',
+                'description' => 'The Red Hat Enterprise Linux with High Availability image is the foundation to a clustered system that provides reliability, scalability, and availability to critical production services. A cluster is two or more instances (called nodes or members) that work together to perform a task.',
+                'support' => 'Red Hat Enterprise Linux 8.4 with High Availability
+                Support is available through forums, technical FAQs and the Service Help Dashboard.  Paid support is available.
+                https://forums.aws.amazon.com/forum.jspa?forumID=30 https://aws.amazon.com/premiumsupport/',
+                'vendor_id' => 1,
+                'category_id' => 7,
+            ],
+            [
+                'name' => 'Amazon DynamoDB',
+                'description' => 'Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed to run high-performance applications at any scale. DynamoDB offers built-in security, continuous backups, automated multi-Region replication, in-memory caching, and data export tools.',
+                'support' => '',
+                'vendor_id' => 1,
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Amazon MemoryDB for Redis',
+                'description' => 'Redis-compatible, durable, in-memory database service for ultra-fast performance',
+                'support' => '',
+                'vendor_id' => 1,
+                'category_id' => 2,
+            ],
         ]);   
     }
 }

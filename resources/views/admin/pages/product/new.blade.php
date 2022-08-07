@@ -22,8 +22,10 @@
 
 @section('content')
 @if (session('thongbao'))
-<div class="alert alert-success">
-    {{session('thongbao')}}
+<div style=" color: green;
+            font-size: 18px;
+            padding: 15px;">
+    <i class="fa fa-check" aria-hidden="true"></i> <b>{{session('thongbao')}}</b>
 </div>
 @endif
 <section class="content" style="padding: 30px;">
@@ -51,13 +53,13 @@
                         <div class="price" id="price">
                             <div class="prod_price">
                                 <label for="inputType">Type</label>
-                                <input type="text" name="type" id="inputType" class="form-control">
+                                <input type="text" name="type[]" id="inputType" class="form-control">
                             </div>
                             <div class="prod_price">
                                 <label for="inputPrice">Price</label>
-                                <input type="number" name="price_id" id="inputPrice" class="form-control">
+                                <input type="number" name="price[]" id="inputPrice" class="form-control">
                             </div>
-                        </div>                      
+                        </div>
                     </div>
                     <span class="add-product-icon price-icon"><i class="fas fa-plus"></i>Add</span>
                     <span class="remove-product-icon price-icon"><i class="fas fa-minus"></i>Remove</span>
@@ -100,5 +102,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/admin/product.js')}}"></script>
+<script src="{{ asset('assets/js/admin/product.js')}}"></script>
 @endsection

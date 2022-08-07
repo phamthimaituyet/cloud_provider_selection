@@ -19,6 +19,10 @@ class Criteria extends Model
     }
 
     public function getNameRootParent($parent_id) {
+        if ($parent_id === null) {
+            return ;
+        }
+
         while($parent_id != null){
             $children = $this->where('id', $parent_id)->first();
             $parent_id = $children->parent_id;

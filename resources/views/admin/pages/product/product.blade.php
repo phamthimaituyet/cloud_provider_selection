@@ -21,8 +21,16 @@
 @endsection
 
 @section('content')
+@if (session('thongbao'))
+<div style=" color: green;
+            font-size: 18px;
+            padding: 15px;">
+    <i class="fa fa-check" aria-hidden="true"></i> <b>{{session('thongbao')}}</b>
+</div>
+@endif
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin: 10px;">
-    <a href="{{route('product.new')}}" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i> Add product</a>
+    <a href="{{route('product.new')}}" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i> Add
+        product</a>
 </button>
 <section class="content">
 
@@ -88,11 +96,12 @@
                                 </i>
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal"
+                                data-id="{{$product->id}}">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
-                            </a>
+                            </button>
                         </td>
                     </tr>
                     <?php }  ?>
@@ -104,4 +113,45 @@
     <!-- /.card -->
 
 </section>
+
+<!-- modal  -->
+<div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Product</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form action="{{route('product.delete')}}" method="post">
+                @csrf
+                <input id="idProductDelete" type="hidden" name="id" value="">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p>Are you sure to delete?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+const buttons = document.querySelectorAll('.btn.btn-danger.btn-sm');
+buttons.forEach(button => {
+    button.onclick = function() {
+        const input = document.querySelector('#idProductDelete');
+        input.value = button.getAttribute('data-id');
+    }
+});
+</script>
+
+
 @endsection

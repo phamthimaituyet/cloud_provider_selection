@@ -52,10 +52,13 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::get('/view/{id}', [ProductController::class, 'view'])->name('product.view');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('/edit/{id}', [ProductController::class, 'editPost'])->name('product.edit.post');
+        Route::post('/delete', [ProductController::class, 'delete'])->name('product.delete');
     }); 
 
     Route::prefix('criteria')->group(function () {
         Route::get('/', [CriteriaController::class, 'index'])->name('criteria');
+        Route::get('/new', [CriteriaController::class, 'new'])->name('criteria.new');
+        Route::post('/new', [CriteriaController::class, 'postNew'])->name('criteria.new.post');
     }); 
 
     Route::prefix('vendor')->group(function () {

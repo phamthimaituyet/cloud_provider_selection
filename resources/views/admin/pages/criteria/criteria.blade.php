@@ -21,6 +21,11 @@
 @endsection
 
 @section('content')
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin: 10px;">
+    <a href="{{route('product.new')}}" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i> Add Criteria</a>
+</button>
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -35,8 +40,7 @@
                         <div>
                             <div class="btn-group w-100 mb-2">
                                 <button class="w3-bar-item btn btn-info tablink w3-red"
-                                    onclick="openLink(event, 'All')">All
-                                    Criterias</button>
+                                    onclick="openLink(event, 'All')">All Criterias</button>
                                 <button class="w3-bar-item btn btn-info tablink"
                                     onclick="openLink(event, 'Agility')">Agility</button>
                                 <button class="w3-bar-item btn btn-info tablink"
@@ -69,6 +73,13 @@
 @endsection
 @section('script')
 <script>
+document.getElementById('All').style.display = "block";
+document.getElementById('Agility').style.display = "none";
+document.getElementById('Risk').style.display = "none";
+document.getElementById('Security').style.display = "none";
+document.getElementById('Cost').style.display = "none";
+document.getElementById('Quality').style.display = "none";
+document.getElementById('Capability').style.display = "none";
 function openLink(evt, criteriaName) {
     const criterias = document.querySelectorAll(".criteria");
     criterias.forEach(criteria => {

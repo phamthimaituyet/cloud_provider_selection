@@ -22,8 +22,10 @@
 
 @section('content')
 @if (session('thongbao'))
-<div class="alert alert-success">
-    {{session('thongbao')}}
+<div style=" color: green;
+            font-size: 18px;
+            padding: 15px;">
+    <i class="fa fa-check" aria-hidden="true"></i> <b>{{session('thongbao')}}</b>
 </div>
 @endif
 <section class="content">
@@ -45,7 +47,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{route('product.new.post', ['id' => $product->id])}}" method="post">
+            <form action="{{route('product.edit.post', ['id' => $product->id])}}" method="post">
                 @csrf
                 <div class="card card-primary">
                     <div class="card-header">
@@ -59,11 +61,46 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="inputDescription">Description</label>
-                            <textarea id="inputDescription" class="form-control" rows="10" name="description">{{$product->description}}</textarea>
+                            <textarea id="inputDescription" class="form-control" rows="10"
+                                name="description">{{$product->description}}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="inputSupport">Support</label>
-                            <textarea id="inputSupport" class="form-control" rows="10" name="description">{{$product->support}}</textarea>
+                            <textarea id="inputSupport" class="form-control" rows="10"
+                                name="description">{{$product->support}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="parent-price">
+                                @foreach ($prices as $price)
+                                <div class="price" id="price">
+                                    <input type="hidden" name="price_id[]" value="{{$price->id}}" />
+                                    <div class="prod_price">
+                                        <label for="inputType">Type</label>
+                                        <input type="text" name="type[]" id="inputType" class="form-control" value="{{$price->type}}">
+                                    </div>
+                                    <div class="prod_price">
+                                        <label for="inputPrice">Price</label>
+                                        <input type="number" name="price[]" id="inputPrice" class="form-control" value="{{$price->price}}" placeholder>
+                                    </div>
+                                </div>
+                                @endforeach                             
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select class="form-control select2" name="category_id" style="width: 100%;">
+                                @foreach ($categories as $category )
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputStatus">Vendor</label>
+                            <select class="form-control select2" name="vendor_id" style="width: 100%;">
+                                @foreach ($vendors as $vendor )
+                                <option value="{{$vendor->id}}">{{$vendor->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                     </div>
@@ -72,7 +109,7 @@
                 <div class="row">
                     <div class="col-12">
                         <a href="#" class="btn btn-secondary">Cancel</a>
-                        <input type="submit" value="Edit user" class="btn btn-success float-right">
+                        <input type="submit" value="Edit product" class="btn btn-success float-right">
                     </div>
                 </div>
             </form>
@@ -83,4 +120,8 @@
     <!-- /.card -->
 
 </section>
+@endsection
+
+@section('script')
+    <script src="{{ asset('assets/js/admin/product.js')}}"></script>
 @endsection

@@ -30,3 +30,5 @@ function removeFormPrice() {
 
 plus.onclick = addFormPrice;
 minus.onclick = removeFormPrice;
+
+

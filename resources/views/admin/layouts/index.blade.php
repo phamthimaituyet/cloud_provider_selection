@@ -38,7 +38,25 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <!-- Navbar -->
-            @include('admin.include.head')
+        <?php
+            $page = '';
+            if (isset($user)) {
+                $page = 'user';
+            } else if (isset($product)) {
+                $page = 'product';
+            } else if (isset($category)) {
+                $page = 'category';
+            } else if (isset($criteria)) {
+                $page = 'criteria';
+            } else if (isset($vendor)) {
+                $page = 'vendor';
+            } else if (isset($dashboard)) {
+                $page = 'dashboard';
+            }
+        ?>
+            @include('admin.include.head', [
+                'page' => $page ?? '',
+            ])
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->

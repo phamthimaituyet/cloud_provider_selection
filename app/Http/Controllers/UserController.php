@@ -47,8 +47,12 @@ class UserController extends Controller
         return redirect()->back()->withInput()->with('thongbao', 'Đăng ký thất bại');
     }
 
-    public function index(){
+    public function index(Request $request){
         $users = User::all();
+
+        if ($request->search) {
+            $users = User::where('name', 'LIKE', '%'.$request->search.'%')->get();
+        }
 
         return view('admin.pages.user.user', ['users' => $users]);
     }
