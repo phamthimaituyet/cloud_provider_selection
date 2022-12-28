@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class CriteriaController extends Controller
     public function index(){
         $criterias = Criteria::all();
 
-        return view('admin.pages.criteria.criteria', ['criterias' => $criterias]);
+        return view('admin.pages.criteria.index', ['criterias' => $criterias]);
     }
     
 }

@@ -14,7 +14,7 @@
                 {{session('thongbao')}}
             </div>
             @endif
-            <form action="{{route('login.post')}}" method="post">
+            <form action="{{route('login.form')}}" method="post">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" value="{{old('email')}}" placeholder="Email" name="email">

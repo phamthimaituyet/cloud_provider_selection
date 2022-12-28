@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{route('dashboard')}}" class="brand-link">
+    <a href="{{ route('dashboard') }}" class="brand-link">
         <img src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Admin</span>
@@ -14,7 +14,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview menu-open">
-                    <a href="{{route('dashboard')}}" class="nav-link {{$dashboard}}">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ $dashboard }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('user')}}" class="nav-link {{$user}}">
+                    <a href="{{ route('users.index') }}" class="nav-link {{ $user }}">
                         <i class="nav-icon fa fa-user"></i>
                         <p>
                             User
@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('category')}}" class="nav-link {{$category}}">
+                    <a href="{{route('categories.index')}}" class="nav-link {{ $category }}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Category
@@ -38,7 +38,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('product')}}" class="nav-link {{$product}}">
+                    <a href="{{route('products.index')}}" class="nav-link {{$product}}">
                         <i class="nav-icon fa fa-cloud"></i>
                         <p>
                             Products
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('criteria')}}" class="nav-link {{$criteria}}">
+                    <a href="{{ route('criterias.index') }}" class="nav-link {{ $criteria }}">
                         <i class="nav-icon fa fa-certificate"></i>
                         <p>
                             Criterias
@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('vendor')}}" class="nav-link {{$vendor}}">
+                    <a href="{{route('vendor')}}" class="nav-link {{ $vendor }}">
                         <i class="nav-icon fa fa-cogs"></i>
                         <p>
                             Vendor

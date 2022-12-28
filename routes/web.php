@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CriteriaController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\VendorController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\CriteriaController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\VendorController;
+use App\Models\Criteria;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,46 +20,47 @@ use App\Http\Controllers\VendorController;
 |
 */
 Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
+Route::post('/login', [UserController::class, 'postLogin'])->name('login.form');
 Route::get('/register', [UserController::class, 'register'])->name('register');
-Route::post('/register', [UserController::class, 'postRegister'])->name('register.post');
+Route::post('/register', [UserController::class, 'postRegister'])->name('register.form');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('user');
-        Route::get('/view/{id}', [UserController::class, 'view'])->name('user.view');
-        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-        Route::post('/edit/{id}', [UserController::class, 'editPost'])->name('user.edit.post');
-        Route::post('/delete', [UserController::class, 'delete'])->name('user.delete');
+    Route::prefix('users')->name('users.')->controller(UserController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/edit/{id}', 'update')->name('update');
+        Route::post('/delete', 'delete')->name('delete');
     });
 
-    Route::prefix('category')->group(function () {
-        Route::get('/', [CategoryController::class, 'index'])->name('category');
-        Route::get('/new', [CategoryController::class, 'new']);
-        Route::get('/view/{id}', [CategoryController::class, 'view'])->name('category.view');
-        Route::post('/new', [CategoryController::class, 'postNew'])->name('category.new.post');
-        Route::post('/edit', [CategoryController::class, 'edit'])->name('category.edit');
-        Route::post('/delete', [CategoryController::class, 'delete'])->name('category.delete');
-    
+    Route::prefix('categories')->name('categories.')->controller(CategoryController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/edit', 'update')->name('update');
+        Route::post('/delete', 'delete')->name('delete');
     });
 
-    Route::prefix('product')->group(function () {
-        Route::get('/', [ProductController::class, 'index'])->name('product');
-        Route::get('/new', [ProductController::class, 'new'])->name('product.new');
-        Route::post('/new', [ProductController::class, 'postNew'])->name('product.new.post');
-        Route::get('/view/{id}', [ProductController::class, 'view'])->name('product.view');
-        Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-        Route::post('/edit/{id}', [ProductController::class, 'editPost'])->name('product.edit.post');
-        Route::post('/delete', [ProductController::class, 'delete'])->name('product.delete');
-    }); 
+    Route::prefix('products')->name('products.')->controller(ProductController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/edit', 'update')->name('update');
+        Route::post('/delete', 'delete')->name('delete');
+        Route::get('/{id}', 'show')->name('show');
+    });
+ 
 
-    Route::prefix('criteria')->group(function () {
-        Route::get('/', [CriteriaController::class, 'index'])->name('criteria');
-        Route::get('/new', [CriteriaController::class, 'new'])->name('criteria.new');
-        Route::post('/new', [CriteriaController::class, 'postNew'])->name('criteria.new.post');
+    Route::prefix('criterias')->name('criterias.')->controller(CriteriaController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
     }); 
 
     Route::prefix('vendor')->group(function () {

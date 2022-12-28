@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
@@ -15,6 +16,6 @@ class DashboardController extends Controller
         $categories = Category::orderBy('created_at', 'DESC');
         $products = Product::orderBy('created_at', 'DESC');
         $criterias = Criteria::orderBy('created_at', 'DESC');
-        return view('admin.pages.dashboard.dashboard', ['users' => $users, 'categories' => $categories, 'products' => $products, 'criterias' => $criterias]);    
+        return view('admin.pages.dashboard.index', ['users' => $users, 'categories' => $categories, 'products' => $products, 'criterias' => $criterias]);    
     }
 }

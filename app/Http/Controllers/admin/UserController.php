@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -20,11 +20,11 @@ class UserController extends Controller
  
         if (Auth::attempt($datas)) {
             if(Auth::user()->role == 1){
-                return redirect()->route('dashboard')->with('thongbao', 'Đăng nhập thành công');
+                return redirect()->route('dashboard')->with('alert', 'Success');
             }
         }
 
-        return redirect()->back()->withInput()->with('thongbao', 'Đăng nhập thất bại');
+        return redirect()->back()->withInput()->with('alert', 'Error');
     }
 
     public function register(){
@@ -44,7 +44,7 @@ class UserController extends Controller
             }    
         }
 
-        return redirect()->back()->withInput()->with('thongbao', 'Đăng ký thất bại');
+        return redirect()->back()->withInput()->with('alert', 'Failed');
     }
 
     public function index(Request $request){
@@ -54,13 +54,13 @@ class UserController extends Controller
             $users = User::where('name', 'LIKE', '%'.$request->search.'%')->get();
         }
 
-        return view('admin.pages.user.user', ['users' => $users]);
+        return view('admin.pages.user.index', ['users' => $users]);
     }
 
-    public function view($id = null){
+    public function show($id = null){
         $user = User::find($id);
 
-        return view('admin.pages.user.view', ['user' => $user]);
+        return view('admin.pages.user.show', ['user' => $user]);
     }
 
     public function edit($id = null){
@@ -71,22 +71,22 @@ class UserController extends Controller
 
     }
 
-    public function editPost($id = null, UserRequest $request){
+    public function update($id = null, UserRequest $request){
         $request->validated();
         $user = User::find($id);
         $validated = $request->only(['name', 'role']);
         $user->update($validated);
-        return redirect()->back()->withInput()->with('thongbao', 'Edit thành công');
+        return redirect()->back()->withInput()->with('alert', 'Edit success');
     }
 
     public function delete(Request $request){
         $user = User::find($request->id);
 
         if (!$user->delete()) {
-            return redirect()->back()->withInput()->with('loi', 'Delete user failed');
+            return redirect()->back()->withInput()->with('alert', 'Delete user failed');
         }
 
-        return redirect()->back()->withInput()->with('thongbao', 'Delete user success');
+        return redirect()->back()->withInput()->with('alert', 'Delete user success');
     }
 
     public function logout () {

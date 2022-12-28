@@ -6,14 +6,14 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{route('dashboard')}}" class="nav-link">Home</a>
+                <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{route('product')}}" class="nav-link">Products</a>
+                <a href="{{ route('products.index') }}" class="nav-link">Products</a>
             </li>
         </ul>
         <!-- SEARCH FORM -->
-        <form class="form-inline ml-3" action="{{route($page)}}" method="get">
+        <form class="form-inline ml-3" action="{{ route($page) }}" method="get">
             <div class="input-group input-group-sm">
                 <input class="form-control form-control-navbar" name="search" type="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
@@ -32,12 +32,12 @@
                 alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">{{Auth::user()->name}}</a>
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
     </div>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#"><i class="fas fa-address-card"></i></i> Profile</a>
         <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
-        <a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a class="dropdown-item" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 </header>

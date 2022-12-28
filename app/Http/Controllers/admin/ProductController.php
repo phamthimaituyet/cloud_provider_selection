@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 
@@ -26,17 +26,17 @@ class ProductController extends Controller
         // dd(json_decode($response)->products);
 
 
-        return view('admin.pages.product.product', ['products' => $products]);
+        return view('admin.pages.product.index', ['products' => $products]);
     }
 
-    public function new(){
+    public function create(){
         $categories = Category::all();
         $vendors = Vendor::all();
 
-        return view('admin.pages.product.new', ['categories' => $categories, 'vendors' => $vendors]);
+        return view('admin.pages.product.create', ['categories' => $categories, 'vendors' => $vendors]);
     }
 
-    public function postNew(Request $request){
+    public function store(Request $request){
         $data_product = $request->only('name', 'description', 'support','vendor_id', 'category_id');
         $products = Product::create($data_product);
         $data_prices = $request->only('type', 'price');
@@ -50,14 +50,15 @@ class ProductController extends Controller
             $price->product_id = $products->id;
             $price->save();
         }
-        return redirect()->back()->with('thongbao',"Đăng ký thành công");
+        return redirect()->back()->with('alert',"Success");
     }
 
-    public function view($id = null){
+    public function show($id = null){
         $product = Product::find($id);
         $prices = Price::find($id);
         $criterias = Criteria::all();
-        return view('admin.pages.product.view', ['product' => $product, 'prices' => $prices, 'criterias' => $criterias]);
+        
+        return view('admin.pages.product.show', ['product' => $product, 'prices' => $prices, 'criterias' => $criterias]);
     }
 
     public function edit($id = null){
@@ -69,7 +70,7 @@ class ProductController extends Controller
         return view('admin.pages.product.edit', compact('vendors', 'prices', 'product', 'categories')); 
     }
 
-    public function editPost(Request $request){
+    public function update(Request $request){
         $dataProduct = Product::find($request->id);
         $datas = $request->only('name', 'description', 'support','vendor_id', 'category_id');
         $dataProduct->update($datas);
@@ -86,16 +87,16 @@ class ProductController extends Controller
             $price->save();
         }
 
-        return redirect()->back()->withInput()->with('thongbao', 'Update product success');
+        return redirect()->back()->withInput()->with('alert', 'Update product success');
     }
 
     public function delete(Request $request){
         $product = Product::find($request->id);
 
         if (!$product->delete()) {
-            return redirect()->back()->withInput()->with('loi', 'Delete product failed');
+            return redirect()->back()->withInput()->with('error', 'Delete product failed');
         }
 
-        return redirect()->back()->withInput()->with('thongbao', 'Delete product success');
+        return redirect()->back()->withInput()->with('alert', 'Delete product success');
     }
 }

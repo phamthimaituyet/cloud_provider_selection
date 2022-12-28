@@ -41,13 +41,13 @@
         <?php
             $page = '';
             if (isset($user)) {
-                $page = 'user';
+                $page = 'users.index';
             } else if (isset($product)) {
-                $page = 'product';
+                $page = 'products.index';
             } else if (isset($category)) {
-                $page = 'category';
+                $page = 'categories.index';
             } else if (isset($criteria)) {
-                $page = 'criteria';
+                $page = 'criterias.index';
             } else if (isset($vendor)) {
                 $page = 'vendor';
             } else if (isset($dashboard)) {
