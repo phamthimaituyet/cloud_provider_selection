@@ -105,7 +105,7 @@
                 <tr class="odd link active_storage_attachment_links">
                     <td>
                         <span class="show">
-                            <a href="{{route('criteria')}}">Criterias</a>
+                            <a href="{{ route('criterias.index') }}">Criterias</a>
                         </span>
                     </td>
                     <td>

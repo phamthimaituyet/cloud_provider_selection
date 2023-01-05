@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CriteriaController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\VendorController;
+use App\Http\Controllers\HomeController;
 use App\Models\Criteria;
 
 /*
@@ -19,6 +20,8 @@ use App\Models\Criteria;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.form');
 Route::get('/register', [UserController::class, 'register'])->name('register');
