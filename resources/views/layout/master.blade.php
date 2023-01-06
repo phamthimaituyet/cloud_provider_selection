@@ -14,15 +14,16 @@
 
     <!-- Styles custom -->
     @yield('styles')
+    <link rel="stylesheet" href= {{asset('assets/css/sidebar.css') }}>
 
 </head>
 <body>
     @include('layout.header')
-    @include('layout.navbar')
     @include('layout.alert')
     <div class="content-wraper-master">
         @yield('content')
     </div>
+
     @include('layout.fooder')
 
     @yield('scripts')

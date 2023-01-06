@@ -12,6 +12,9 @@ header .text-decoration-none img {
     max-width: 50px;
 }
 
+main .carousel{
+    margin-bottom: 4rem;
+}
 main .section--color05 {
     background-color: #243a5e;
     color: white;
