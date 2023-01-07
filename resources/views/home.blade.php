@@ -52,7 +52,9 @@
                 <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                 <button type="button" class="btn btn-outline-primary">search</button>
             </div>
-            @include('layout.sidebar')
+            <div class="search-index_content__searchResults mt-5">
+                @include('layout.sidebar')
+            </div>
         </div>
     </main>
 @endsection
