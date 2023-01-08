@@ -14,6 +14,7 @@ class HomeController extends Controller
         $categories = Category::all();
         $products = Product::all();
         $providers = Vendor::all();
+        
         return view('home', compact('categories', 'products', 'providers'));
     }
 }

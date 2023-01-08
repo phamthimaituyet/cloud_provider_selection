@@ -11332,7 +11332,7 @@ only screen and (min-resolution:120dpi) {
 
 .shared-item_cards-author_category_component__root {
     color: var(--color-ui--grey-60);
-    font-size: var(--font-size--body-xs);
+    font-size: var(--font-size--body-s);
     height: var(--font-size--body-l);
     max-height: var(--font-size--body-l);
     overflow: hidden;
@@ -11341,7 +11341,7 @@ only screen and (min-resolution:120dpi) {
 }
 
 .shared-item_cards-author_category_component__link {
-    color: var(--color-ui--grey-60);
+    color: #0073bb;
     cursor: pointer;
     display: inline-block;
     font-weight: var(--font-weight--semibold);
@@ -11928,13 +11928,13 @@ only screen and (min-resolution:120dpi) {
 }
 
 .shared-item_cards-item_name_component__root {
-    font-size: var(--font-size--body-s);
+    font-size: var(--font-size--body-l);
     max-height: calc(var(--font-size--body-l)*2 + var(--spacing--xs));
     max-width: 100%
 }
 
 .shared-item_cards-item_name_component__itemNameLink {
-    color: var(--color-ui--grey-30);
+    /* color: var(--color-ui--grey-30); */
     cursor: pointer;
     display: inline-block;
     max-width: 100%;
@@ -12422,7 +12422,12 @@ only screen and (min-resolution:120dpi) {
     .shared-item_cards-list-image_card_component__attrsWrapper,
     .shared-item_cards-list-image_card_component__lastUpdated,
     .shared-item_cards-list-image_card_component__tagsContainer {
-        display: block
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        visibility: visible;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
     }
 
     .shared-item_cards-list-image_card_component__priceWrapper {
@@ -12442,7 +12447,7 @@ only screen and (min-resolution:120dpi) {
 @media(min-width:960px) {
     .shared-item_cards-list-image_card_component__detailsWrapper {
         padding: 0 var(--spacing--m);
-        width: calc(63% - 234px)
+        width: 63%;
     }
 
     .shared-item_cards-list-image_card_component__priceWrapper {

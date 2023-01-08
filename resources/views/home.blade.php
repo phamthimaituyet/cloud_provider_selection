@@ -4,6 +4,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
 @section('content')
     <main>
@@ -54,6 +55,7 @@
             </div>
             <div class="search-index_content__searchResults mt-5">
                 @include('layout.sidebar')
+                @include('components.home.main')
             </div>
         </div>
     </main>

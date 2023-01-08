@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <!-- Styles custom -->
     @yield('styles')
-    <link rel="stylesheet" href= {{asset('assets/css/sidebar.css') }}>
+    <link rel="stylesheet" href= {{asset('assets/css/home_template.css') }}>
 
 </head>
 <body>
