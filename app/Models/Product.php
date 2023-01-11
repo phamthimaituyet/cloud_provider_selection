@@ -13,7 +13,8 @@ class Product extends Model
         'description',
         'support',
         'vendor_id',
-        'category_id'
+        'category_id',
+        'img_url'
     ];
 
     // protected $table = "products";

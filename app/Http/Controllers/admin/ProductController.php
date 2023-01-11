@@ -10,8 +10,9 @@ use App\Models\Category;
 use App\Models\Vendor;
 use App\Models\Price;
 use App\Models\Criteria;
-use DateTime;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 
 class ProductController extends Controller
@@ -37,20 +38,36 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-        $data_product = $request->only('name', 'description', 'support','vendor_id', 'category_id');
-        $products = Product::create($data_product);
-        $data_prices = $request->only('type', 'price');
-        $types = $data_prices['type'];
-        $prices = $data_prices['price'];
-        foreach ($types as $key=>$value) {
-            $price = new Price;
-            $price->type = $value;
-            $price->price = $prices[$key];
-            $price->date_use = 30;
-            $price->product_id = $products->id;
-            $price->save();
+        DB::beginTransaction();             
+        try {
+            $data_product = $request->only('name', 'description', 'support','vendor_id', 'category_id', 'image');
+        
+            if($file = $request->file('image')){
+                $file_path = $file->store('public/images/' . Str::slug($data_product['name']));
+                unset($data_product['image']);
+                $data_product['img_url'] = 'storage/' . explode("public/", $file_path)[1];
+            }
+
+            $products = Product::create($data_product);
+            $data_prices = $request->only('type', 'price');
+            $types = $data_prices['type'];
+            $prices = $data_prices['price'];
+            foreach ($types as $key=>$value) {
+                $price = new Price;
+                $price->type = $value;
+                $price->price = $prices[$key];
+                $price->date_use = 30;
+                $price->product_id = $products->id;
+                $price->save();
+            }
+            DB::commit();
+            return redirect()->back()->with('alert',"Success");
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
         }
-        return redirect()->back()->with('alert',"Success");
+        
+        return redirect()->back()->with('alert',"Failed");
     }
 
     public function show($id = null){

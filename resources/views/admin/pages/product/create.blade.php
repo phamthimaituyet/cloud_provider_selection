@@ -29,7 +29,7 @@
         </div>
     @endif
     <section class="content" style="padding: 30px;">
-        <form action="{{ route('products.store') }}" method="post">
+        <form action="{{ route('products.store') }}" enctype="multipart/form-data" method="post">
             @csrf
             <div class="card card-primary">
                 <div class="card-header">
@@ -87,6 +87,12 @@
                             <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="prod_name">
+                            <label for="inputImage">Add Image</label>
+                            <input type="file" name="image" id="inputImage" class="form-control border-0">
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->

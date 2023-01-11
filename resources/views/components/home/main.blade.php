@@ -10,7 +10,11 @@
                             <div class="shared-item_cards-list-image_card_component__imageWrapper">
                                 <div class="shared-item_cards-preview_image_component__carousel shared-item_cards-preview_image_component__singleImage" style="padding-bottom: 50.847457627118644%">
                                     <a href="" class="shared-item_cards-preview_image_component__imageLink">
-                                        <img class="shared-item_cards-preview_image_component__image" style="left: 0%" src="https://themeforest.img.customer.envatousercontent.com/files/218971784/preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=300&s=78b21267fde81ed46009ccfb7243accc" alt="">
+                                        @if ($product->img_url)
+                                            <img class="shared-item_cards-preview_image_component__image" style="display: block; margin-left: auto; margin-right: auto; max-width: 170px;" src={{ $product->img_url }} alt="">
+                                        @else
+                                            <img class="shared-item_cards-preview_image_component__image" style="left: 0%" src={{ asset('assets/images/default_image.png') }} alt="">
+                                        @endif
                                     </a>
                                 </div>
                             </div>
