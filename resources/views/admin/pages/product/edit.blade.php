@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('products.update', ['id' => $product->id]) }}" method="post">
+                <form action="{{ route('products.update', ['id' => $product->id]) }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="card card-primary">
                         <div class="card-header">
@@ -59,6 +59,10 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <div class="form-group">
+                                <label for="inputName">Product Name</label>
+                                <input type="text" name="name" id="inputName" class="form-control" value="{{ $product->name }}">
+                            </div>
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea id="inputDescription" class="form-control" rows="10"
@@ -90,7 +94,7 @@
                                 <label>Category</label>
                                 <select class="form-control select2" name="category_id" style="width: 100%;">
                                     @foreach ($categories as $category )
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ $category->id == $product->category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -98,9 +102,15 @@
                                 <label for="inputStatus">Vendor</label>
                                 <select class="form-control select2" name="vendor_id" style="width: 100%;">
                                     @foreach ($vendors as $vendor )
-                                    <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                    <option value="{{ $vendor->id }}" {{ $vendor->id == $product->vendor->id ? 'selected' : '' }}>{{ $vendor->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="prod_name">
+                                    <label for="inputImage">Add Image</label>
+                                    <input type="file" name="image" id="inputImage" class="form-control border-0" value="{{ $product->img_url }}">
+                                </div>
                             </div>
 
                         </div>

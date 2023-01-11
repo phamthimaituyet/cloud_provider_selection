@@ -88,23 +88,38 @@ class ProductController extends Controller
     }
 
     public function update(Request $request){
-        $dataProduct = Product::find($request->id);
-        $datas = $request->only('name', 'description', 'support','vendor_id', 'category_id');
-        $dataProduct->update($datas);
-        $data_prices = $request->only('type', 'price', 'price_id');
-        $types = $data_prices['type'];
-        $prices = $data_prices['price'];
-        $prices_id = $data_prices['price_id'];
+        DB::beginTransaction();
+        try{
+            $dataProduct = Product::find($request->id);
+            $datas = $request->only('name', 'description', 'support','vendor_id', 'category_id', 'image');
 
-        dd($prices_id);
-        foreach ($prices_id as $key=>$price_id) {
-            $price = Price::find($price_id);
-            $price->type = $types[$key];
-            $price->price = $prices[$key];
-            $price->save();
+            if($file = $request->file('image')){
+                $file_path = $file->store('public/images/' . Str::slug($datas['name']));
+                unset($datas['image']);
+                $datas['img_url'] = 'storage/' . explode("public/", $file_path)[1];
+            }
+
+            $dataProduct->update($datas);
+            $data_prices = $request->only('type', 'price', 'price_id');
+            $types = $data_prices['type'];
+            $prices = $data_prices['price'];
+            $prices_id = $data_prices['price_id'];
+            foreach ($prices_id as $key=>$price_id) {
+                $price = Price::find($price_id);
+                $price->type = $types[$key];
+                $price->price = $prices[$key];
+                $price->save();
+                DB::commit();
+
+                return redirect()->back()->withInput()->with('alert', 'Update product success');
+            }
+    
+        } catch(\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
         }
 
-        return redirect()->back()->withInput()->with('alert', 'Update product success');
+        return redirect()->back()->withInput()->with('alert', 'Update product Failed');
     }
 
     public function delete(Request $request){
