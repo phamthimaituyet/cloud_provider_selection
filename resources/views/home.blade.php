@@ -4,7 +4,6 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
 @section('content')
     <main>
