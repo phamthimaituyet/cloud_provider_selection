@@ -20,7 +20,7 @@
                             </div>
                             <div class="shared-item_cards-list-image_card_component__detailsWrapper">
                                 <h3 class="shared-item_cards-item_name_component__root">
-                                    <a href="" class="shared-item_cards-item_name_component__itemNameLink">
+                                    <a href="{{ route('show', ['id' => $product->id]) }}" class="shared-item_cards-item_name_component__itemNameLink">
                                         {{ $product->name }}
                                     </a>
                                 </h3>

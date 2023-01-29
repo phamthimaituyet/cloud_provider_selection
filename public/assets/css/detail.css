@@ -1,0 +1,63 @@
+.details .detailHead {
+    margin-right: 0px;
+    width: 100%;
+    background: #F5F4F2;
+}
+
+.details .detailHead .detailTitle {
+    padding: 20px;
+}
+
+.detailHead .detailTitle .inf-1 {
+    padding-right: 50px;
+}
+
+.detailHead .detailTitle .inf-1 img {
+    max-width: 200px;
+    max-height: 160px;
+}
+
+.detailHead .detailTitle .inf-2 h1 {
+    color: #414750;
+    margin-bottom: 10px;
+    font-size: 1.7rem;
+}
+
+.detailHead .detailTitle .inf-2 .inf-category {
+    margin-top: 10px;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.detailHead .detailTitle .inf-2 .inf-review {
+    margin-top: 10px;
+    fill: #eb5f07;
+}
+
+.detailPopup {
+    padding-top: 36px;
+}
+
+.border-ct {
+    border: 0 !important;
+    outline-style: none;
+    height: 45px;
+    cursor: pointer !important;
+    color: #565552 !important;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 0px !important;
+    margin-right: 30px;
+    font-family: math;
+}
+
+.nav-link.active {
+    border-bottom: #5f7d4f solid 3px !important;
+}
+
+.tab-content {
+    margin-top: 50px;
+    font-size: large;
+}

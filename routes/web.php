@@ -8,7 +8,7 @@ use App\Http\Controllers\admin\CriteriaController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\VendorController;
 use App\Http\Controllers\HomeController;
-use App\Models\Criteria;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +70,5 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::get('/', [VendorController::class, 'index'])->name('vendor');
     });
 });
+
+Route::get('/{id}', [ProductsController::class, 'show'])->name('show');

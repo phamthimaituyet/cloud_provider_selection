@@ -25,7 +25,7 @@
         @yield('content')
     </div>
 
-    @include('layout.fooder')
+    @include('layout.footer')
 
     @yield('scripts')
     <script src="{{ asset('assets/js/app.js') }}"></script>
