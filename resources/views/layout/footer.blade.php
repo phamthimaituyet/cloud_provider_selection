@@ -1,4 +1,4 @@
-<footer class="page-footer" style="background-color: #f7f7f7">
+<footer class="page-footer mt-5" style="background-color: #f7f7f7">
     <div class="d-flex flex-column mx-auto py-5" style="width: 80%">
         <div class="d-flex flex-wrap justify-content-between">
             <div>

@@ -61,3 +61,60 @@
     margin-top: 50px;
     font-size: large;
 }
+
+.reviews {
+    margin: 50px;
+}
+
+.reviews .rating {
+    width: 33.33%;
+}
+
+.reviews .rating .c-1 {
+    font-size: 100px;
+    color: #eb5f07;
+    font-weight: 200;
+    text-align: center;
+    font-family: Oracle Sans, HelveticaNeue-Thin, Helvetica Neue Thin, Helvetica Neue, Roboto Thin, Roboto, Segoe UI Light, Segoe UI, sans-serif-thin;
+    line-height: 85px;
+}
+
+.reviews .rating .c-2 {
+    fill: #eb5f07;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.reviews .avg-rating {
+    text-align: center;
+    width: 33.33%;
+}
+
+.reviews .comments {
+    width: 33.33%;
+    text-align: center;
+}
+
+.progress {
+    width: 200px;
+    border-radius: 0px !important;
+    margin-top: 8px;
+}
+
+.star {
+    width: 35%;
+    text-align: right;
+    margin-right: 10px;
+    fill: #eb5f07;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    -webkit-line-clamp: 3;
+    height: 75px;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
+    margin-top: 30px;
+}

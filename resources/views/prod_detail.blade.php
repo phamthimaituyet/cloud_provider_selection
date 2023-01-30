@@ -27,48 +27,7 @@
                     </span>
                     <div class="inf-category">{{ $product->category->name }}</div>
                     <div class="inf-review d-flex">
-                        <span>
-                            <svg version="1.1" viewBox="0 0 19 18" height="14" width="14"
-                                data-test-selector-star-type="STAR_FULL">
-                                <g>
-                                    <polygon class="fullStar--2qrjU7vzpY star--3RwBtJvIXw"
-                                        points="9.5 0 6.564 5.926 0 6.875 4.75 11.488 3.628 18 9.5 14.926 15.371 18 14.249 11.488 18.999 6.875 12.435 5.926">
-                                    </polygon>
-                                </g>
-                            </svg>
-                            <svg version="1.1" viewBox="0 0 19 18" height="14" width="14"
-                                data-test-selector-star-type="STAR_FULL">
-                                <g>
-                                    <polygon class="fullStar--2qrjU7vzpY star--3RwBtJvIXw"
-                                        points="9.5 0 6.564 5.926 0 6.875 4.75 11.488 3.628 18 9.5 14.926 15.371 18 14.249 11.488 18.999 6.875 12.435 5.926">
-                                    </polygon>
-                                </g>
-                            </svg>
-                            <svg version="1.1" viewBox="0 0 19 18" height="14" width="14"
-                                data-test-selector-star-type="STAR_FULL">
-                                <g>
-                                    <polygon class="fullStar--2qrjU7vzpY star--3RwBtJvIXw"
-                                        points="9.5 0 6.564 5.926 0 6.875 4.75 11.488 3.628 18 9.5 14.926 15.371 18 14.249 11.488 18.999 6.875 12.435 5.926">
-                                    </polygon>
-                                </g>
-                            </svg>
-                            <svg version="1.1" viewBox="0 0 19 18" height="14" width="14"
-                                data-test-selector-star-type="STAR_FULL">
-                                <g>
-                                    <polygon class="fullStar--2qrjU7vzpY star--3RwBtJvIXw"
-                                        points="9.5 0 6.564 5.926 0 6.875 4.75 11.488 3.628 18 9.5 14.926 15.371 18 14.249 11.488 18.999 6.875 12.435 5.926">
-                                    </polygon>
-                                </g>
-                            </svg>
-                            <svg version="1.1" viewBox="0 0 19 18" height="14" width="14"
-                                data-test-selector-star-type="STAR_FULL">
-                                <g>
-                                    <polygon class="fullStar--2qrjU7vzpY star--3RwBtJvIXw"
-                                        points="9.5 0 6.564 5.926 0 6.875 4.75 11.488 3.628 18 9.5 14.926 15.371 18 14.249 11.488 18.999 6.875 12.435 5.926">
-                                    </polygon>
-                                </g>
-                            </svg>
-                        </span>
+                        @include('components.helper.star', ['count_star' => 5, 'class_star' => ''])
                         <span style="margin: 0px 1.5rem; padding: 2px; color: blue; font-weight: 600;">
                             10 reviews
                         </span>
@@ -89,9 +48,10 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    {{ $product->description }}
+                    <h1 style="font-weight: 100; color: #0e7f74;">Product Overview</h1>
+                    <p class="ellipsis">{{ $product->description }}</p>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">gqenkm</div>
+                @include('components.prod_detail.review')
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">ghkn</div>
             </div>
         </div>
