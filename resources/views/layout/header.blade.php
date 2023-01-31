@@ -6,10 +6,14 @@
                 <span class="fs-4 text-white"><b>Trust Quality</b></span>
             </a>
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link text-white" aria-current="page"><b>Home</b></a></li>
+                <li class="nav-item"><a href="{{ route('home') }}" class="nav-link text-white" aria-current="page"><b>Home</b></a></li>
                 <li class="nav-item"><a href="#" class="nav-link text-white"><b>Cloud services</b></a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-white"><b>Sign up</b></a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-white"><b>Log in</b></a></li>
+                @if(Auth::check())
+                    <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link text-white"><b>Log out</b></a></li>
+                @else
+                    <li class="nav-item"><a href="{{ route('register.form') }}" class="nav-link text-white"><b>Sign up</b></a></li>
+                    <li class="nav-item"><a href="{{ route('login.form') }}" class="nav-link text-white"><b>Log in</b></a></li>
+                @endif
             </ul>
         </div>
     </nav>

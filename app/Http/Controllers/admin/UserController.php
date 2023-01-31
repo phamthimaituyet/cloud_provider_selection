@@ -22,6 +22,9 @@ class UserController extends Controller
             if(Auth::user()->role == 1){
                 return redirect()->route('dashboard')->with('alert', 'Success');
             }
+            else {
+                return redirect()->route('home')->with('alert', 'Success');
+            }
         }
 
         return redirect()->back()->withInput()->with('alert', 'Error');
@@ -33,9 +36,9 @@ class UserController extends Controller
 
     public function postRegister(Request $request){
         $datas = $request->only('name', 'email', 'password');
-        $re_password = $request->input('re-password');
+        $confirm_password = $request->input('confirm_password');
 
-        if($datas['password'] == $re_password){
+        if($datas['password'] == $confirm_password){
             $datas['password'] = Hash::make($datas['password']);
             $datas['role'] = 2;
             $user = User::create($datas);
@@ -91,7 +94,7 @@ class UserController extends Controller
 
     public function logout () {
         Auth::logout();
-     
+        
         return redirect('/login');
     }
 }

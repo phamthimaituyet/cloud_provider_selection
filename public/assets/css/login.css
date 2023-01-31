@@ -1,0 +1,97 @@
+body {
+    background: #384047;
+    font-family: sans-serif;
+    font-size: 10px;
+  }
+  
+  form {
+    background: #fff;
+    padding: 4em 4em 2em;
+    max-width: 500px;
+    margin: 100px auto 0;
+    box-shadow: 0 0 1em #222;
+    border-radius: 15px;
+  }
+  form h2 {
+    margin: 0 0 50px 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: solid 1px #e5e5e5;
+  }
+  form p {
+    margin: 0 0 3em 0;
+    position: relative;
+  }
+  form input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    margin: 0;
+  }
+  form input[type="text"],
+  form input[type="password"] {
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    font-size: 1.6em;
+    padding: 0.8em 0.5em;
+    border-radius: 2px;
+  }
+  form input[type="text"]:focus,
+  form input[type="password"]:focus {
+    background: #fff;
+  }
+  form span {
+    display: block;
+    background: #f9a5a5;
+    padding: 2px 5px;
+    color: #666;
+  }
+  form label {
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    color: #999;
+    font-size: 16px;
+    display: inline-block;
+    padding: 4px 10px;
+    font-weight: 400;
+    background-color: rgba(255, 255, 255, 0);
+    -moz-transition: color 0.3s, top 0.3s, background-color 0.8s;
+    -o-transition: color 0.3s, top 0.3s, background-color 0.8s;
+    -webkit-transition: color 0.3s, top 0.3s, background-color 0.8s;
+    transition: color 0.3s, top 0.3s, background-color 0.8s;
+  }
+  form label.floatLabel {
+    top: -11px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+  }
+  .button_acc {
+    width: 420px;
+    height: 51.36px;
+    background-color: rgba(148, 186, 101, 0.7);
+    border-color: rgba(148, 186, 101, 0.7);
+    font-size: large;
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+  .button_acc:hover {
+    background-color: #68b25b !important;
+    border-color: #68b25b !important;
+  }
+  .acc_ed {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .form_sign_up {
+    background: #fff;
+    padding: 4em 4em 2em;
+    max-width: 500px;
+    margin: 50px auto 0;
+    box-shadow: 0 0 1em #222;
+    border-radius: 15px;
+  }
