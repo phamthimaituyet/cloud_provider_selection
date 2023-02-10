@@ -35,6 +35,16 @@
                 </div>
             </div>
         </div>
+        @if (session('alert'))  
+        <div class="alert alert-success" role="alert">  
+            {{ session('alert') }}
+        </div>  
+        @endif
+        @if (session('error'))   
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+        @endif
         <div class="container detailPopup">
             <nav class="pt-36">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -57,3 +67,5 @@
         </div>
     </div>
 @endsection
+
+@include('components.modal.modal_review')

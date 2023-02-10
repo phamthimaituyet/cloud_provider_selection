@@ -68,7 +68,8 @@
             </div>
         </div>
         <div class="comments px-4 mt-2 mb-2">
-            <button type="button" class="btn btn-outline-secondary">Write a review</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review</button>
         </div>
     </div>
     <h1 style="font-weight: 100;">Reviews</h1>

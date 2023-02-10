@@ -72,3 +72,4 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 });
 
 Route::get('/{id}', [ProductsController::class, 'show'])->name('show');
+Route::post('/{id}', [ProductsController::class, 'reviewStar'])->name('reviewStar');
