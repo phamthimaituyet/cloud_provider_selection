@@ -1,17 +1,25 @@
 <!-- Modal -->
+
 <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="{{ route('reviewStar', ['id' => $product->id]) }}" method="POST">
+            <form action="{{ route('review', ['id' => $product->id]) }}" method="POST">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Write review</h5>
+                    <h3 class="modal-title" id="exampleModalLongTitle">Write review</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    @if ($errors->any())
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="text-danger mb-3">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                     <div class="mb-3">
-                        <p>Review rating: </p>
+                        <h5>Review rating: </h5>
                         <div class="rating">
                             <input type="radio" name="rating" value="5" id="5"><label
                                 for="5">☆</label>
@@ -25,15 +33,17 @@
                                 for="1">☆</label>
                         </div>
                     </div>
-                    {{-- <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Write review:</label>
-                        <textarea class="form-control" id="message-text" name=""></textarea>
-                    </div> --}}
+                    <div class="mb-3">
+                        <h5>
+                            <label for="message-text" class="col-form-label">Write review:</label>
+                        </h5>
+                        <textarea class="form-control {{ $errors->has('content') ? 'is-invalid' : '' }}" id="message-text" name="content" style="height: 200px;"></textarea>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send message</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send review</button>
                 </div>
             </form>
         </div>

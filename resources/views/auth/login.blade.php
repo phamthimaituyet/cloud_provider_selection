@@ -3,9 +3,14 @@
 @section('title', 'Login')
 
 @section('content')
-    @if (session('alerts'))
+    @if (session('alert'))
         <div class="alert alert-danger">
-            {{ session('alerts') }}
+            {{ session('alert') }}
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
         </div>
     @endif
     <form action="{{ route('login.form') }}" method="post">

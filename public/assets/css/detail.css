@@ -119,17 +119,17 @@
     margin-top: 30px;
 }
 
-.rating {
+.modal-body .rating {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center
 }
 
-.rating>input {
+.modal-body .rating>input {
     display: none
 }
 
-.rating>label {
+.modal-body .rating>label {
     position: relative;
     width: 1em;
     font-size: 40px;
@@ -138,21 +138,21 @@
     cursor: pointer
 }
 
-.rating>label::before {
+.modal-body .rating>label::before {
     content: "\2605";
     position: absolute;
     opacity: 0
 }
 
-.rating>label:hover:before,
-.rating>label:hover~label:before {
+.modal-body .rating>label:hover:before,
+.modal-body .rating>label:hover~label:before {
     opacity: 1 !important
 }
 
-.rating>input:checked~label:before {
+.modal-body .rating>input:checked~label:before {
     opacity: 1
 }
 
-.rating:hover>input:checked~label:before {
+.modal-body .rating:hover>input:checked~label:before {
     opacity: 0.4
 }

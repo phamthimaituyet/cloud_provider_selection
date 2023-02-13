@@ -15,8 +15,12 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(Request $request){
-        $datas = $request->only('email', 'password');
+    public function postLogin(Request $request)
+    {
+        $datas = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
  
         if (Auth::attempt($datas)) {
             if(Auth::user()->role == 1){
@@ -27,7 +31,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect()->back()->withInput()->with('alert', 'Error');
+        return redirect()->back()->withInput()->with('error', 'The provided credentials do not match our records.');
     }
 
     public function register(){

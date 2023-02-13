@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <h1 style="font-weight: 100;">Review Highlights</h1>
+    <h1 style="font-weight: 100; color: #0e7f74;">Review Highlights</h1>
     <div class="d-flex reviews">
         <div class="rating">
             <div class="c-1">5.0</div>
@@ -69,7 +69,13 @@
         </div>
         <div class="comments px-4 mt-2 mb-2">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review</button>
+            @if (Auth::check())
+                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review</button>
+            @else 
+                <a href="{{ route('login.form') }}">
+                    <button type="button" class="btn btn-outline-secondary">Write a review</button>
+                </a>
+            @endif
         </div>
     </div>
     <h1 style="font-weight: 100;">Reviews</h1>
