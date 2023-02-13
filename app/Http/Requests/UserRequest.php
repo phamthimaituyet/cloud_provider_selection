@@ -26,13 +26,15 @@ class UserRequest extends AbstractRequest
         return [
             'name' => 'required|string|unique:users',
             'role' => 'required|integer',
+            'email' => 'required|string',
+            'password' => 'required',
+            'confirm_password' => ''
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'name la bat buoc.',
             'name.unique' => 'name must be a unique.',
             'description.min'  => 'description minimum length bla bla bla'
         ];

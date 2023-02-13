@@ -15,12 +15,13 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(UserRequest $request)
     {
-        $datas = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $validated = $request->validated();
+        $datas = [
+            'email' => $validated['email'],
+            'password' => $validated['password']
+        ];
  
         if (Auth::attempt($datas)) {
             if(Auth::user()->role == 1){
@@ -38,11 +39,16 @@ class UserController extends Controller
         return view('auth.register');
     }
 
-    public function postRegister(Request $request){
-        $datas = $request->only('name', 'email', 'password');
-        $confirm_password = $request->input('confirm_password');
+    public function postRegister(UserRequest $request){
+        $validated = $request->validated();
+        $datas = [
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+            'confirm_password' => $validated['confirm_password']
+        ];
 
-        if($datas['password'] == $confirm_password){
+        if($datas['password'] == $datas['confirm_password']){
             $datas['password'] = Hash::make($datas['password']);
             $datas['role'] = 2;
             $user = User::create($datas);

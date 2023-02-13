@@ -13,16 +13,25 @@
         <h2>Create Your Account</h2>
         <p>
             <label for="name" class="floatLabel">Name</label>
-            <input id="name" name="name" type="text">
+            <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" name="name" type="text">
+            @error('name')
+                <p class="text-danger">{{ $message }}</p>
+            @endif
         </p>
         <p>
             <label for="email" class="floatLabel">Email</label>
-            <input id="email" name="email" type="text">
+            <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" type="text">
+            @error('email')
+                <p class="text-danger">{{ $message }}</p>
+            @endif
         </p>
         <p>
             <label for="password" class="floatLabel">Password</label>
-            <input id="password" name="password" type="password">
+            <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" name="password" type="password">
             <span>Enter a password longer than 8 characters</span>
+            @error('password')
+                <p class="text-danger">{{ $message }}</p>
+            @endif
         </p>
         <p>
             <label for="confirm_password" class="floatLabel">Confirm Password</label>
