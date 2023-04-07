@@ -13,7 +13,10 @@ class Criteria extends Model
         return $this->belongsToMany(Product::class,'product_criterias', 'criteria_id', 'product_id')->withPivot('value');
     }
 
-    public function getNameParent($parent_id) {
+    public function getNameParent($parent_id = null) {
+        if (is_null($parent_id)) {
+            return '';
+        }
         $query = $this->where('id', $parent_id)->first();
         return $query->name;
     }
@@ -29,5 +32,9 @@ class Criteria extends Model
         }
         
         return $children->name;
+    }
+
+    public function children() {
+        return $this->hasMany(static::class, 'parent_id')->orderBy('id', 'asc');
     }
 }

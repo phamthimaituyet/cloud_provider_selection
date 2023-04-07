@@ -20,7 +20,7 @@ class CriteriaSeeder extends Seeder
             ['id' => 4, 'name' => 'Cost', 'parent_id' => null], 
             ['id' => 5, 'name' => 'Quality', 'parent_id' => null], 
             ['id' => 6, 'name' => 'Capability', 'parent_id' => null], 
-            ['id' => 7, 'name' => 'Awareness/Visibility', 'parent_id' => null], 
+            ['id' => 7, 'name' => 'Awareness/Visibility', 'parent_id' => 1], 
             ['id' => 8, 'name' => 'Flexibility', 'parent_id' => 1], 
             ['id' => 9, 'name' => 'Adaptability', 'parent_id' => 1], 
             ['id' => 10, 'name' => 'Capacity/Elasticity', 'parent_id' => 1], 

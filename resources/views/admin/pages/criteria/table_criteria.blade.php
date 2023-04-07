@@ -2,48 +2,38 @@
     <table class="table table-striped projects">
         <thead>
             <tr>
-                <th style="width: 1%">
+                <th>
                     ID
                 </th>
-                <th style="width: 15%">
+                <th>
+                    Weight
+                </th>
+                <th>
                     Criteria Name
                 </th>
-                <th style="width: 15%">
+                <th>
                     Factor Name
                 </th>
-                <th style="width: 40%">
-                    Products Name
-                </th>
-                <th style="width: 8%">
-                    Value
-                </th>
-                <th style="width: 17%">
+                <th>
                 </th>
             </tr>
         </thead>
         <tbody>
             @foreach($criterias as $criteria)
-            <?php $condition = $id == 'All' ?  $criteria->parent_id != NULL : $criteria->parent_id == $parent_id?>
+            <?php $condition = $id == 'All' ?  true : $criteria->parent_id == $parent_id?>
             @if ($condition)
             <tr>
                 <td>
                     <p>{{$criteria->id}}</p>
                 </td>
                 <td>
+                    <p>{{ $criteria->weight }}</p>
+                </td>
+                <td>
                     <p>{{$criteria->name}}</p>
                 </td>
                 <td>
                     <p>{{$criteria->getNameParent($criteria->parent_id)}}</p>
-                </td>
-                <td>
-                    @foreach($criteria->products as $product)
-                    {{$product->name}} <br />
-                    @endforeach
-                </td>
-                <td>
-                    @foreach($criteria->products as $product)
-                    {{$product->pivot->value}} <br />
-                    @endforeach
                 </td>
                 <td>
                     <a class="btn btn-info btn-sm" href="#">

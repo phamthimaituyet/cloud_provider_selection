@@ -15,9 +15,9 @@ class ProductCriteriaSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0; $i < 20; $i++){
+        for($i = 1; $i <= 65; $i++){
             DB::table('product_criterias')->insert([
-                ['criteria_id' => rand(1, 65), 'product_id' => rand(1, 3), 'value' => rand(1, 10), 'created_at' => new \DateTime(), 'updated_at' => new \DateTime()],
+                ['criteria_id' => $i, 'product_id' => 1, 'value' => rand(1, 10), 'created_at' => new \DateTime(), 'updated_at' => new \DateTime()],
             ]);   
         }
     }

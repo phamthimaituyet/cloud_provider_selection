@@ -45,4 +45,13 @@ class ProductsController extends Controller
 
         return redirect()->back()->withInput()->with('error', 'Create review failed!');
     }
+
+    public function detailReview($id)
+    {
+        $product = Product::where('id', $id)
+            ->with(['criterias' => function($query){
+                $query->whereNull('parent_id');
+            }])->first();
+        return view('detail_review', compact('product'));
+    }
 }

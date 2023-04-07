@@ -70,10 +70,22 @@
         <div class="comments px-4 mt-2 mb-2">
             <!-- Button trigger modal -->
             @if (Auth::check())
-                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review</button>
+                <div class="px-4 mt-2 mb-2">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review</button>
+                </div>
+                <div class="px-4 mt-2 mb-2">
+                    <a href="{{ route('detailReview', ['id' => $product->id]) }}">
+                        <button type="button" class="btn btn-outline-info">Detailed review</button>
+                    </a>
+                </div>
             @else 
                 <a href="{{ route('login.form') }}">
-                    <button type="button" class="btn btn-outline-secondary">Write a review</button>
+                    <div class="px-4 mt-2 mb-2">
+                        <button type="button" class="btn btn-outline-secondary">Write a review</button>
+                    </div>
+                    <div class="px-4 mt-2 mb-2">
+                        <button type="button" class="btn btn-outline-info">Detailed review</button>
+                    </div>
                 </a>
             @endif
         </div>
