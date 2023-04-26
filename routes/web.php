@@ -74,4 +74,4 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 Route::get('/{id}', [ProductsController::class, 'show'])->name('show');
 Route::post('/{id}', [ProductsController::class, 'review'])->name('review');
 Route::get('/detail-review/{id}', [ProductsController::class, 'detailReview'])->name('detailReview');
-Route::post('/detail-review/{id}', [ProductsController::class, 'detailReview'])->name('detailReview');
+Route::post('/detail-review/{id}', [ProductsController::class, 'postDetailReview'])->name('postDetailReview');

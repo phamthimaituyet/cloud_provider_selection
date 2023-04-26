@@ -6,6 +6,7 @@ use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Rating;
+use App\Models\Criteria;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -52,6 +53,12 @@ class ProductsController extends Controller
             ->with(['criterias' => function($query){
                 $query->whereNull('parent_id');
             }])->first();
-        return view('detail_review', compact('product'));
+        $criterias = Criteria::whereNull('parent_id')->get();
+        return view('detail_review', compact(['product', 'criterias']));
+    }
+
+    public function postDetailReview($id) 
+    {
+        
     }
 }

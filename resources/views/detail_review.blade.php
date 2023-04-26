@@ -51,28 +51,59 @@
             <h3 class="mb-3">Perform a detailed assessment of the cloud service</h3>
             <i>Please perform an assessment of the quality level of the cloud service. There are 5 rating levels: 1: very poor - 2: poor - 3: Normal - 4: Good - 5: Very good</i><br/>
             <i>Your answer will be very important to make the system more complete. Thank you very much for taking the time to rate the service in detail.</i>
-            <nav class="mt-2">
-                
-            </nav>
-            <ul class="nav nav-pills nav-sidebar flex-column container" data-widget="treeview" role="menu" data-accordion="false">
-                @foreach ($product->criterias as $criteria )
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <p class="fs-5 fst-italic">
-                                {{ $criteria->name }}
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview" style="display: none;">
-                            <li class="nav-item">
-                                @foreach ($criteria->children as $child)
-                                    <p>{{ $child->name }}</p>
-                                @endforeach
-                            </li>
-                        </ul>
-                    </li>
-                @endforeach
-            </ul>
+            <form action="{{ route('postDetailReview', ['id' => $product]) }}" method="post">
+                @csrf
+                <ul class="nav nav-pills nav-sidebar flex-column container" data-widget="treeview" role="menu" data-accordion="false">
+                    @foreach ($criterias as $criteria )
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <p class="fs-5 fst-italic">
+                                    {{ $criteria->name }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <div class="nav nav-treeview ms-5" style="display: none;">
+                                <table class="table table-borderless">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col" class="col-md-2"></th>
+                                        <th scope="col" class="col-md-2 text-center">1</th>
+                                        <th scope="col" class="col-md-2 text-center">2</th>
+                                        <th scope="col" class="col-md-2 text-center">3</th>
+                                        <th scope="col" class="col-md-2 text-center">4</th>
+                                        <th scope="col" class="col-md-2 text-center">5</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $childs = in_array($criteria->name, ['Cost', 'Capability']) ? [$criteria] : $criteria->children ?>
+                                        @foreach ($childs as $child)
+                                            <tr>
+                                                <th scope="row">{{ $child->name }}</th>
+                                                <td class="text-center">
+                                                    <input type="radio" value="1" name="{{ __('value_' . $child->id) }}" required />
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="radio" value="2" name="{{ __('value_' . $child->id) }}"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="radio" value="3" name="{{ __('value_' . $child->id) }}"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="radio" value="4" name="{{ __('value_' . $child->id) }}"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="radio" value="5" name="{{ __('value_' . $child->id) }}"/>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
 @endsection
