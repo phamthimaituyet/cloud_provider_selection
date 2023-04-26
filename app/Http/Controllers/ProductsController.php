@@ -61,4 +61,10 @@ class ProductsController extends Controller
     {
         
     }
+
+    public function support()
+    {
+        $criterias = Criteria::whereNull('parent_id')->get();
+        return view('support_select', compact('criterias'));
+    }
 }

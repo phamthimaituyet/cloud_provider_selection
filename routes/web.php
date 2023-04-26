@@ -71,6 +71,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     });
 });
 
+Route::get('/support', [ProductsController::class, 'support'])->name('support');
 Route::get('/{id}', [ProductsController::class, 'show'])->name('show');
 Route::post('/{id}', [ProductsController::class, 'review'])->name('review');
 Route::get('/detail-review/{id}', [ProductsController::class, 'detailReview'])->name('detailReview');
