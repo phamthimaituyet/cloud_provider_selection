@@ -7,7 +7,7 @@
             </a>
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="{{ route('home') }}" class="nav-link text-white" aria-current="page"><b>Home</b></a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-white"><b>Cloud services</b></a></li>
+                <li class="nav-item"><a href="{{ route('support') }}" class="nav-link text-white bg-danger text-white"><b>Service selection support</b></a></li>
                 @if(Auth::check())
                     <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link text-white"><b>Log out</b></a></li>
                 @else
