@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductCriterias extends Migration
+class AddLinkToVendors extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateProductCriterias extends Migration
      */
     public function up()
     {
-        Schema::create('product_criterias', function (Blueprint $table) {
-            $table->integer('criteria_id')->unsigned();
-            $table->integer('product_id')->unsigned();
-            $table->integer('value');
-            $table->timestamps();
+        Schema::table('vendors', function (Blueprint $table) {
+            $table->string('link')->after('address')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateProductCriterias extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_criterias');
+        Schema::table('vendors', function (Blueprint $table) {
+            $table->dropColumn('link');
+        });
     }
 }

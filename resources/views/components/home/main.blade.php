@@ -1,6 +1,9 @@
 <div class="search-index_content__searchResultsBody">
     <div class="search-index_content__searchResultsWrapper">
         <div class="search-item_cards_container_component__list">
+            <div class="mb-4">
+                {!! $products->links() !!}
+            </div>
             {{-- item --}}
             @foreach ($products as $product)
                 <div class="shared-item_cards-card_component__root">
@@ -41,6 +44,9 @@
                 </div>
             @endforeach
             {{-- end item --}}
+            <div class="mt-4">
+                {!! $products->links() !!}
+            </div>
         </div>
     </div>
 </div>

@@ -24,6 +24,7 @@ class ProductSeeder extends Seeder
                             
                 'vendor_id' => 1,
                 'category_id' => 1,
+                'img_url' => 'assets/images/amazon-web-services.png'
             ],
             [
                 'name' => 'N2WS Backup & Recovery for AWS Free Trial/BYOL',
@@ -36,6 +37,7 @@ class ProductSeeder extends Seeder
                             AWS Support is a one-on-one support channel that is staffed 24x7x365 with experienced support engineers. AWS Support offers four support plans: Basic, Developer, Business, and Enterprise. The Basic plan is free of charge and offers support for account and billing questions and service limit increases. The other plans offer an unlimited number of technical support cases with pay-by-the-month pricing and no long term contracts, providing the level of support that meets your needs.",
                 'vendor_id' => 1,
                 'category_id' => 1,
+                'img_url' => 'assets/images/amazon-web-services.png'
             ],
             [
                 'name' => 'Veeam Backup for AWS FREE Trial & BYOL Edition',
@@ -48,6 +50,7 @@ class ProductSeeder extends Seeder
                             AWS Support is a one-on-one support channel that is staffed 24x7x365 with experienced support engineers. AWS Support offers four support plans: Basic, Developer, Business, and Enterprise. The Basic plan is free of charge and offers support for account and billing questions and service limit increases. The other plans offer an unlimited number of technical support cases with pay-by-the-month pricing and no long term contracts, providing the level of support that meets your needs.",
                 'vendor_id' => 1,
                 'category_id' => 1,
+                'img_url' => 'assets/images/amazon-web-services.png'
             ],
             [
                 'name' => 'Azure Backup',
@@ -55,6 +58,7 @@ class ProductSeeder extends Seeder
                 'support' => 'You can use Azure Backup to back up data to the Microsoft Azure cloud platform. This article summarizes the general support settings and limitations for Azure Backup scenarios and deployments.',
                 'vendor_id' => 2,
                 'category_id' => 1,
+                'img_url' => 'assets/images/microsoft_endpoint.png'
             ],
             [
                 'name' => 'Azure Disk Storage',
@@ -62,6 +66,7 @@ class ProductSeeder extends Seeder
                 'support' => '',
                 'vendor_id' => 2,
                 'category_id' => 1,
+                'img_url' => 'assets/images/microsoft_endpoint.png'
             ],
             [
                 'name' => 'Red Hat Enterprise Linux 8.4 with High Availability',
@@ -71,6 +76,7 @@ class ProductSeeder extends Seeder
                 https://forums.aws.amazon.com/forum.jspa?forumID=30 https://aws.amazon.com/premiumsupport/',
                 'vendor_id' => 1,
                 'category_id' => 7,
+                'img_url' =>'assets/images/amazon-web-services.png'
             ],
             [
                 'name' => 'Amazon DynamoDB',
@@ -78,6 +84,7 @@ class ProductSeeder extends Seeder
                 'support' => '',
                 'vendor_id' => 1,
                 'category_id' => 2,
+                'img_url' => 'assets/images/amazon-web-services.png'
             ],
             [
                 'name' => 'Amazon MemoryDB for Redis',
@@ -85,7 +92,16 @@ class ProductSeeder extends Seeder
                 'support' => '',
                 'vendor_id' => 1,
                 'category_id' => 2,
+                'img_url' => 'assets/images/amazon-web-services.png'
             ],
-        ]);   
+            [
+                'name' => 'Instana',
+                'description' => 'Instana is the first and only fully automated Application Performance Management (APM) solution designed specifically for the challenges of managing microservice and cloud-native applications',
+                'support' => '',
+                'vendor_id' => 4,
+                'category_id' => 2,
+                'img_url' => 'assets/images/instana_application.png'
+            ],
+        ]);
     }
 }

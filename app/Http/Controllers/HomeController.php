@@ -9,10 +9,15 @@ use App\Models\Vendor;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $key_word = $request->q ?? '';
         $categories = Category::all();
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc');
+        if ($key_word) {
+            $products = $products->where('name', 'like', "%$key_word%");
+        }
+        $products = $products->paginate(6);
         $providers = Vendor::all();
         
         return view('home', compact('categories', 'products', 'providers'));
