@@ -17,7 +17,7 @@
                         <img src="{{ asset('assets/images/default_image.png') }}" alt="">
                     @endif
                 </div>
-                <div class="inf-2">
+                <div class="inf-2 flex-grow-1">
                     <h1>{{ $product->name }}</h1>
                     <span style="font-weight: 500;">
                         <i style="color:#879596;">By:</i>
@@ -29,9 +29,34 @@
                     <div class="inf-review d-flex">
                         @include('components.helper.star', ['count_star' => 5, 'class_star' => ''])
                         <span style="margin: 0px 1.5rem; padding: 2px; color: blue; font-weight: 600;">
-                            10 reviews
+                            {{ $reviews->count() }} reviews
                         </span>
                     </div>
+                </div>
+                <div class="inf-3 d-flex" style="place-items: flex-end;">
+                @if (Auth::check())
+                        <div class="px-4 mt-2 mb-2">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                                <i class="bi bi-chat-left-text"></i> Write a review
+                            </button>
+                            <a href="{{ route('detailReview', ['id' => $product->id]) }}">
+                                <button type="button" class="btn btn-outline-info">
+                                    <i class="bi bi-chevron-double-right"></i> Detailed review
+                                </button>
+                            </a>
+                        </div>
+                    @else 
+                        <a href="{{ route('login.form') }}">
+                            <div class="px-4 mt-2 mb-2">
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <i class="bi bi-chat-left-text"></i> Write a review
+                                </button>
+                                <button type="button" class="btn btn-outline-info">
+                                    <i class="bi bi-chevron-double-right"></i> Detailed review
+                                </button>
+                            </div>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -48,16 +73,16 @@
         <div class="container detailPopup">
             <nav class="pt-36">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active border-ct" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                    <button class="nav-link {{ app('request')->input('page') ? '' : 'active'}} border-ct" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
                         type="button" role="tab" aria-controls="nav-home" aria-selected="true">Overview</button>
-                    <button class="nav-link border-ct" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ratings</button>
+                    <button class="nav-link {{ app('request')->input('page') ? 'active' : ''}} border-ct" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ratings ({{ $reviews->count() }})</button>
                     <button class="nav-link border-ct" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
                         type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Provider</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade {{ app('request')->input('page') ? '' : 'show active'}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <h1 style="font-weight: 100; color: #0e7f74;">Product Overview</h1>
                     <p class="ellipsis">{{ $product->description }}</p>
                     <a target="blank" href="{{ $product->vendor->link }}">Xem chi tiết</a>

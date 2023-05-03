@@ -18,8 +18,20 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+        $reviews = Comment::join('ratings', function ($query) {
+                $query->on('ratings.user_id', '=', 'comments.user_id')
+                    ->on('ratings.product_id', '=', 'comments.product_id');
+            })
+            ->where('comments.product_id', $id)
+            ->orderBy('comments.created_at', 'desc');
+        $ratings = Rating::where('product_id', $id);
+        $reviews = $reviews->paginate(10);
+        $review_stars = [];
+        for($i = 5; $i >= 1; $i--) {
+            $review_stars[] = $reviews->where('number_star', $i)->count();
+        }
 
-        return view('prod_detail', ['product' => $product]);
+        return view('prod_detail', compact('product', 'reviews', 'ratings', 'review_stars'));
     }
 
     public function review(CommentRequest $request, $id) 
@@ -35,8 +47,13 @@ class ProductsController extends Controller
                 'product_id' => $id,
             ];
             if (!empty($validated['rating'])) {
-                $optionRating = ['number_star' => $validated['rating'] ?? 0] + $options;
-                Rating::create($optionRating);
+                $ratinged = Rating::where($options)->first();
+                if ($ratinged) {
+                    $ratinged->update(['number_star' => $validated['rating']]);
+                } else {
+                    $optionRating = ['number_star' => $validated['rating'] ?? 0] + $options;
+                    Rating::create($optionRating);
+                }
             }
             
             $optionComment = ['content' => $validated['content']] + $options;
