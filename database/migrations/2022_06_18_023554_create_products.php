@@ -20,8 +20,6 @@ class CreateProducts extends Migration
             $table->string('support', 2000);
             $table->integer('category_id')->unsigned();
             $table->integer('vendor_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');   
-            $table->foreign('vendor_id')->references('id')->on('vendors'); 
             $table->timestamps();
         });
     }

@@ -9,10 +9,10 @@
     <main>
         @include('components.home.head_main')
         <div class="container">
-            <div class="input-group">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary">search</button>
-            </div>
+            <form action="{{ route('home') }}" class="input-group" method="GET">
+                <input type="text" name="q" value="{{ app('request')->input('q') ?? '' }}" class="form-control rounded" placeholder="Search" />
+                <button type="submit" class="btn btn-outline-primary">search</button>
+            </form>
             <div class="search-index_content__searchResults mt-5">
                 @include('layout.sidebar')
                 @include('components.home.main')

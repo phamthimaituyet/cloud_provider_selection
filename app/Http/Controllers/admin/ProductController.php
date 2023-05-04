@@ -22,10 +22,6 @@ class ProductController extends Controller
         if ($request->search) {
             $products = Product::where('name', 'LIKE', '%'.$request->search.'%')->get();
         }
-       
-        // $response = Http::get('https://www.gartner.com/reviews/api2-proxy/reviews/market/seoname/public-cloud-iaas/zeroRatingProducts');
-        // dd(json_decode($response)->products);
-
 
         return view('admin.pages.product.index', ['products' => $products]);
     }

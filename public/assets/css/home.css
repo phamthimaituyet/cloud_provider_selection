@@ -67,3 +67,7 @@ main .carousel-inner .carousel-item .item-number{
     border: none;
 }
 
+.white {
+    fill: #bab9b7 !important;
+}
+

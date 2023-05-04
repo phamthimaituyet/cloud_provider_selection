@@ -28,7 +28,11 @@ class Product extends Model
     }
 
     public function criterias(){
-        return $this->belongsToMany(Criteria::class, 'product_criterias', 'product_id', 'criteria_id')->withPivot('value');;
+        return $this->belongsToMany(Criteria::class, 'product_criterias', 'product_id', 'criteria_id')->withPivot('value');
+    }
+
+    public function product_criterias(){
+        return $this->hasMany(ProductCriteria::class);
     }
 
     public function prices(){

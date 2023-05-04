@@ -20,7 +20,6 @@ class CreatePricesTable extends Migration
             $table->integer('date_use');
             $table->integer('product_id')->unsigned();
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
