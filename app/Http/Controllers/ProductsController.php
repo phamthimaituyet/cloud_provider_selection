@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Rating;
 use App\Models\Criteria;
+use App\Models\ProductCriteria;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -122,11 +123,35 @@ class ProductsController extends Controller
         return redirect()->route('show', ['id' => $id])->with('alert', 'Create review detail success!');
     }
 
-    public function support()
+    public function support(Request $request)
     {
+        $criterias_id = Criteria::where('weight', '<>', '')
+                        ->WhereNotNull('weight')
+                        ->pluck('id')
+                        ->toArray();
+        $request = $request->all();
+        $criterias_id = empty($request) ? $criterias_id : $request;
+        $product_criterias = ProductCriteria::join('criterias', 'criterias.id', '=', 'product_criterias.criteria_id')
+            ->select(
+                'product_id',
+                'criteria_id',
+                DB::raw('SUM(value * weight)/count(*) AS sum')
+            )
+            ->whereIn('criteria_id', $criterias_id)
+            ->groupBy('product_id', 'criteria_id'); 
+        $products_id = DB::table($product_criterias)
+            ->select(
+                'product_id',
+                DB::raw('SUM(sum) AS Total')
+            )
+            ->groupBy('product_id')
+            ->orderByDesc('Total')
+            ->take(5);
+
+        $products_id = DB::table($products_id)->pluck('product_id')->toArray();
         $criterias = Criteria::whereNull('parent_id')->get();
-        $products = Product::orderBy('created_at', 'desc');
-        $products = $products->paginate(6);
-        return view('support_select', compact(['criterias', 'products']));
+        $products = Product::whereIn('id', $products_id)->paginate(6);
+
+        return view('support_select', compact(['criterias', 'products', 'request']));
     }
 }

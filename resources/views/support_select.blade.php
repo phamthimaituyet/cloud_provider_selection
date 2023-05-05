@@ -26,12 +26,11 @@
                     @include('components.home.main')
                 </div>
                 <div>
-                    <form class="tag_criteria">
+                    <form class="tag_criteria" method="GET" action="">
                         <h5 class="fst-italic mb-3 text-danger tag_criteria_title">
                             <i class="bi bi-chevron-double-right"></i><i class="bi bi-chevron-double-right"></i>
                             Select the criteria in the form
                         </h5>
-                        @csrf
                         <ul class="nav nav-pills nav-sidebar flex-column container" data-widget="treeview" role="menu" data-accordion="false">
                             @foreach ($criterias as $criteria )
                                 <li class="nav-item has-treeview menu-open">
@@ -45,8 +44,8 @@
                                         <?php $childs = in_array($criteria->name, ['Cost', 'Capability']) ? [$criteria] : $criteria->children ?>
                                         @foreach ($childs as $child)
                                             <div class="form-check mt-3">
-                                                <input class="form-check-input" type="checkbox" value="" name="{{ __('value_' . $child->id) }}" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">{{ $child->name }}</label>
+                                                <input class="form-check-input" type="checkbox" {{ in_array($child->id, $request) ? 'checked' : '' }} value="{{ $child->id }}" name="{{ __('criteria_id_' . $child->id) }}" id="{{ __('flexCheckDefault_' . $child->id) }}">
+                                                <label class="form-check-label" for="{{ __('flexCheckDefault_' . $child->id) }}">{{ $child->name }}</label>
                                             </div>
                                         @endforeach
                                     </div>
