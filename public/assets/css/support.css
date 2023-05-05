@@ -1,0 +1,53 @@
+.tag_criteria {
+    overflow: hidden;
+    margin-bottom: 30px;
+    padding: 35px 30px;
+    background: #F1F2F6;
+    position: relative;
+    border-radius: 10px;
+}
+
+.tag_criteria .btn-primary {
+    float: right;
+}
+
+.tag_criteria_title {
+    background: none;
+    position: relative;
+    z-index: 9;
+    font-weight: 700;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    letter-spacing: 1px;
+}
+
+.tag_criteria_title::after {
+    content: '';
+    width: 70px;
+    height: 2px;
+    background: #007bff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.top_product img {
+    width: 100%;
+    height: 20%;
+    position: relative;
+}
+
+.top_product p {
+    position: absolute;
+    top: 745px;
+    text-align: center;
+    left: 255px;
+    font-size: xx-large;
+    font-weight: 700;
+    background: #dc3545e0;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+}

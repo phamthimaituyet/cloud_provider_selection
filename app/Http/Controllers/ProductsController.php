@@ -72,22 +72,28 @@ class ProductsController extends Controller
             ->with(['criterias' => function($query){
                 $query->whereNull('parent_id');
             }])->first();
+        $reviews = Comment::join('ratings', function ($query) {
+            $query->on('ratings.user_id', '=', 'comments.user_id')
+                ->on('ratings.product_id', '=', 'comments.product_id');
+        })
+        ->where('comments.product_id', $id)
+        ->orderBy('comments.created_at', 'desc');
         $criterias = Criteria::whereNull('parent_id')->get();
-        return view('detail_review', compact(['product', 'criterias']));
+        return view('detail_review', compact(['product', 'criterias', 'reviews']));
     }
 
     public function postDetailReview(Request $requests, $id = null) 
     {
-        if (!$id || !is_numeric($id)) {
-            abort(404, "The product was not found");
+        if (!$id || !is_numeric($id)) {     
+            abort(404, "The product was not found");    // check co ton tai id khong va id co phai la so khong
         }
 
         $product = Product::where('id', $id)->first();
         if (!$product) {
-            abort(404, "The product was not found");
+            abort(404, "The product was not found");    // check product_id co ton tai khong
         }
 
-        $requests = $requests->except('_token');
+        $requests = $requests->except('_token');        // lay ca requests, loai bo token
 
         $product_criterias = [];
         $option = [
@@ -97,14 +103,14 @@ class ProductsController extends Controller
             'value' => null
         ];
         foreach($requests as $key => $request) {
-            $option['criteria_id'] = substr($key, strlen('criteria_id_'));
+            $option['criteria_id'] = substr($key, strlen('criteria_id_'));  // cat chuoi de lay id
             $option['value'] = $request;
             $product_criterias[] = $option;
         }
         
         DB::beginTransaction();
         try {
-            $product->product_criterias()->delete();
+            $product->product_criterias()->delete();                        // delete data ma nguoi dung da danh gia truoc do
             $product->product_criterias()->createMany($product_criterias);
             DB::commit();
         } catch (\Exception $e) {
@@ -119,6 +125,8 @@ class ProductsController extends Controller
     public function support()
     {
         $criterias = Criteria::whereNull('parent_id')->get();
-        return view('support_select', compact('criterias'));
+        $products = Product::orderBy('created_at', 'desc');
+        $products = $products->paginate(6);
+        return view('support_select', compact(['criterias', 'products']));
     }
 }
