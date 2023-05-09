@@ -69,6 +69,12 @@
                                     name="description">{{ $product->description }}</textarea>
                             </div>
                             <div class="form-group">
+                                <div class="prod_name">
+                                    <label for="inputCertificate">Certificate</label>
+                                    <input type="text" name="certificate" id="inputCertificate" class="form-control" value="{{ $product->certificate }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="inputSupport">Support</label>
                                 <textarea id="inputSupport" class="form-control" rows="10"
                                     name="description">{{ $product->support }}</textarea>
@@ -80,7 +86,7 @@
                                         <input type="hidden" name="price_id[]" value="{{ $price->id }}" />
                                         <div class="prod_price">
                                             <label for="inputType">Type</label>
-                                            <input type="text" name="type[]" id="inputType" class="form-control" value="{{ $price->type }}">
+                                            <input name="type[]" id="inputType" class="form-control" value="{{ $price->type }}">
                                         </div>
                                         <div class="prod_price">
                                             <label for="inputPrice">Price</label>

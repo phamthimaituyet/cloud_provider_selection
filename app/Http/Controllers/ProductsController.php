@@ -150,7 +150,9 @@ class ProductsController extends Controller
 
         $products_id = DB::table($products_id)->pluck('product_id')->toArray();
         $criterias = Criteria::whereNull('parent_id')->get();
-        $products = Product::whereIn('id', $products_id)->paginate(6);
+        $products = Product::whereIn('id', $products_id)
+            ->orderBy('created_at', 'desc')
+            ->withAvg('ratings', 'number_star')->paginate(6);
 
         return view('support_select', compact(['criterias', 'products', 'request']));
     }

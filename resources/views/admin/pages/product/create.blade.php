@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="prod_price">
                                     <label for="inputPrice">Price</label>
-                                    <input type="number" name="price[]" id="inputPrice" class="form-control">
+                                    <input name="price[]" id="inputPrice" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -67,6 +67,12 @@
                     <div class="form-group">
                         <label for="inputDescription">Product Description</label>
                         <textarea id="inputDescription" name="description" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="prod_name">
+                            <label for="inputCertificate">Certificate</label>
+                            <input type="text" name="certificate" id="inputCertificate" class="form-control">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="inputDescription">Product Support</label>
