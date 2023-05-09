@@ -1,4 +1,4 @@
-<span class="{{$class_star}}" style="fill: #eb5f07;">
+<span class="{{ $class_star }}" style="fill: #eb5f07;">
     @for ($i = 0; $i < $count_star; $i++)
         <svg version="1.1" viewBox="0 0 19 18" height="14" width="14" data-test-selector-star-type="STAR_FULL">
             <g>

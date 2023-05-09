@@ -11371,7 +11371,8 @@ only screen and (min-resolution:120dpi) {
     -webkit-transform: translateY(-3px) translateZ(0);
     transform: translateY(-3px) translateZ(0);
     transition-delay: .2s;
-    transition-duration: .15s
+    transition-duration: .15s;
+    text-decoration: none
 }
 
 .shared-item_cards-author_category_component__link:after {

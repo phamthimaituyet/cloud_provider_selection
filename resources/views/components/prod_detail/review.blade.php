@@ -1,4 +1,4 @@
-<div class="tab-pane fade {{ app('request')->input('page') ? 'show active' : ''}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+<div class="tab-pane fade {{ app('request')->input('page') || app('request')->input('type') === 'reviews' ? 'show active' : ''}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
     <h1 style="font-weight: 100; color: #0e7f74;">Review Highlights</h1>
     <div class="d-flex reviews">
         <div class="rating">
