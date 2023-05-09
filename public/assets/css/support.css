@@ -39,12 +39,17 @@
     position: relative;
 }
 
+.top_product {
+    position: relative;
+}
+
 .top_product p {
     position: absolute;
-    top: 745px;
+    bottom: 50px;
     text-align: center;
-    left: 255px;
+    left: 50px;
     font-size: xx-large;
+    right: 50px;
     font-weight: 700;
     background: #dc3545e0;
     color: white;

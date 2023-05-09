@@ -1,5 +1,4 @@
 @extends('layout.master')
-@include('admin.layouts.head_index')
 @include('admin.layouts.link_script')
 
 @section('title', 'Service selection support')
