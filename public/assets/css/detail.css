@@ -1,6 +1,8 @@
 .details .detailHead {
     margin-right: 0px;
     width: 100%;
+    padding-top: 15px;
+    padding-bottom: 30px;
     background: #F5F4F2;
 }
 
@@ -30,7 +32,7 @@
 }
 
 .detailHead .detailTitle .inf-2 .inf-review {
-    margin-top: 10px;
+    margin-top: 20px;
     fill: #eb5f07;
 }
 
@@ -112,11 +114,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 25px;
-    -webkit-line-clamp: 3;
-    height: 75px;
+    -webkit-line-clamp: 4;
+    height: 100px;
     display: -webkit-box !important;
     -webkit-box-orient: vertical;
-    margin-top: 30px;
+    margin: 36px 0px;
 }
 
 .modal-body .rating {

@@ -38,4 +38,12 @@ class Product extends Model
     public function prices(){
         return $this->hasMany(Price::class);
     }
+
+    public function commnets(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function ratings() {
+        return $this->hasMany(Rating::class);
+    }
 }
