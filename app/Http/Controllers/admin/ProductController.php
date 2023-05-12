@@ -36,7 +36,7 @@ class ProductController extends Controller
     public function store(Request $request){
         DB::beginTransaction();             
         try {
-            $data_product = $request->only('name', 'description', 'support','vendor_id', 'category_id', 'image');
+            $data_product = $request->only('name', 'description', 'support','vendor_id', 'category_id', 'image', 'certificate');
         
             if($file = $request->file('image')){
                 $file_path = $file->store('public/images/' . Str::slug($data_product['name']));
@@ -87,7 +87,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         try{
             $dataProduct = Product::find($request->id);
-            $datas = $request->only('name', 'description', 'support','vendor_id', 'category_id', 'image');
+            $datas = $request->only('name', 'description', 'support','vendor_id', 'category_id', 'image', 'certificate');
 
             if($file = $request->file('image')){
                 $file_path = $file->store('public/images/' . Str::slug($datas['name']));
