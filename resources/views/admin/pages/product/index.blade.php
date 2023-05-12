@@ -56,14 +56,14 @@
                             <th style="width: 40%">
                                 Products Name
                             </th>
+                            <th style="8%;">
+                                Certificate
+                            </th>
                             <th style="width: 20%">
                                 Category
                             </th>
                             <th style="width: 12%">
                                 Address
-                            </th>
-                            <th style="width: 8%">
-                                Price
                             </th>
                             <th style="width: 19%">
                             </th>
@@ -79,12 +79,13 @@
                                 <p>{{ $product->name }}</p>
                             </td>
                             <td>
+                                <p>{{ $product->certificate }}</p>
+                            </td>
+                            <td>
                                 <p>{{ $product->category->name }}</p>
                             </td>
                             <td>
                                 <p>{{ $product->vendor->name }}</p>
-                            </td>
-                            <td>
                             </td>
                             <td>
                                 <a href="{{ route('products.show', ['id' => $product->id]) }}" class="btn btn-sm btn-primary">
