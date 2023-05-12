@@ -11,7 +11,7 @@
                                 <div class="shared-item_cards-preview_image_component__carousel shared-item_cards-preview_image_component__singleImage" style="padding-bottom: 50.847457627118644%">
                                     <a href="{{ route('show', ['id' => $product->id]) }}" class="shared-item_cards-preview_image_component__imageLink">
                                         @if ($product->img_url)
-                                            <img class="shared-item_cards-preview_image_component__image" style="display: block; margin-left: auto; margin-right: auto; max-width: 170px;" src={{ $product->img_url }} alt="">
+                                            <img class="shared-item_cards-preview_image_component__image" style="display: block; margin-left: auto; margin-right: auto; max-width: 190px;" src={{ $product->img_url }} alt="">
                                         @else
                                             <img class="shared-item_cards-preview_image_component__image" style="left: 0%" src={{ asset('assets/images/default_image.png') }} alt="">
                                         @endif
