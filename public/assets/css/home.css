@@ -1,5 +1,5 @@
 body {
-    padding-top: 3.5rem;
+    padding-top: 5.1rem;
     color: #5a5a5a;
 }
 
@@ -122,4 +122,13 @@ main .carousel-inner .carousel-item .item-number{
 .codepro-btn-5:hover:before,.codepro-btn-5:hover:after {
     width: 100%;
     transition: 800ms ease all
+}
+
+.nav-item:not(:last-child) {
+    margin-right: 10px;
+}
+
+.nav-link .size-img {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
 }

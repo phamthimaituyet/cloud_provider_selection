@@ -156,4 +156,8 @@ class ProductsController extends Controller
 
         return view('support_select', compact(['criterias', 'products', 'request']));
     }
+
+    public function myProject(Request $request) {
+        return view('my_project');
+    }
 }
