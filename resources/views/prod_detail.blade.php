@@ -9,16 +9,6 @@
 @section('content')
     <div class="details">
         @include('components.prod_detail.prod_head')
-        @if (session('alert'))  
-        <div class="alert alert-success" role="alert">  
-            {{ session('alert') }}
-        </div>  
-        @endif
-        @if (session('error'))   
-        <div class="alert alert-danger" role="alert">
-            {{ session('error') }}
-        </div>
-        @endif
         <div class="container detailPopup">
             <nav class="pt-36" style="padding-top: 36px;">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
