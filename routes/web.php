@@ -71,8 +71,13 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     });
 });
 
+Route::group(['prefix' => 'my-project', 'as' => 'myProject.'], function() {
+    Route::get('/', [ProductsController::class, 'showMyProject'])->name('show');
+    Route::post('/', [ProductsController::class, 'createMyProject'])->name('create');
+    Route::get('/{id}', [ProductsController::class, 'addCriteria'])->name('addCriteria');
+});
+
 Route::get('/support', [ProductsController::class, 'support'])->name('support');
-Route::get('/my-project', [ProductsController::class, 'myProject'])->name('myProject');
 Route::get('/{id}', [ProductsController::class, 'show'])->name('show');
 Route::post('/{id}', [ProductsController::class, 'review'])->name('review');
 Route::get('/detail-review/{id}', [ProductsController::class, 'detailReview'])->name('detailReview');

@@ -71,59 +71,6 @@ main .carousel-inner .carousel-item .item-number{
     fill: #bab9b7 !important;
 }
 
-.codepro-custom-btn {
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px 25px;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    box-shadow: inset 2px 2px 2px 0 rgba(255,255,255,.5), 7px 7px 20px 0 rgba(0,0,0,.1), 4px 4px 5px 0 rgba(0,0,0,.1);
-    outline: none;
-}
-
-.codepro-btn-5 {
-    height: 40px;
-    width: 215px;
-    line-height: 42px;
-    padding: 0;
-    border: none;
-    background: rgb(255,27,0);
-    background: linear-gradient(0deg,rgba(255,27,0,1) 0%,rgba(251,75,2,1) 100%);
-}
-
-.codepro-btn-5:hover {
-    color: #f0094a;
-    background: white;
-    box-shadow: none;
-}
-
-.codepro-btn-5:before,.codepro-btn-5:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 2px;
-    width: 0;
-    background: #f0094a;
-    box-shadow: -1px -1px 5px 0 #fff,7px 7px 20px 0 #0003,4px 4px 5px 0 #0002;
-    transition: 400ms ease all
-}
-
-.codepro-btn-5:after {
-    right: inherit;
-    top: inherit;
-    left: 0;
-    bottom: 0
-}
-
-.codepro-btn-5:hover:before,.codepro-btn-5:hover:after {
-    width: 100%;
-    transition: 800ms ease all
-}
-
 .nav-item:not(:last-child) {
     margin-right: 10px;
 }

@@ -1,0 +1,94 @@
+.min-height-0 {
+    min-height: 0px;
+}
+
+.bread-crumb {
+    float: left;
+    margin-left: 20px;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+ul.bread-crumb li {
+    float: left;
+    margin-right: 5px;
+    height: 100%;
+    max-width: 400px;
+    overflow: inherit!important;
+    text-overflow: ellipsis;
+}
+
+ul.bread-crumb li:last-of-type a {
+    float: none;
+    font-weight: 700;
+}
+
+a:not([href]):not([class]) {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    padding-bottom: 3px;
+    display: block;
+    position: relative;
+}
+
+ul.bread-crumb li a span {
+    padding: 3px 0;
+    border-bottom: 1px solid #3a435e;
+    font-size: 20px;
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.solution .flexbox-scroll {
+    padding-right: 15px;
+    padding-bottom: 60px;
+}
+
+.businessContainer.center-button {
+    border-style: dashed;
+}
+
+.businessContainer {
+    background-color: #f8f8f8;
+    border: 1px solid #b8b8b8;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    height: 157px;
+    cursor: pointer;
+    z-index: 4;
+}
+
+.businessContainer.center-button .icon-plus-b24 {
+    position: absolute;
+    top: 25%;
+    left: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+}
+
+.icon {
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.businessContainer.center-button .text {
+    position: absolute;
+    top: 55%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.businessContainer:hover {
+    background-color: #f8fafd;
+}

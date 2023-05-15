@@ -20,8 +20,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('myProject') }}" class="nav-link text-white">
-                            <img class="d-block mx-auto mb-1 size-img" src={{ asset("assets/images/project.svg") }} />
+                        <a href="{{ route('myProject.show') }}" class="nav-link text-white">
+                            <img class="d-block mx-auto mb-1 size-img" src={{ asset("assets/images/project1.svg") }} />
                             <b>Project</b>
                         </a>
                     </li>
@@ -39,8 +39,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('myProject') }}" class="nav-link text-white">
-                            <img class="d-block mx-auto mb-1 size-img" src={{ asset("assets/images/project.svg") }} />
+                        <a href="{{ route('login.form') }}" class="nav-link text-white">
+                            <img class="d-block mx-auto mb-1 size-img" src={{ asset("assets/images/project1.svg") }} />
                             <b>Project</b>
                         </a>
                     </li>

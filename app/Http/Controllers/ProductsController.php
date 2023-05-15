@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Rating;
 use App\Models\Criteria;
 use App\Models\ProductCriteria;
+use App\Models\Project;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -157,7 +158,38 @@ class ProductsController extends Controller
         return view('support_select', compact(['criterias', 'products', 'request']));
     }
 
-    public function myProject(Request $request) {
-        return view('my_project');
+    public function showMyProject() 
+    {
+        $myProjects = Project::where('user_id', Auth::user()->id)->get();
+
+        return view('my_project', compact('myProjects'));
+    }
+
+    public function createMyProject(Request $request)
+    {
+        $name = $request->name;
+        $project = Project::where('user_id', Auth::user()->id)->where('name', $name)->first();
+        if (!is_null($project)) {
+            return redirect()->back()->withInput()->with('error', 'Name project exists');
+        }
+
+        $options = [
+            'user_id' => Auth::user()->id,
+            'name'    => $name ?? ''
+        ];
+
+        if (Project::create($options)) {
+            return redirect()->back()->withInput()->with('alert', 'Create project success');
+        }
+        
+        return redirect()->back()->withInput()->with('error', 'Create project fail');
+    }
+
+    public function addCriteria($id) 
+    {
+        $project = Project::find($id);
+        $criterias = Criteria::all();
+
+        return view('project_criteria', compact(['project', 'criterias']));
     }
 }
