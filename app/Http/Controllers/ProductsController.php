@@ -188,8 +188,8 @@ class ProductsController extends Controller
     public function addCriteria($id) 
     {
         $project = Project::find($id);
-        $criterias = Criteria::all();
+        $parent_criterias = Criteria::whereNull('parent_id')->get();
 
-        return view('project_criteria', compact(['project', 'criterias']));
+        return view('project_criteria', compact(['project', 'parent_criterias']));
     }
 }

@@ -1,0 +1,9 @@
+#delete {
+    cursor: pointer;
+    transition: opacity 0.6s linear;
+    opacity: 1;
+}
+
+#delete.hide {
+    opacity: 0;
+}
