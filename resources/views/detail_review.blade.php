@@ -11,16 +11,6 @@
 @section('content')
     <div class="details">
         @include('components.prod_detail.prod_head')
-        @if (session('alert'))  
-        <div class="alert alert-success" role="alert">  
-            {{ session('alert') }}
-        </div>  
-        @endif
-        @if (session('error'))   
-        <div class="alert alert-danger" role="alert">
-            {{ session('error') }}
-        </div>
-        @endif
         <div class="container mt-5">
             <h2 class="mb-3">
                 Perform a detailed assessment of the cloud service 
