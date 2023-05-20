@@ -71,8 +71,15 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     });
 });
 
-Route::get('/support', [ProductsController::class, 'support'])->name('support');
+Route::group(['prefix' => 'my-project', 'middleware'=>'auth', 'as' => 'myProject.'], function() {
+    Route::get('/', [ProductsController::class, 'showMyProject'])->name('show');
+    Route::post('/', [ProductsController::class, 'createMyProject'])->name('create');
+    Route::get('/{id}', [ProductsController::class, 'addCriteria'])->name('addCriteria');
+    Route::post('/{id}', [ProductsController::class, 'createCriteria'])->name('createCriteria');
+});
+
+Route::get('/support', [ProductsController::class, 'support'])->name('support')->middleware('auth');
 Route::get('/{id}', [ProductsController::class, 'show'])->name('show');
-Route::post('/{id}', [ProductsController::class, 'review'])->name('review');
-Route::get('/detail-review/{id}', [ProductsController::class, 'detailReview'])->name('detailReview');
-Route::post('/detail-review/{id}', [ProductsController::class, 'postDetailReview'])->name('postDetailReview');
+Route::post('/{id}', [ProductsController::class, 'review'])->name('review')->middleware('auth');
+Route::get('/detail-review/{id}', [ProductsController::class, 'detailReview'])->name('detailReview')->middleware('auth');
+Route::post('/detail-review/{id}', [ProductsController::class, 'postDetailReview'])->name('postDetailReview')->middleware('auth');

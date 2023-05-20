@@ -1,0 +1,75 @@
+@extends('layout.master')
+
+@section('title', 'Cloud Services')
+
+@section('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <!-- Or for RTL support -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/my_project.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/project_criteria.css') }}">
+
+@section('content')
+    <main>
+        <div class="container mt-5">
+            <div class="flex-grow-1 d-flex flex-column">
+                <ul class="bread-crumb mb-3">
+                    <li>
+                        <a href="{{ route('myProject.show') }}" _ngcontent-lnm-c460="" data-testid="breadcrumb-0" class="text-dark" style="text-decoration: none;">
+                            <span _ngcontent-lnm-c460="">My Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <i class="bi bi-chevron-right"></i>
+                    </li>
+                    <li>
+                        <a _ngcontent-lnm-c460="" data-testid="breadcrumb-0">
+                            <span _ngcontent-lnm-c460="">{{ $project->name }}</span>
+                        </a>
+                    </li>
+                </ul>
+                <span class="d-flex ms-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                    <h5 class="ms-3">Create the corresponding wishes and criteria for the project</h5>
+                    <p class="fst-italic ms-2">(After submitting, the system will suggest the appropriate service provider)</p>
+                </span>
+                <div class="flex-grow-1 p-3 min-height-0">
+                    <div class="d-flex">
+                        @if(count($products))
+                            @include('components.project_criteria.show_infor')
+                        @else
+                            <div style="width: 60%;">
+                                <p class="no-inf">This project has no information</p>
+                            </div>
+                            <div class="flexbox solution h-100" style="width: 40%;">
+                                <div class="flexbox-scroll">
+                                    <div class="mt-4 text-end">
+                                        <div>
+                                            <button type="button" class="btn btn-outline-primary">
+                                                <i class="bi bi-plus-lg me-2"></i>Add note
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                @include('components.project_criteria.form_add_criteria')
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+    <script src="{{ asset('assets/js/project_criteria.js') }}"></script>
+@endsection

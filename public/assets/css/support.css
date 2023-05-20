@@ -56,3 +56,25 @@
     padding: 10px;
     border-radius: 20px;
 }
+
+.nav-item a {
+    color: #1087d0; 
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-item a:hover {
+    color: rgb(36, 36, 36);
+}
+
+.nav-item a::after {
+    content: '';
+    height: 0.5px;
+    width: 380px;
+    top: 70px;
+    background: rgba(0,0,0,.2);
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: 1;
+}
