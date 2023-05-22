@@ -11,6 +11,7 @@ use App\Models\Note;
 use App\Models\ProductCriteria;
 use App\Models\Project;
 use App\Models\ProjectCriteria;
+use App\Models\Vendor;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;

@@ -19,7 +19,7 @@
                 <div class="d-flex align-items-center">
                     @include('components.helper.star', ['count_star' => 5 - $i, 'class_star' => 'star'])
                     <div class="progress me-2">
-                        <div class="progress-bar" role="progressbar" style="background-color: #b7b6b6; width: <?= floor(($review_stars[$i] / $reviews->count()) * 100) ?>%" aria-valuenow="<?= floor(($review_stars[$i] / $reviews->count()) * 100) ?>" aria-valuemin="0"
+                        <div class="progress-bar" role="progressbar" style="background-color: #b7b6b6; width: <?= $reviews->count() != 0 ? floor(($review_stars[$i] / $reviews->count()) * 100) : ''  ?>%" aria-valuenow="<?= $reviews->count() != 0 ? floor(($review_stars[$i] / $reviews->count()) * 100) : '' ?>" aria-valuemin="0"
                             aria-valuemax="100"></div>
                     </div>
                     <div>
@@ -61,19 +61,25 @@
         </div>
     </div>
     <h1 style="font-weight: 100;">Reviews</h1>
-    @foreach ($reviews as $review )
-        <div>
-            <p style="margin-top: 30px;"><b>{{ $review->user->name }}</b></p>
-            @include('components.helper.star', ['count_star' => $review->number_star, 'class_star' => ''])
-            @include('components.helper.star', ['count_star' => (5 - $review->number_star), 'class_star' => 'white'])
-            <div style="margin-top: 10px;">{{ $review->content }}</div>
-            <div>{{ $review->created_at->format('d-m-Y') }}</div>
+    @if(count($reviews))
+        @foreach ($reviews as $review )
             <div>
-                <div id="pt1:r1:1:i1:0:rd1:dc_pgls4" class="x1a mt-3 mb-5" style="border-top:1px solid #D6DFE6;"></div>
+                <p style="margin-top: 30px;"><b>{{ $review->user->name }}</b></p>
+                @include('components.helper.star', ['count_star' => $review->number_star, 'class_star' => ''])
+                @include('components.helper.star', ['count_star' => (5 - $review->number_star), 'class_star' => 'white'])
+                <div style="margin-top: 10px;">{{ $review->content }}</div>
+                <div>{{ $review->created_at->format('d-m-Y') }}</div>
+                <div>
+                    <div id="pt1:r1:1:i1:0:rd1:dc_pgls4" class="x1a mt-3 mb-5" style="border-top:1px solid #D6DFE6;"></div>
+                </div>
             </div>
+        @endforeach
+        <div class="mt-4">
+            {!! $reviews->links() !!}
         </div>
-    @endforeach
-    <div class="mt-4">
-        {!! $reviews->links() !!}
-    </div>
+    @else
+        <div class="mt-5 py-5 text-center" style="margin-bottom: 100px;">
+            <span class="no-inf">This app or service has not been reviewed.</span>
+        </div>
+    @endif
 </div>

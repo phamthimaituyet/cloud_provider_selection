@@ -5,6 +5,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/project_criteria.css') }}">
 
 @section('content')
     <div class="details">
@@ -23,12 +24,20 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade {{ app('request')->input('page') || app('request')->input('type') === 'reviews' ? '' : 'show active'}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <h1 style="font-weight: 100; color: #0e7f74;">Product Overview</h1>
-                    <p class="ellipsis">{{ $product->description }}</p>
-                    <a target="blank" href="{{ $product->vendor->link }}">Xem chi tiết</a>
+                    <p class="ellipsis">
+                        <?= implode('</br><span class="d-block mt-3"></span>', explode('.', $product->description)) ?>
+                    </p>
+                    <a target="blank" href="{{ $product->vendor->link }}">See details</a>
+                    <h1 class="mt-5" style="font-weight: 100; color: #0e7f74;">ISO Certificate</h1>
+                    <p class="mt-3">
+                        <a target="blank" href="#">{{ $product->certificate }}</a>
+                    </p>
+                    <h1 class="mt-5" style="font-weight: 100; color: #0e7f74;">Languages</h1>
+                    <p class="mt-3">English</p>
                     <div class="display: none;" style="height: 20%;"></div>
                 </div>
                 @include('components.prod_detail.review')
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">ghkn</div>
+                @include('components.prod_detail.provider')
             </div>
         </div>
     </div>
