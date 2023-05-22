@@ -114,8 +114,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 25px;
-    -webkit-line-clamp: 4;
-    height: 100px;
+    -webkit-line-clamp: 3;
+    height: 110px;
     display: -webkit-box !important;
     -webkit-box-orient: vertical;
     margin: 36px 0px;

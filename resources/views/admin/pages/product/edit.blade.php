@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label for="inputSupport">Support</label>
                                 <textarea id="inputSupport" class="form-control" rows="10"
-                                    name="description">{{ $product->support }}</textarea>
+                                    name="support">{{ $product->support }}</textarea>
                             </div>
                             <div class="form-group">
                                 <div class="parent-price">
