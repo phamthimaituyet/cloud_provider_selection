@@ -5432,9 +5432,10 @@ body.loading .layouts-application_layout__spinner {
 
 .search-filters-checkbox_filter_component__option {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
     line-height: var(--line-height--l);
-    margin: var(--spacing--s) 0
+    margin: var(--spacing--s) 0;
 }
 
 .search-filters-checkbox_filter_component__subTitle {

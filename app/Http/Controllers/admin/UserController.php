@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -70,10 +71,11 @@ class UserController extends Controller
         return view('admin.pages.user.index', ['users' => $users]);
     }
 
-    public function show($id = null){
+    public function showAdmin($id = null){
         $user = User::find($id);
+        
+        return view('admin.pages.user.show', ['user' => $user]); 
 
-        return view('admin.pages.user.show', ['user' => $user]);
     }
 
     public function edit($id = null){
@@ -106,5 +108,35 @@ class UserController extends Controller
         Auth::logout();
         
         return redirect('/login');
+    }
+
+    public function showUser($id = null) {
+        $user = Auth::user();
+        
+        return view('profile', compact('user')); 
+    }
+
+    public function editProfile(Request $request) {
+        $user = User::find(Auth::user()->id);
+        $option = $request->except('_token');
+
+        if ($option['password'] && $option['password'] == $option['confirm']) {
+            $option['password'] = Hash::make($option['password']);
+        } else {
+            unset($option['password']);
+            unset($option['confirm']);
+        }
+
+        if($file = $request->file('avatar')) {
+            $file_path = $file->store('public/images/' . Str::slug($option['name']));
+            unset($option['avatar']);
+            $option['avatar'] = 'storage/' . explode("public/", $file_path)[1];
+        }
+
+        if($user->update($option)) {
+            return redirect()->back()->withInput()->with('alert', 'Update proflie success');
+        }
+
+        return redirect()->back()->withInput()->with('error', 'Update proflie failed');
     }
 }
