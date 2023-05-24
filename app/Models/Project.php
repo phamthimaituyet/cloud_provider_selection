@@ -17,4 +17,8 @@ class Project extends Model
     public function projectCriterias() {
         return $this->hasMany(ProjectCriteria::class);
     }
+
+    public function user() {
+        return $this->belongsTo(Project::class);
+    }
 }

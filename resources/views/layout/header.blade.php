@@ -26,15 +26,29 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('logout') }}" class="nav-link text-white">
-                            <i class="bi bi-box-arrow-in-right d-block mb-1 text-center fs-4"></i>
-                            <b>Log out</b>
-                        </a>
+                        <div class="dropdown">
+                            <a href="#" class="nav-link text-white dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle d-block mx-auto mb-1 text-center fs-4"></i>
+                                <b>Customers</b>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <i class="bi bi-person-lines-fill me-2"></i>Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
+                                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 @else 
                     <li>
                         <a href="{{ route('login.form') }}" class="nav-link text-white">
-                            <i class="bi bi-sort-up  d-block mb-1 text-center fs-4"></i>
+                            <i class="bi bi-sort-up d-block mb-1 text-center fs-4"></i>
                             <b>Top Service</b>
                         </a>
                     </li>

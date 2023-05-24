@@ -33,7 +33,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
     Route::prefix('users')->name('users.')->controller(UserController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/{id}', 'show')->name('show');
+        Route::get('/{id}', 'showAdmin')->name('show');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/edit/{id}', 'update')->name('update');
         Route::post('/delete', 'delete')->name('delete');
@@ -79,6 +79,8 @@ Route::group(['prefix' => 'my-project', 'middleware'=>'auth', 'as' => 'myProject
 });
 
 Route::get('/support', [ProductsController::class, 'support'])->name('support')->middleware('auth');
+Route::get('/profile', [UserController::class, 'showUser'])->name('profile')->middleware('auth');
+Route::post('/profile', [UserController::class, 'editProfile'])->name('editProfile')->middleware('auth');
 Route::get('/{id}', [ProductsController::class, 'show'])->name('show');
 Route::post('/{id}', [ProductsController::class, 'review'])->name('review')->middleware('auth');
 Route::get('/detail-review/{id}', [ProductsController::class, 'detailReview'])->name('detailReview')->middleware('auth');
