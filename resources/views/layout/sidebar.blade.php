@@ -1,13 +1,6 @@
 <div class="search-index_content__filtersPanel" >
-    <div class="search-index_content__mobileFiltersHeader">
-        <div class="search-index_content__mobileFiltersHeadings">
-            <h3>Filter &amp; Refine</h3>
-            <span>179 results</span>
-        </div>
-        <a href="/search/cloud%20services">Clear all</a>
-        <button>
-            Done
-        </button>
+    <div class="mb-3 clear_all d-none">
+        <a href="{{ route('home') }}">Clear all</a>
     </div>
     <div class="search-filters-filters_panel_component__filter">
         <div class="search-filters-filters_panel_component__filterHeader">
@@ -26,14 +19,17 @@
             <nav class="search-filters-category_filter_component__root" aria-label="categories filter">
                 <ul>
                     <li class="search-filters-category_filter_component__category">
-                        <a class="search-filters-category_filter_component__categoryLink search-filters-category_filter_component__current"
-                            href="/search/cloud%20services#content">All categories</a>
+                        <p class="search-filters-category_filter_component__categoryLink search-filters-category_filter_component__current">All categories</p>
                         <span class="search-filters-category_filter_component__count">{{ count($products) }}</span>
                     </li>
                     @foreach ($categories as $category)
                         <li class="search-filters-category_filter_component__category">
+                            <?php
+                                $link = $query;
+                                $link['category_name'] = $category->name;
+                            ?>
                             <a class="search-filters-category_filter_component__categoryLink search-filters-category_filter_component__child"
-                                href="/category/site-templates?term=cloud%20services#content">{{ $category->name }}</a>
+                                href="{{ route('home', $link )}}">{{ $category->name }}</a>
                             <span class="search-filters-category_filter_component__count">{{ count($category->products) }}</span>
                         </li>
                     @endforeach
@@ -112,12 +108,8 @@
         <div class="search-filters-filters_panel_component__filterBody search-filters-filters_panel_component__expanded">
             <div class="search-filters-checkbox_filter_component__root">
                 @foreach ($providers as $provider)
-                    <div class="search-filters-checkbox_filter_component__option">
-                        <a class="search-filters-checkbox_filter_component__link"
-                            href="/search/cloud%20services?sales=rank-0#content">
-                            <span class="search-filters-checkbox_filter_component__checkbox"></span>
-                            {{ $provider->name}}
-                        </a> 
+                    <div class="search-filters-checkbox_filter_component__option text-start">
+                        <input type="checkbox" class="form-check-input provider me-3" value={{ $provider->id }} name="provider[]">{{ $provider->name}}
                     </div>
                 @endforeach
             </div>
@@ -138,48 +130,54 @@
         </div>
         <div class="search-filters-filters_panel_component__filterBody search-filters-filters_panel_component__expanded">
             <div class="search-filters-radio_filter_component__root">
-                <div class="search-filters-radio_filter_component__option">
-                    <a class="search-filters-radio_filter_component__link"
-                        href="/search/cloud%20services#content">
-                        <input type="radio" class="search-filters-radio_filter_component__radioInput"
-                            checked="" name="rating_min" value="">
-                        <span>Show all</span>
-                    </a> <span class="search-filters-radio_filter_component__count">179</span>
+                <div class="search-filters-radio_filter_component__option text-start">
+                    <div class="form-check d-flex align-items-center">
+                        <input class="form-check-input p-2 bd-highlight" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                        <label class="form-check-label ms-1 p-2 bd-highlight" for="flexRadioDefault1" style="margin-right: 94px;"> Show all </label>
+                        <p class="ms-auto p-2 bd-highlight">{{ $ratings->count() }}</p>
+                    </div>
                 </div>
                 <div class="search-filters-radio_filter_component__option">
-                    <a class="search-filters-radio_filter_component__link"
-                        href="/search/cloud%20services?rating_min=1#content">
-                        <input type="radio" class="search-filters-radio_filter_component__radioInput"
-                            name="rating_min" value="1">
-                        <span>1 star and higher</span>
-                    </a> <span class="search-filters-radio_filter_component__count">59</span>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1"> 1 star and higher </label>
+                        <span>{{ $ratings->count() }}</span>
+                    </div>
                 </div>
                 <div class="search-filters-radio_filter_component__option">
-                    <a class="search-filters-radio_filter_component__link"
-                        href="/search/cloud%20services?rating_min=2#content">
-                        <input type="radio" class="search-filters-radio_filter_component__radioInput"
-                            name="rating_min" value="2">
-                        <span>2 stars and higher</span>
-                    </a> <span class="search-filters-radio_filter_component__count">59</span>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1"> 2 star and higher </label>
+                        <span>{{ $ratings->count() }}</span>
+                    </div>
                 </div>
                 <div class="search-filters-radio_filter_component__option">
-                    <a class="search-filters-radio_filter_component__link"
-                        href="/search/cloud%20services?rating_min=3#content">
-                        <input type="radio" class="search-filters-radio_filter_component__radioInput"
-                            name="rating_min" value="3">
-                        <span>3 stars and higher</span>
-                    </a> <span class="search-filters-radio_filter_component__count">59</span>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1"> 3 star and higher </label>
+                        <span>{{ $ratings->count() }}</span>
+                    </div>
                 </div>
                 <div class="search-filters-radio_filter_component__option">
-                    <a class="search-filters-radio_filter_component__link"
-                        href="/search/cloud%20services?rating_min=4#content">
-                        <input type="radio" class="search-filters-radio_filter_component__radioInput"
-                            name="rating_min" value="4">
-                        <span>4 stars and higher</span>
-                    </a> <span class="search-filters-radio_filter_component__count">55</span>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1"> 4 star and higher </label>
+                        <span>{{ $ratings->count() }}</span>
+                    </div>
+                </div>
+                <div class="search-filters-radio_filter_component__option">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1"> 5 star and higher </label>
+                        <span>{{ $ratings->count() }}</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+
+@section('scripts')
+    <script src="{{ asset('assets/js/search.js') }}"></script>
+@endsection

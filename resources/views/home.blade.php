@@ -9,7 +9,14 @@
     <main>
         @include('components.home.head_main')
         <div class="container">
+            <?php
+                $link = $query;
+                unset($link['q']);
+            ?>
             <form action="{{ route('home') }}" class="input-group" method="GET">
+                @foreach ($link as $key => $value)
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}" />
+                @endforeach
                 <input type="text" name="q" value="{{ app('request')->input('q') ?? '' }}" class="form-control rounded" placeholder="Search" />
                 <button type="submit" class="btn btn-outline-primary">search</button>
             </form>
