@@ -10,7 +10,7 @@
     @foreach ($myProjects as $myProject)
         <div class="col-lg-3 col-md-4 col-sm-6">
             <div class="businessContainer center-button">
-                <a href="{{ route('myProject.addCriteria', ['id' => $myProject->id]) }}" class="text-dark" style="text-decoration: none;">
+                <a href="{{ route('myProject.showProduct', ['id' => $myProject->id]) }}" class="text-dark" style="text-decoration: none;">
                     <div class="d-flex align-items-end">
                         <img class="d-block mt-2 ms-3" src="{{ asset('assets/images/project2.svg') }}">
                         <p class="ms-3 fw-bold">{{ $myProject->name }}</p>
