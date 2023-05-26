@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\VendorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,10 +73,11 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 });
 
 Route::group(['prefix' => 'my-project', 'middleware'=>'auth', 'as' => 'myProject.'], function() {
-    Route::get('/', [ProductsController::class, 'showMyProject'])->name('show');
-    Route::post('/', [ProductsController::class, 'createMyProject'])->name('create');
-    Route::get('/{id}', [ProductsController::class, 'addCriteria'])->name('addCriteria');
-    Route::post('/{id}', [ProductsController::class, 'createCriteria'])->name('createCriteria');
+    Route::get('/', [ProjectController::class, 'showMyProject'])->name('show');
+    Route::post('/', [ProjectController::class, 'createMyProject'])->name('create');
+    Route::get('/show/{id}', [ProjectController::class, 'showProduct'])->name('showProduct');
+    Route::get('/create-note/{id}', [ProjectController::class, 'createNote'])->name('createNote');
+    Route::post('/create-note/{id}', [ProjectController::class, 'addNote'])->name('addNote');
 });
 
 Route::get('/support', [ProductsController::class, 'support'])->name('support')->middleware('auth');

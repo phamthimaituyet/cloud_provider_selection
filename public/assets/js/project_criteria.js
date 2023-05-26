@@ -1,6 +1,8 @@
 $(function() {
     const criteria_elem = $(".criteria-elem").first();      // lay ra phan tu dau tien
+    const question_elem = $(".form-question").first();
     displayDelete();
+    multiple();
 
     $('.btn-outline-primary').on("click", function() {
         if ($('.form-add-criteria-container').hasClass("d-none")) {
@@ -12,27 +14,36 @@ $(function() {
             criteria_elem_clone.find(".form-select").attr('name', "criteria_id[" + $(".criteria-elem").length + "][]")
             criteria_elem_clone.appendTo($(".list-criteria"));
             displayDelete();
-        }
+        }  
 
-        // khoi tao thu vien chon multiple
-        $('.form-select').each(function(index) {
-            $(this).select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $( his).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-                placeholder: $(this).data('placeholder'),
-                closeOnSelect: false,
-                selectionCssClass: 'select2--small',
-                dropdownCssClass: 'select2--small',
-            });
-
-            if (index !== 0 && index === $('.form-select').length - 1) {
-                $(this).parent().find(".select2-container--bootstrap-5").last().remove();
-            }
-        })
     })
 
     $(".criteria-elem").first().find("#delete").addClass("d-none")
+
+    // add questions
+    $('.add-question').on("click", function() {
+        question_elem.clone().appendTo($(".form-question"));
+        displayDelete();
+    })
 })
+
+ // khoi tao thu vien chon multiple
+function multiple() {
+    $('.form-select').each(function(index) {
+        $(this).select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $( his).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: false,
+            selectionCssClass: 'select2--small',
+            dropdownCssClass: 'select2--small',
+        });
+
+        if (index !== 0 && index === $('.form-select').length - 1) {
+            $(this).parent().find(".select2-container--bootstrap-5").last().remove();
+        }
+    })
+}
 
 // Thuc hien delete phan tu
 function displayDelete() {
