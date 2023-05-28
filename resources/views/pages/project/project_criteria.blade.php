@@ -36,7 +36,7 @@
                 </span>
                 <div>
                     <div>
-                        @if(count($products))
+                        @if(!is_null($products))
                             @include('components.project_criteria.show_infor')
                         @else
                             <div>

@@ -15,6 +15,15 @@ class Note extends Model
         'user_id',
         'project_id',
     ];
+    // ham tu dong sinh ra khi goi Note 
+    protected static function booted () {
+        // Note dang duoc xoa se xoa dong thoi bang lien quan
+        static::deleting(function(Note $note) {
+            foreach ($note->questions as $question) {
+                $question->delete();
+            }
+        });
+    }
 
     public function projectCriterias() {
         return $this->hasMany(ProjectCriteria::class);

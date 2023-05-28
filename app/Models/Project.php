@@ -14,6 +14,15 @@ class Project extends Model
         'user_id',
     ];
 
+    protected static function booted()
+    {
+        static::deleting(function(Project $project) {
+            foreach ($project->notes as $note) {
+                $note->delete();
+            }
+        });
+    }
+
     public function projectCriterias() {
         return $this->hasMany(ProjectCriteria::class);
     }

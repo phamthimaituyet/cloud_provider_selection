@@ -15,6 +15,13 @@ class Question extends Model
         'note_id'
     ];
 
+    protected static function booted () {
+        // Question dang duoc xoa se xoa dong thoi bang lien quan
+        static::deleting(function(Question $question) {
+            $question->questionCriterias()->delete();
+        });
+    }
+
     public function questionCriterias() {
         return $this->hasMany(QuestionCriteria::class);
     }
