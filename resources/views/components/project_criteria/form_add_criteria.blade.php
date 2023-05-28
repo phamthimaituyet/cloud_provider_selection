@@ -6,7 +6,7 @@
                 <div class="">
                     <div class="mb-3">
                         <label for="note" class="col-form-label fw-bold text-danger float-start">Requirements:</label>
-                        <textarea class="form-control" id="note" placeholder="Enter note" name="note"></textarea>
+                        <textarea class="form-control" id="note" placeholder="Enter note" name="note"><?= isset($note) ? trim($note->note) : ''  ?></textarea>
                         <div id="emailHelp" class="form-text">Please enter requirements, wishes for the project.</div>
                     </div>
                     <div class="mb-3 question-component">

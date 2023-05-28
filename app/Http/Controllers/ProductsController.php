@@ -36,7 +36,7 @@ class ProductsController extends Controller
             $review_stars[] = $reviews->where('number_star', $i)->count();
         }
 
-        return view('prod_detail', compact('product', 'reviews', 'ratings', 'review_stars'));
+        return view('pages.product.prod_detail', compact('product', 'reviews', 'ratings', 'review_stars'));
     }
 
     public function review(CommentRequest $request, $id)
@@ -84,7 +84,7 @@ class ProductsController extends Controller
             ->where('comments.product_id', $id)
             ->orderBy('comments.created_at', 'desc');
         $criterias = Criteria::whereNull('parent_id')->get();
-        return view('detail_review', compact(['product', 'criterias', 'reviews']));
+        return view('pages.review.detail_review', compact(['product', 'criterias', 'reviews']));
     }
 
     public function postDetailReview(Request $requests, $id = null)

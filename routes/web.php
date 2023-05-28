@@ -22,12 +22,12 @@ use App\Http\Controllers\ProjectController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/login', [UserController::class, 'postLogin'])->name('login.form');
+Route::get('/',         [HomeController::class, 'index'])->name('home');
+Route::get('/login',    [UserController::class, 'login'])->name('login');
+Route::post('/login',   [UserController::class, 'postLogin'])->name('login.form');
 Route::get('/register', [UserController::class, 'register'])->name('register');
-Route::post('/register', [UserController::class, 'postRegister'])->name('register.form');
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::post('/register',[UserController::class, 'postRegister'])->name('register.form');
+Route::get('/logout',   [UserController::class, 'logout'])->name('logout');
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -73,17 +73,22 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 });
 
 Route::group(['prefix' => 'my-project', 'middleware'=>'auth', 'as' => 'myProject.'], function() {
-    Route::get('/', [ProjectController::class, 'showMyProject'])->name('show');
+    Route::get('/',  [ProjectController::class, 'showMyProject'])->name('show');
     Route::post('/', [ProjectController::class, 'createMyProject'])->name('create');
-    Route::get('/show/{id}', [ProjectController::class, 'showProduct'])->name('showProduct');
-    Route::get('/create-note/{id}', [ProjectController::class, 'createNote'])->name('createNote');
+    Route::get('/show/{id}',   [ProjectController::class, 'showProduct'])->name('showProduct');
+    Route::post('/edit/{id}',  [ProjectController::class, 'updateMyProject'])->name('update');
+    Route::post('/delete/{id}', [ProjectController::class, 'deleteMyProject'])->name('delete');
+    Route::get('/create-note/{id}',  [ProjectController::class, 'createNote'])->name('createNote');
     Route::post('/create-note/{id}', [ProjectController::class, 'addNote'])->name('addNote');
+    Route::get('/edit-note/{project_id}/{note_id}',    [ProjectController::class, 'editNote'])->name('editNote');
+    Route::post('/edit-note/{project_id}/{note_id}',   [ProjectController::class, 'updateNote'])->name('updateNote');
+    Route::post('/delete-note/{project_id}/{note_id}', [ProjectController::class, 'deleteNote'])->name('deleteNote');
 });
 
-Route::get('/support', [ProductsController::class, 'support'])->name('support')->middleware('auth');
-Route::get('/profile', [UserController::class, 'showUser'])->name('profile')->middleware('auth');
+Route::get('/support',  [ProductsController::class, 'support'])->name('support')->middleware('auth');
+Route::get('/profile',  [UserController::class, 'showUser'])->name('profile')->middleware('auth');
 Route::post('/profile', [UserController::class, 'editProfile'])->name('editProfile')->middleware('auth');
-Route::get('/{id}', [ProductsController::class, 'show'])->name('show');
-Route::post('/{id}', [ProductsController::class, 'review'])->name('review')->middleware('auth');
-Route::get('/detail-review/{id}', [ProductsController::class, 'detailReview'])->name('detailReview')->middleware('auth');
+Route::get('/{id}',     [ProductsController::class, 'show'])->name('show');
+Route::post('/{id}',    [ProductsController::class, 'review'])->name('review')->middleware('auth');
+Route::get('/detail-review/{id}',  [ProductsController::class, 'detailReview'])->name('detailReview')->middleware('auth');
 Route::post('/detail-review/{id}', [ProductsController::class, 'postDetailReview'])->name('postDetailReview')->middleware('auth');

@@ -55,3 +55,18 @@
 .add-question:hover {
     cursor: pointer;
 }
+
+.all-inf {
+    width: 90%;
+}
+
+.edit-update-inf {
+    width: 10%;
+    opacity: 0;
+}
+
+.parent-all-inf:hover .edit-update-inf {
+    opacity: 1;
+    transition: opacity 0.6s linear;
+    cursor: pointer;
+}
