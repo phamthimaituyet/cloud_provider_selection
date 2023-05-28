@@ -21,4 +21,8 @@ class Project extends Model
     public function user() {
         return $this->belongsTo(Project::class);
     }
+
+    public function notes() {
+        return $this->hasMany(Note::class);
+    }
 }

@@ -11,10 +11,16 @@ class Note extends Model
     protected $table = "notes";
 
     protected $fillable = [
-        'note'
+        'note',
+        'user_id',
+        'project_id',
     ];
 
     public function projectCriterias() {
         return $this->hasMany(ProjectCriteria::class);
+    }
+
+    public function questions() {
+        return $this->hasMany(Question::class);
     }
 }

@@ -1,29 +1,15 @@
 $(function() {
-    const criteria_elem = $(".criteria-elem").first();      // lay ra phan tu dau tien
-    const question_elem = $(".form-question").first();
-    displayDelete();
+    // displayDelete();
     multiple();
-
-    $('.btn-outline-primary').on("click", function() {
-        if ($('.form-add-criteria-container').hasClass("d-none")) {
-            $('.form-add-criteria-container').removeClass("d-none");
-        } else {
-            const criteria_elem_clone = criteria_elem.clone();  // khi co 1 phan tu tro nen copy phan tu dau tien va nhan ban
-            criteria_elem_clone.find("#delete").removeClass("d-none");
-            criteria_elem_clone.find('#note').val('');
-            criteria_elem_clone.find(".form-select").attr('name', "criteria_id[" + $(".criteria-elem").length + "][]")
-            criteria_elem_clone.appendTo($(".list-criteria"));
-            displayDelete();
-        }  
-
-    })
-
-    $(".criteria-elem").first().find("#delete").addClass("d-none")
 
     // add questions
     $('.add-question').on("click", function() {
-        question_elem.clone().appendTo($(".form-question"));
-        displayDelete();
+        const question_elem_clone = $(".form-question").first().clone();
+        $(question_elem_clone).find('#mondai').val('');
+        $(question_elem_clone).find('select').attr('name', "criteria_id[" + $(".form-question").length + "][]")
+        question_elem_clone.appendTo($(".question-component"));
+        multiple();
+        // displayDelete();
     })
 })
 
