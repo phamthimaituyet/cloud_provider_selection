@@ -35,17 +35,22 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="my-3 p-3 bg-body rounded shadow-sm">
-                            <h3 class="border-bottom pb-2 mb-0">Profile</h3>
+                        <div class="shadow-sm p-3 mb-5 bg-body rounded">
+                            <div class="d-flex align-items-baseline border-bottom">
+                                <i class="bi bi-person-lines-fill fs-3 me-3"></i>
+                                <h3 class="pb-2 mb-0">Profile</h3>
+                            </div>
                             <div class="d-flex text-muted pt-3">
                                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-person fs-4 me-2"></i>
                                         <strong class="text-gray-dark">Full Name</strong>
                                     </div>
                                     <span class="d-block">{{ $user->name }}</span>
                                 </div>
                                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-calendar2-heart me-2"></i>
                                         <strong class="text-gray-dark">Date of birth</strong>
                                     </div>
                                     @if($user->date)
@@ -53,6 +58,55 @@
                                     @else
                                         <span class="d-block"></span>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="d-flex text-muted pt-3">
+                                <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-envelope-at me-2"></i>
+                                        <strong class="text-gray-dark">Email</strong>
+                                    </div>
+                                    <span class="d-block">{{ $user->name }}</span>
+                                </div>
+                                <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-telephone me-2"></i>
+                                        <strong class="text-gray-dark">Phone Number</strong>
+                                    </div>
+                                    @if($user->phone)
+                                        <span class="d-block">{{ $user->phone }}</span>
+                                    @else
+                                        <span class="d-block"></span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="d-flex text-muted pt-3">
+                                <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
+                                    <div class="d-flex">
+                                        <strong class="text-gray-dark me-3">Projects: </strong>
+                                        <a href="{{ route('myProject.show') }}">View project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="d-block text-end mt-5"></small>
+                        </div>
+                        <div class="shadow-sm p-3 mb-5 bg-body rounded">
+                            <div class="d-flex align-items-center border-bottom">
+                                <i class="bi bi-list-ul fs-3 me-3"></i>
+                                <h3 class="pb-2 mb-0">Activity History</h3>
+                            </div>
+                            <div class="d-flex text-muted pt-3">
+                                <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
+                                    <div class="d-flex align-items-end mb-3">
+                                        <i class="bi bi-chat-left-text me-2 mb-1"></i>
+                                        <strong class="text-gray-dark w-100 mb-1">Comment</strong>
+                                        <input type="date" class="datepicker_input form-control" placeholder="Select date" style="width: 30%;">
+                                    </div>
+                                    <ul style="list-style-type: unset;">
+                                        @foreach ($user->comments as $comment)
+                                            <li class="ms-5">{{ $comment->content }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                             <div class="d-flex text-muted pt-3">

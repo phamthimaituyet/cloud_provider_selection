@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Criteria;
 use App\Models\Note;
+use App\Models\Product;
+use App\Models\ProductCriteria;
 use App\Models\Project;
-use App\Models\ProjectCriteria;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,8 +45,46 @@ class ProjectController extends Controller
     public function showProduct($id)
     {
         $project = Project::find($id);
-       
-        return view('project_criteria', compact(['project']));
+        $questions_id = Question::join('notes', 'questions.note_id', '=', 'notes.id')
+            ->where('notes.project_id', $id)
+            ->pluck('questions.id')
+            ->toArray();
+
+        $criterias_id = Criteria::join('question_criterias', 'question_criterias.criterias_id', '=', 'criterias.id')
+            ->whereIn('question_criterias.question_id', $questions_id)
+            ->where('criterias.weight', '<>', '')
+            ->WhereNotNull('criterias.weight')
+            ->groupBy('question_criterias.criterias_id')
+            ->select('question_criterias.criterias_id')
+            ->pluck('question_criterias.criterias_id')
+            ->toArray();
+
+        $products = null;
+        if (!empty($criterias_id)) {
+            $product_criterias = ProductCriteria::join('criterias', 'criterias.id', '=', 'product_criterias.criteria_id')
+                ->select(
+                    'product_id',
+                    'criteria_id',
+                    DB::raw('SUM(value * weight)/count(*) AS sum')
+                )
+                ->whereIn('criteria_id', $criterias_id)
+                ->groupBy('product_id', 'criteria_id');
+
+            $products_id = DB::table($product_criterias)
+                ->select(
+                    'product_id',
+                    DB::raw('SUM(sum) AS Total')
+                )
+                ->groupBy('product_id')
+                ->orderByDesc('Total')
+                ->take(2);
+
+            $products_id = DB::table($products_id)->pluck('product_id')->toArray();
+            $products = Product::whereIn('id', $products_id)
+                ->orderBy('created_at', 'desc')
+                ->withAvg('ratings', 'number_star')->get();
+        }
+        return view('project_criteria', compact(['project', 'products']));
     }
 
     public function createNote($id) 
@@ -57,23 +97,28 @@ class ProjectController extends Controller
 
     public function addNote(Request $request, $id)
     {
-        $project = Project::findOrFail($id);
         $datas = $request->except('_token');
         DB::beginTransaction();
         try {
-            foreach ($datas['note'] as $key => $note) {
-                $note = Note::create(['note' => $note]);
+            $note = Note::create([
+                'note' => $datas['note'],
+                'user_id' => Auth::user()->id,
+                'project_id' => $id
 
-                $options = [];
+            ]);
+            foreach ($datas['question'] as $key => $question) {
                 $option = [
-                    'note_id' => $note->id
+                    'note_id' => $note->id,
+                    'user_id' => Auth::user()->id,
+                    'question' => $question,
                 ];
+                $question = Question::create($option);
+                $options = [];
                 foreach($datas['criteria_id'][$key] as $criteria_id) {
-                    $option['criteria_id'] = $criteria_id;
-                    $options[] = $option;
+                    $option_criteria['criterias_id'] = $criteria_id;
+                    $options[] = $option_criteria;
                 }
-               
-                $project->projectCriterias()->createMany($options);
+                $question->questionCriterias()->createMany($options);
             }
 
             DB::commit();
@@ -83,6 +128,6 @@ class ProjectController extends Controller
             return redirect()->back()->withInput()->with('error', 'Fail');
         }
      
-        return redirect()->back()->withInput()->with('alert', 'Success');
+        return redirect()->route('myProject.showProduct', ['id' => $id])->with('alert', 'Success');
     }
 }
