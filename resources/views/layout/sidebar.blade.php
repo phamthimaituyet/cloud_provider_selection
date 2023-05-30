@@ -20,16 +20,11 @@
                 <ul>
                     <li class="search-filters-category_filter_component__category">
                         <p class="search-filters-category_filter_component__categoryLink search-filters-category_filter_component__current">All categories</p>
-                        <span class="search-filters-category_filter_component__count">{{ count($products) }}</span>
+                        <span class="search-filters-category_filter_component__count">{{ count($categories) }}</span>
                     </li>
                     @foreach ($categories as $category)
                         <li class="search-filters-category_filter_component__category">
-                            <?php
-                                $link = $query;
-                                $link['category_name'] = $category->name;
-                            ?>
-                            <a class="search-filters-category_filter_component__categoryLink search-filters-category_filter_component__child"
-                                href="{{ route('home', $link )}}">{{ $category->name }}</a>
+                            <a href="#" class="search-filters-category_filter_component__categoryLink search-filters-category_filter_component__child">{{ $category->name }}</a>
                             <span class="search-filters-category_filter_component__count">{{ count($category->products) }}</span>
                         </li>
                     @endforeach
@@ -132,46 +127,20 @@
             <div class="search-filters-radio_filter_component__root">
                 <div class="search-filters-radio_filter_component__option text-start">
                     <div class="form-check d-flex align-items-center">
-                        <input class="form-check-input p-2 bd-highlight" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        <label class="form-check-label ms-1 p-2 bd-highlight" for="flexRadioDefault1" style="margin-right: 94px;"> Show all </label>
+                        <input class="form-check-input p-2 bd-highlight ratingRadio" type="radio" name="flexRadioDefault" value="0" id="flexRadioDefault0" checked>
+                        <label class="form-check-label ms-1 p-2 bd-highlight" for="flexRadioDefault0" style="margin-right: 80px;"> Show all </label>
                         <p class="ms-auto p-2 bd-highlight">{{ $ratings->count() }}</p>
                     </div>
                 </div>
-                <div class="search-filters-radio_filter_component__option">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1"> 1 star and higher </label>
-                        <span>{{ $ratings->count() }}</span>
+                @for ($i = 1; $i <= 5; $i++)
+                    <div class="search-filters-radio_filter_component__option">
+                        <div class="form-check d-flex align-items-center">
+                            <input class="form-check-input me-2 ratingRadio" type="radio" name="flexRadioDefault" value={{ $i }} id="{{ 'flexRadioDefault' . $i }}">
+                            <label class="form-check-label me-5" for="{{ 'flexRadioDefault' . $i }}">{{ $i }} star and higher </label>
+                            <p>{{ $ratings->where('number_star', $i)->count() }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="search-filters-radio_filter_component__option">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1"> 2 star and higher </label>
-                        <span>{{ $ratings->count() }}</span>
-                    </div>
-                </div>
-                <div class="search-filters-radio_filter_component__option">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1"> 3 star and higher </label>
-                        <span>{{ $ratings->count() }}</span>
-                    </div>
-                </div>
-                <div class="search-filters-radio_filter_component__option">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1"> 4 star and higher </label>
-                        <span>{{ $ratings->count() }}</span>
-                    </div>
-                </div>
-                <div class="search-filters-radio_filter_component__option">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1"> 5 star and higher </label>
-                        <span>{{ $ratings->count() }}</span>
-                    </div>
-                </div>
+                @endfor
             </div>
 
         </div>

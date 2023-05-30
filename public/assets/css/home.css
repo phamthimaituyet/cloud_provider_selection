@@ -112,3 +112,15 @@ main .carousel-inner .carousel-item .item-number{
     overflow: hidden;
     white-space: nowrap;
 }
+
+.clearIcon {
+    position: absolute;
+    right: 83px;
+    top: 10px;
+    font-size: 20px;
+    color: blue;
+}
+
+.clearIcon:hover {
+    cursor: pointer;
+}

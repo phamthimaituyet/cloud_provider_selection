@@ -19,7 +19,7 @@
             <div class="inf-review d-flex">
                 @include('components.helper.star', ['count_star' => 5, 'class_star' => ''])
                 <span style="margin: 0px 1.5rem; padding: 2px; color: blue; font-weight: 600;">
-                    {{ $reviews->count() }} reviews
+                    {{ $review_stars->count() }} reviews
                 </span>
             </div>
         </div>

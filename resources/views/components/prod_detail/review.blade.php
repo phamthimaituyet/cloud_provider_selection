@@ -15,15 +15,25 @@
                 <span>Average Rating</span>
             </div>
             <div>
+                <?php 
+                    $review_stars_clone = clone $review_stars;      // 2 bien bang nhau nhung co dia chi khac nhau => dung clone
+                    $review_stars_count = $review_stars_clone->count();
+                ?>
                 @for($i = 0; $i < 5; $i++) 
+                <?php 
+                    $review_stars_clone = clone $review_stars;
+                    $count = $review_stars_clone->where('number_star', 5 - $i)->count();
+                ?>
                 <div class="d-flex align-items-center">
                     @include('components.helper.star', ['count_star' => 5 - $i, 'class_star' => 'star'])
                     <div class="progress me-2">
-                        <div class="progress-bar" role="progressbar" style="background-color: #b7b6b6; width: <?= $reviews->count() != 0 ? floor(($review_stars[$i] / $reviews->count()) * 100) : ''  ?>%" aria-valuenow="<?= $reviews->count() != 0 ? floor(($review_stars[$i] / $reviews->count()) * 100) : '' ?>" aria-valuemin="0"
+                        <div class="progress-bar" role="progressbar" 
+                            style="background-color: #b7b6b6; width: <?= $review_stars_count != 0 ? floor(($count / $review_stars_count) * 100) : ''  ?>%" 
+                            aria-valuenow="<?= $review_stars_count != 0 ? floor(($count / $review_stars_count) * 100) : '' ?>" aria-valuemin="0"
                             aria-valuemax="100"></div>
                     </div>
                     <div>
-                        <p>{{ $review_stars[$i] }}</p>
+                        <p>{{ $count }}</p>
                     </div>
                 </div>
                 @endfor
@@ -62,11 +72,11 @@
     </div>
     <h1 style="font-weight: 100;">Reviews</h1>
     @if(count($reviews))
-        @foreach ($reviews as $review )
+        @foreach ($reviews as $review)
             <div>
                 <p style="margin-top: 30px;"><b>{{ $review->user->name }}</b></p>
-                @include('components.helper.star', ['count_star' => $review->number_star, 'class_star' => ''])
-                @include('components.helper.star', ['count_star' => (5 - $review->number_star), 'class_star' => 'white'])
+                @include('components.helper.star', ['count_star' => $review->number_star ?? 0, 'class_star' => ''])
+                @include('components.helper.star', ['count_star' => (5 - ($review->number_star ?? 0)), 'class_star' => 'white'])
                 <div style="margin-top: 10px;">{{ $review->content }}</div>
                 <div>{{ $review->created_at->format('d-m-Y') }}</div>
                 <div>

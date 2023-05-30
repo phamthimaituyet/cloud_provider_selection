@@ -23,18 +23,22 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        $reviews = Comment::join('ratings', function ($query) {
-            $query->on('ratings.user_id', '=', 'comments.user_id')
-                ->on('ratings.product_id', '=', 'comments.product_id');
-        })
+        $reviews = Comment::leftJoin('ratings', function ($query) {
+                $query->on('ratings.user_id', '=', 'comments.user_id')
+                    ->on('ratings.product_id', '=', 'comments.product_id');
+            })
             ->where('comments.product_id', $id)
+            ->select(
+                'comments.user_id',
+                'comments.product_id',
+                'comments.content',
+                'comments.created_at',
+                'ratings.number_star'
+            )
             ->orderBy('comments.created_at', 'desc');
-        $ratings = Rating::where('product_id', $id);
+        $review_stars = clone $reviews;                 // clone la tao bien moi ( dia chi moi ) cua cung 1 query
         $reviews = $reviews->paginate(10);
-        $review_stars = [];
-        for ($i = 5; $i >= 1; $i--) {
-            $review_stars[] = $reviews->where('number_star', $i)->count();
-        }
+        $ratings = Rating::where('product_id', $id);
 
         return view('pages.product.prod_detail', compact('product', 'reviews', 'ratings', 'review_stars'));
     }
@@ -83,8 +87,10 @@ class ProductsController extends Controller
         })
             ->where('comments.product_id', $id)
             ->orderBy('comments.created_at', 'desc');
+        $review_stars = clone $reviews;
         $criterias = Criteria::whereNull('parent_id')->get();
-        return view('pages.review.detail_review', compact(['product', 'criterias', 'reviews']));
+
+        return view('pages.review.detail_review', compact(['product', 'criterias', 'reviews', 'review_stars']));
     }
 
     public function postDetailReview(Request $requests, $id = null)

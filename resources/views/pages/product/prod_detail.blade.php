@@ -16,7 +16,7 @@
                     <button class="nav-link {{ app('request')->input('page') || app('request')->input('type') === 'reviews' ? '' : 'active'}} border-ct" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
                         type="button" role="tab" aria-controls="nav-home" aria-selected="true">Overview</button>
                     <button class="nav-link {{ app('request')->input('page') || app('request')->input('type') === 'reviews' ? 'active' : ''}} border-ct" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ratings ({{ $reviews->count() }})</button>
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ratings ({{ $review_stars->count() }})</button>
                     <button class="nav-link border-ct" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
                         type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Provider</button>
                 </div>
