@@ -7,11 +7,7 @@ use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Rating;
 use App\Models\Criteria;
-use App\Models\Note;
 use App\Models\ProductCriteria;
-use App\Models\Project;
-use App\Models\ProjectCriteria;
-use App\Models\Vendor;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -33,14 +29,16 @@ class ProductsController extends Controller
                 'comments.product_id',
                 'comments.content',
                 'comments.created_at',
-                'ratings.number_star'
+                'ratings.number_star',
+                'comments.id'
             )
             ->orderBy('comments.created_at', 'desc');
         $review_stars = clone $reviews;                 // clone la tao bien moi ( dia chi moi ) cua cung 1 query
         $reviews = $reviews->paginate(10);
         $ratings = Rating::where('product_id', $id);
+        $rating_avg = $ratings->avg('number_star');
 
-        return view('pages.product.prod_detail', compact('product', 'reviews', 'ratings', 'review_stars'));
+        return view('pages.product.prod_detail', compact('product', 'reviews', 'ratings', 'rating_avg', 'review_stars'));
     }
 
     public function review(CommentRequest $request, $id)
@@ -164,5 +162,17 @@ class ProductsController extends Controller
             ->withAvg('ratings', 'number_star')->paginate(6);
 
         return view('support_select', compact('products'));
+    }
+
+    public function editReview(Request $request, $comment_id) {
+        $datas = $request->except('_token');
+        try {
+            $comment = Comment::findOrFail($comment_id);
+            $comment->update(['content' => $datas['content']]);
+            return redirect()->back()->with('alert', 'Edit review success!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Edit review failed!');
+        }
     }
 }

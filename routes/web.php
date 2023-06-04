@@ -90,5 +90,6 @@ Route::get('/profile',  [UserController::class, 'showUser'])->name('profile')->m
 Route::post('/profile', [UserController::class, 'editProfile'])->name('editProfile')->middleware('auth');
 Route::get('/{id}',     [ProductsController::class, 'show'])->name('show');
 Route::post('/{id}',    [ProductsController::class, 'review'])->name('review')->middleware('auth');
+Route::post('/comment/edit/{comment_id}', [ProductsController::class, 'editReview'])->name('editReview');
 Route::get('/detail-review/{id}',  [ProductsController::class, 'detailReview'])->name('detailReview')->middleware('auth');
 Route::post('/detail-review/{id}', [ProductsController::class, 'postDetailReview'])->name('postDetailReview')->middleware('auth');

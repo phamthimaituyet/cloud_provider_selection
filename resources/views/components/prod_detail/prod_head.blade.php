@@ -17,7 +17,10 @@
             </span>
             <div class="inf-category">{{ $product->category->name }}</div>
             <div class="inf-review d-flex">
-                @include('components.helper.star', ['count_star' => 5, 'class_star' => ''])
+                <div>
+                    @include('components.helper.star', ['count_star' => round($rating_avg), 'class_star' => ''])
+                    @include('components.helper.star', ['count_star' => (5 - round($rating_avg)), 'class_star' => 'col-5 white'])
+                </div>
                 <span style="margin: 0px 1.5rem; padding: 2px; color: blue; font-weight: 600;">
                     {{ $review_stars->count() }} reviews
                 </span>
