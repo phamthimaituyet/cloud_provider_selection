@@ -158,3 +158,14 @@
 .modal-body .rating:hover>input:checked~label:before {
     opacity: 0.4
 }
+
+.edit-update-rev {
+    width: 10%;
+    opacity: 0;
+}
+
+.parent-inf:hover .edit-update-rev {
+    opacity: 1;
+    transition: opacity 0.6s linear;
+    cursor: pointer;
+}

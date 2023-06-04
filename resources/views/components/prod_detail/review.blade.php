@@ -73,8 +73,18 @@
     <h1 style="font-weight: 100;">Reviews</h1>
     @if(count($reviews))
         @foreach ($reviews as $review)
-            <div>
-                <p style="margin-top: 30px;"><b>{{ $review->user->name }}</b></p>
+            <div class="parent-inf">
+                <div class="d-flex mt-3 align-items-center">
+                    <p class="w-100"><b>{{ $review->user->name }}</b></p>
+                    @if(Auth::check()) 
+                        @if($review->user->id == Auth::user()->id)
+                            <div class="edit-update-rev">
+                                <a data-bs-toggle="modal" data-bs-target="{{ '#editReviewModal' . $review->id }}" class="me-1"><i class="bi bi-pencil-square fs-5"></i></a>
+                                <a class="text-danger me-2" data-bs-toggle="modal" data-bs-target=""><i class="bi bi-trash3-fill fs-5"></i></a>
+                            </div>
+                        @endif
+                    @endif
+                </div>
                 @include('components.helper.star', ['count_star' => $review->number_star ?? 0, 'class_star' => ''])
                 @include('components.helper.star', ['count_star' => (5 - ($review->number_star ?? 0)), 'class_star' => 'white'])
                 <div style="margin-top: 10px;">{{ $review->content }}</div>
@@ -83,6 +93,7 @@
                     <div id="pt1:r1:1:i1:0:rd1:dc_pgls4" class="x1a mt-3 mb-5" style="border-top:1px solid #D6DFE6;"></div>
                 </div>
             </div>
+            @include('components.modal.modal_editReview', ['id' => $review->id, 'review' => $review])
         @endforeach
         <div class="mt-4">
             {!! $reviews->links() !!}
