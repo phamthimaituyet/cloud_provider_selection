@@ -76,11 +76,13 @@
             <div class="parent-inf">
                 <div class="d-flex mt-3 align-items-center">
                     <p class="w-100"><b>{{ $review->user->name }}</b></p>
-                    @if($review->user->id == Auth::user()->id)
-                        <div class="edit-update-rev">
-                            <a data-bs-toggle="modal" data-bs-target="{{ '#editReviewModal' . $review->id }}" class="me-1"><i class="bi bi-pencil-square fs-5"></i></a>
-                            <a class="text-danger me-2" data-bs-toggle="modal" data-bs-target=""><i class="bi bi-trash3-fill fs-5"></i></a>
-                        </div>
+                    @if(Auth::check()) 
+                        @if($review->user->id == Auth::user()->id)
+                            <div class="edit-update-rev">
+                                <a data-bs-toggle="modal" data-bs-target="{{ '#editReviewModal' . $review->id }}" class="me-1"><i class="bi bi-pencil-square fs-5"></i></a>
+                                <a class="text-danger me-2" data-bs-toggle="modal" data-bs-target=""><i class="bi bi-trash3-fill fs-5"></i></a>
+                            </div>
+                        @endif
                     @endif
                 </div>
                 @include('components.helper.star', ['count_star' => $review->number_star ?? 0, 'class_star' => ''])

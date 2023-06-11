@@ -86,9 +86,11 @@ class ProductsController extends Controller
             ->where('comments.product_id', $id)
             ->orderBy('comments.created_at', 'desc');
         $review_stars = clone $reviews;
+        $ratings = Rating::where('product_id', $id);
+        $rating_avg = $ratings->avg('number_star');
         $criterias = Criteria::whereNull('parent_id')->get();
 
-        return view('pages.review.detail_review', compact(['product', 'criterias', 'reviews', 'review_stars']));
+        return view('pages.review.detail_review', compact(['product', 'criterias', 'reviews', 'review_stars', 'rating_avg']));
     }
 
     public function postDetailReview(Request $requests, $id = null)

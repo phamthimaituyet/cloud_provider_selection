@@ -28,6 +28,7 @@
         </div>
         <div class="inf-3 d-flex" style="place-items: flex-end;">
         @if (Auth::check())
+            @if (!isset($detail) || !$detail)
                 <div class="px-4 mt-2 mb-2">
                     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">
                         <i class="bi bi-chat-left-text"></i> Write a review
@@ -38,18 +39,19 @@
                         </button>
                     </a>
                 </div>
-            @else 
-                <a href="{{ route('login.form') }}">
-                    <div class="px-4 mt-2 mb-2">
-                        <button type="button" class="btn btn-outline-secondary">
-                            <i class="bi bi-chat-left-text"></i> Write a review
-                        </button>
-                        <button type="button" class="btn btn-outline-info">
-                            <i class="bi bi-chevron-double-right"></i> Detailed review
-                        </button>
-                    </div>
-                </a>
             @endif
+        @else 
+            <a href="{{ route('login.form') }}">
+                <div class="px-4 mt-2 mb-2">
+                    <button type="button" class="btn btn-outline-secondary">
+                        <i class="bi bi-chat-left-text"></i> Write a review
+                    </button>
+                    <button type="button" class="btn btn-outline-info">
+                        <i class="bi bi-chevron-double-right"></i> Detailed review
+                    </button>
+                </div>
+            </a>
+        @endif
         </div>
     </div>
 </div>
