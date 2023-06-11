@@ -5436,6 +5436,7 @@ body.loading .layouts-application_layout__spinner {
     align-items: center;
     line-height: var(--line-height--l);
     margin: var(--spacing--s) 0;
+    font-size: var(--font-size--body-s);
 }
 
 .search-filters-checkbox_filter_component__subTitle {

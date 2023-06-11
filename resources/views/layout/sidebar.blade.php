@@ -126,18 +126,18 @@
         <div class="search-filters-filters_panel_component__filterBody search-filters-filters_panel_component__expanded">
             <div class="search-filters-radio_filter_component__root">
                 <div class="search-filters-radio_filter_component__option text-start">
-                    <div class="form-check d-flex align-items-center">
+                    <div class="form-check d-flex align-items-center" style="font-size: var(--font-size--body-s);">
                         <input class="form-check-input p-2 bd-highlight ratingRadio" type="radio" name="flexRadioDefault" value="0" id="flexRadioDefault0" checked>
                         <label class="form-check-label ms-1 p-2 bd-highlight" for="flexRadioDefault0" style="margin-right: 80px;"> Show all </label>
-                        <p class="ms-auto p-2 bd-highlight">{{ $ratings->count() }}</p>
+                        {{-- <p class="ms-auto p-2 bd-highlight">{{ $ratings->count() }}</p> --}}
                     </div>
                 </div>
                 @for ($i = 1; $i <= 5; $i++)
                     <div class="search-filters-radio_filter_component__option">
-                        <div class="form-check d-flex align-items-center">
+                        <div class="form-check d-flex align-items-center" style="font-size: var(--font-size--body-s);">
                             <input class="form-check-input me-2 ratingRadio" type="radio" name="flexRadioDefault" value={{ $i }} id="{{ 'flexRadioDefault' . $i }}">
                             <label class="form-check-label me-5" for="{{ 'flexRadioDefault' . $i }}">{{ $i }} star and higher </label>
-                            <p>{{ $ratings->where('number_star', $i)->count() }}</p>
+                            {{-- <p>{{ $ratings->where($product->ratings_avg_number_star, $i)->count() }}</p> --}}
                         </div>
                     </div>
                 @endfor
