@@ -119,6 +119,7 @@ main .carousel-inner .carousel-item .item-number{
     top: 10px;
     font-size: 20px;
     color: blue;
+    z-index: 10;
 }
 
 .clearIcon:hover {
