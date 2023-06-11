@@ -21,6 +21,7 @@ class VendorSeeder extends Seeder
                 'phone' => '12 06266 1000',
                 'year' => 1994,
                 'link' => 'https://aws.amazon.com/marketplace', 
+                'link_iso' => 'https://aws.amazon.com/compliance/iso-certified/?nc1=h_ls',
                 'img_url' => 'storage/images/amazon.jpg',
                 'created_at' => new \DateTime()
             ],
@@ -31,6 +32,7 @@ class VendorSeeder extends Seeder
                 'address' => 'United States', 
                 'year' => 2010,
                 'link' => 'https://azure.microsoft.com/en-us/pricing/', 
+                'link_iso' => 'https://learn.microsoft.com/en-us/compliance/regulatory/offering-iso-27001',
                 'img_url' => 'storage/images/azure-synapse-analytics/YF6fSgtvvEKtz0Tt0drWZejjiypt1hDELlARJ3Y8.png',
                 'created_at' => new \DateTime()
             ],
@@ -41,6 +43,7 @@ class VendorSeeder extends Seeder
                 'phone' => '',
                 'year' => NULL,
                 'link' => 'https://cloud.google.com/marketplace', 
+                'link_iso' => 'https://cloud.google.com/security/compliance/iso-27018',
                 'img_url' => 'storage/images/alloydb-for-postgresql/Wjn0WheS7dQ62AQMb1U7Smyu9OTQgTIn0HRhRzD3.jpg',
                 'created_at' => new \DateTime()
             ],
@@ -51,6 +54,7 @@ class VendorSeeder extends Seeder
                 'year' => 2017,
                 'phone' => '',
                 'link' => 'https://www.ibm.com/cloud/products',
+                'link_iso' => 'https://www.ibm.com/support/pages/system/files/inline-files/saas_27k_v2_2024.pdf',
                 'img_url' => 'storage/images/IBM.jpg',
                 'created_at' => new \DateTime()
             ],
@@ -61,6 +65,7 @@ class VendorSeeder extends Seeder
                 'phone' => '18006-722531',
                 'year' => 1977,
                 'link' => 'https://www.oracle.com/cloud/marketplace/',
+                'link_iso' => '',
                 'img_url' => 'storage/images/oracle-cloud-infrastructure/w7F4ldoapyM9ECL08f7ud1hDwhBTt5n6iK97qjDT.png',
                 'created_at' => new \DateTime()
             ],
@@ -71,6 +76,7 @@ class VendorSeeder extends Seeder
                 'phone' => '',
                 'year' => NULL,
                 'link' => 'https://www.cloudlinux.com/partners/',
+                'link_iso' => 'https://www.dewaweb.com/',
                 'img_url' => 'storage/images/cloudLinux.jpg',
                 'created_at' => new \DateTime()
             ],

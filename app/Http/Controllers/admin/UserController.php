@@ -16,9 +16,13 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(UserRequest $request)
+    public function postLogin(Request $request)
     {
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
         $datas = [
             'email' => $validated['email'],
             'password' => $validated['password']

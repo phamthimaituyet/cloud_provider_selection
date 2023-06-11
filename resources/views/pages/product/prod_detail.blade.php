@@ -30,7 +30,7 @@
                     <a target="blank" href="{{ $product->vendor->link }}">See details</a>
                     <h1 class="mt-5" style="font-weight: 100; color: #0e7f74;">ISO Certificate</h1>
                     <p class="mt-3">
-                        <a target="blank" href="#">{{ $product->certificate }}</a>
+                        <a target="blank" href="{{ $product->vendor->link_iso }}">{{ $product->certificate }}</a>
                     </p>
                     <h1 class="mt-5" style="font-weight: 100; color: #0e7f74;">Languages</h1>
                     <p class="mt-3">English</p>

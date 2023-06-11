@@ -8,6 +8,7 @@
 @section('content')
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
+            {{-- Sidebar --}}
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     @if($user->avatar)
@@ -34,6 +35,7 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
+                    {{-- Information --}}
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="shadow-sm p-3 mb-5 bg-body rounded">
                             <div class="d-flex align-items-baseline border-bottom">
@@ -66,7 +68,7 @@
                                         <i class="bi bi-envelope-at me-2"></i>
                                         <strong class="text-gray-dark">Email</strong>
                                     </div>
-                                    <span class="d-block">{{ $user->name }}</span>
+                                    <span class="d-block">{{ $user->email }}</span>
                                 </div>
                                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
                                     <div class="d-flex align-items-center">
@@ -109,35 +111,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="d-flex text-muted pt-3">
-                                <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
-                                    <div class="d-flex justify-content-between">
-                                        <strong class="text-gray-dark">Email</strong>
-                                    </div>
-                                    <span class="d-block">{{ $user->name }}</span>
-                                </div>
-                                <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
-                                    <div class="d-flex justify-content-between">
-                                        <strong class="text-gray-dark">Phone Number</strong>
-                                    </div>
-                                    @if($user->phone)
-                                        <span class="d-block">{{ $user->phone }}</span>
-                                    @else
-                                        <span class="d-block"></span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="d-flex text-muted pt-3">
-                                <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
-                                    <div class="d-flex">
-                                        <strong class="text-gray-dark me-3">Projects: </strong>
-                                        <a href="{{ route('myProject.show') }}">View project</a>
-                                    </div>
-                                </div>
-                            </div>
                             <small class="d-block text-end mt-5"></small>
                         </div>
                     </div>
+                    {{-- Edit profile --}}
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="my-3 p-3 bg-body rounded shadow-sm">
                             <form class="text-muted" action="{{ route('editProfile') }}" method="POST" enctype="multipart/form-data">

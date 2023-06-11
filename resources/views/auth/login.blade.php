@@ -20,14 +20,14 @@
             <label for="email" class="floatLabel">Email</label>
             <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" type="text" value="{{ old('email') }}">
             @error('email')
-                <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger" style="font-size: 12px;">{{ $message }}</p>
             @endif
         </p>
         <p>
             <label for="password" class="floatLabel">Password</label>
             <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" name="password" type="password" value="{{ old('password') }}">
             @error('password')
-                <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger" style="font-size: 12px;">{{ $message }}</p>
             @endif
         </p>
         <div>

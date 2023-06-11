@@ -24,9 +24,9 @@ class UserRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:users',
+            'name' => 'required|string',
             'role' => 'required|integer',
-            'email' => 'required|string',
+            'email' => 'required|string|unique:users',
             'password' => 'required',
             'confirm_password' => ''
         ];
@@ -35,7 +35,7 @@ class UserRequest extends AbstractRequest
     public function messages()
     {
         return [
-            'name.unique' => 'name must be a unique.',
+            'email.unique' => 'Email must be a unique.',
             'description.min'  => 'description minimum length bla bla bla'
         ];
     }
