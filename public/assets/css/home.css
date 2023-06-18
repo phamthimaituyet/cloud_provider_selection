@@ -125,3 +125,12 @@ main .carousel-inner .carousel-item .item-number{
 .clearIcon:hover {
     cursor: pointer;
 }
+
+.fix-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    height: 30px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;    
+}

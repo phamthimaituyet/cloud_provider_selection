@@ -102,11 +102,13 @@
                                     <div class="d-flex align-items-end mb-3">
                                         <i class="bi bi-chat-left-text me-2 mb-1"></i>
                                         <strong class="text-gray-dark w-100 mb-1">Comment</strong>
-                                        <input type="date" class="datepicker_input form-control" placeholder="Select date" style="width: 30%;">
+                                        <input type="date" value="{{ request()->date ?? '' }}" class="datepicker_input form-control" placeholder="Select date" style="width: 30%;">
                                     </div>
                                     <ul style="list-style-type: unset;">
                                         @foreach ($user->comments as $comment)
-                                            <li class="ms-5">{{ $comment->content }}</li>
+                                            <li class="ms-5 mb-3">
+                                                <a href="{{ route('show', ['id' => $comment->product_id]) }}" class="fix-text">{{ $comment->content }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -188,4 +190,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/search.js') }}"></script>
 @endsection

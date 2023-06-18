@@ -115,7 +115,14 @@ class UserController extends Controller
     }
 
     public function showUser($id = null) {
-        $user = Auth::user();
+        $date = request()->date ?? null;
+        $user = User::with(['comments' => function ($query) use($date){
+            return $query
+                ->when($date, function ($query) use ($date) {
+                    return $query->where('created_at', 'like', $date . "%");
+                })
+                ->limit(5);
+        }])->where('id', Auth::user()->id)->first();
         
         return view('profile', compact('user')); 
     }
