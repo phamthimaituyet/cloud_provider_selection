@@ -76,6 +76,11 @@ $(function() {
 
         searchProduct(options, page_number);
     });
+
+    // カレンダーの値を変更すると、ページをリフレッシュする
+    $('.datepicker_input').on('change', function(e) {
+        window.location.href =  window.location.origin + window.location.pathname + "?date=" + e.target.value;
+    })
 })
 
 function test(check) {
