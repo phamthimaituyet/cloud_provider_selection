@@ -23,16 +23,16 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade {{ app('request')->input('page') || app('request')->input('type') === 'reviews' ? '' : 'show active'}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <h1 style="font-weight: 100; color: #0e7f74;">Product Overview</h1>
+                    <h1 style="font-weight: 400; color: #0e7f74;">Product Overview</h1>
                     <p class="ellipsis">
                         <?= implode('</br><span class="d-block mt-3"></span>', explode('.', $product->description)) ?>
                     </p>
                     <a target="blank" href="{{ $product->vendor->link }}">See details</a>
-                    <h1 class="mt-5" style="font-weight: 100; color: #0e7f74;">ISO Certificate</h1>
+                    <h1 class="mt-5" style="font-weight: 400; color: #0e7f74;">ISO Certificate</h1>
                     <p class="mt-3">
                         <a target="blank" href="{{ $product->vendor->link_iso }}">{{ $product->certificate }}</a>
                     </p>
-                    <h1 class="mt-5" style="font-weight: 100; color: #0e7f74;">Languages</h1>
+                    <h1 class="mt-5" style="font-weight: 400; color: #0e7f74;">Languages</h1>
                     <p class="mt-3">English</p>
                     <div class="display: none;" style="height: 20%;"></div>
                 </div>

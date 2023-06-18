@@ -6,9 +6,9 @@
             <p class="mt-3">{{ $product->vendor->phone }}</p>
         </div>
         <div class="ms-5">
-            <h1 style="font-weight: 100; color: #0e7f74;">About This Provider</h1>
+            <h1 style="font-weight: 400; color: #0e7f74;">About This Provider</h1>
             <p class="mt-3">{{ $product->vendor->description }}</p>
-            <h3 class="mt-5" style="font-weight: 100; color: #0e7f74;">Headquarters</h3>
+            <h3 class="mt-5" style="font-weight: 400; color: #0e7f74;">Headquarters</h3>
             <p class="mt-3">{{ $product->vendor->address }}</p>
         </div>
     </div>

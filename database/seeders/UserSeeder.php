@@ -16,15 +16,26 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Mai Tuyết',
-            'email' => 'maituyet00@gmail.com',
-            'role' => '1',                      // role 1 :admin , role 2 :user
-            'date' => '2000-03-25',
-            'avatar' => 'vendors/dist/img/user2-160x160.jpg',
-            'phone' => '0987549702',
-            'password' => Hash::make('123456'),
-        ]);
+        DB::table('users')->insert(
+            [
+                'name' => 'Mai Tuyết',
+                'email' => 'maituyet00@gmail.com',
+                'role' => '1',                      // role 1 :admin , role 2 :user
+                'date' => '2000-03-25',
+                'avatar' => 'vendors/dist/img/user2-160x160.jpg',
+                'phone' => '0987549702',
+                'password' => Hash::make('123456'),
+            ],
+            [
+                'name' => 'Mai Tuyết',
+                'email' => 'maituyet2503@gmail.com',
+                'role' => '3',                      // role 1 :admin , role 2 :user, 3 :advise
+                'date' => '2000-03-25',
+                'avatar' => 'vendors/dist/img/user2-160x160.jpg',
+                'phone' => '0987549702',
+                'password' => Hash::make('123456'),
+            ]
+        );
         User::factory()->count(50)->create();
     }
 }

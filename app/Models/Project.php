@@ -12,6 +12,7 @@ class Project extends Model
     protected $fillable = [
         'name',
         'user_id',
+        'share'
     ];
 
     protected static function booted()
@@ -28,7 +29,7 @@ class Project extends Model
     }
 
     public function user() {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(User::class);
     }
 
     public function notes() {

@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
 use App\Models\Criteria;
 use App\Models\Note;
 use App\Models\Product;
 use App\Models\ProductCriteria;
 use App\Models\Project;
 use App\Models\Question;
+use App\Models\Advise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Mockery\Matcher\Not;
 
 class ProjectController extends Controller
 {
     public function showMyProject()
     {
-        $myProjects = Project::where('user_id', Auth::user()->id)->get();
+        if (Auth::user()->role == 3) {
+            $myProjects = Project::where('share', 1)->get();
+        } else {
+            $myProjects = Project::where('user_id', Auth::user()->id)->get();
+        }
 
         return view('pages.project.my_project', compact('myProjects'));
     }
@@ -68,6 +73,7 @@ class ProjectController extends Controller
     public function showProduct($id)
     {
         $project = Project::find($id);
+        $message = Advise::where('project_id', $id)->get();
         $questions_id = Question::join('notes', 'questions.note_id', '=', 'notes.id')
             ->where('notes.project_id', $id)
             ->pluck('questions.id')
@@ -108,7 +114,7 @@ class ProjectController extends Controller
                 ->withAvg('ratings', 'number_star')->get();
         }
         
-        return view('pages.project.project_criteria', compact(['project', 'products']));
+        return view('pages.project.project_criteria', compact(['project', 'products', 'message']));
     }
 
     public function createNote($id) 
@@ -199,5 +205,36 @@ class ProjectController extends Controller
         }
 
         return redirect()->route('myProject.showProduct', ['id' => $project_id])->with('alert', 'Failed');
+    }
+
+    public function share($id)
+    {
+        $project = Project::find($id);
+        $share = 0;
+        if (!$project->share) {
+            $share = 1;
+        }
+
+        $project->update(['share' => $share]);
+
+        return redirect()->back();
+    }
+
+    public function message(CommentRequest $request, $id) 
+    {
+        $checkData = $request->validated();
+        $datas = $request->except('_token');
+        if ($checkData['content']) {
+            $options = [
+                'user_id' => Auth::user()->id,
+                'project_id' => $id,
+                'content' => $datas['content'],
+            ];
+            Advise::create($options);
+
+            return redirect()->back()->withInput()->with('alert', 'Success');
+        }
+
+        return redirect()->back()->withInput()->with('error', 'Failed');
     }
 }

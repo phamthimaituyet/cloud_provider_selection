@@ -24,6 +24,7 @@
     line-height: 36px;
     color: #176dc2;
     text-align: left;
+    font-weight: 600;
 }
 
 .list-inf {
@@ -69,4 +70,14 @@
     opacity: 1;
     transition: opacity 0.6s linear;
     cursor: pointer;
+}
+
+.ps-end {
+    justify-content: end;
+    flex-direction: row-reverse;
+}
+
+.ps-start {
+    justify-content: start;
+    flex-direction: row;
 }
