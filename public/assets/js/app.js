@@ -1,14 +1,20 @@
-$(document).ready(function() {
-    $('.search-filters-filters_panel_component__filterHeader').click(function() {
-        var index = $('.search-filters-filters_panel_component__filterHeader').index(this)
-        $($('.search-filters-filters_panel_component__filterBody')[index]).toggleClass('d-none')
-        if ($($('.search-filters-filters_panel_component__filterBody')[index]).hasClass('d-none')) {
-            $(this).children('.search-filters-filters_panel_component__chevron').css('transform', 'rotate(-90deg)')
-        } else {
-            $(this).children('.search-filters-filters_panel_component__chevron').css('transform', 'rotate(90deg)')
-        }
-    })
-});
+$(function () {
+  $('.search-filters-filters_panel_component__filterHeader').on('click', function() {
+    var index = $('.search-filters-filters_panel_component__filterHeader').index(this)
+    $($('.search-filters-filters_panel_component__filterBody')[index]).toggleClass('d-none')
+    if ($($('.search-filters-filters_panel_component__filterBody')[index]).hasClass('d-none')) {
+        $(this).children('.search-filters-filters_panel_component__chevron').css('transform', 'rotate(-90deg)')
+    } else {
+        $(this).children('.search-filters-filters_panel_component__chevron').css('transform', 'rotate(90deg)')
+    }
+  })
+
+  $('[data-bs-toggle="popover"]').popover({
+      placement: 'top',
+      container: '.container',
+      html: true,
+  })
+})
 
 //Problem: Hints are shown even when form is valid
 //Solution: Hide and show them at appropriate times

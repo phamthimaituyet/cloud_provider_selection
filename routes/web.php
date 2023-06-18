@@ -83,6 +83,8 @@ Route::group(['prefix' => 'my-project', 'middleware'=>'auth', 'as' => 'myProject
     Route::get('/edit-note/{project_id}/{note_id}',    [ProjectController::class, 'editNote'])->name('editNote');
     Route::post('/edit-note/{project_id}/{note_id}',   [ProjectController::class, 'updateNote'])->name('updateNote');
     Route::post('/delete-note/{project_id}/{note_id}', [ProjectController::class, 'deleteNote'])->name('deleteNote');
+    Route::post('/share/{id}',  [ProjectController::class, 'share'])->name('share');
+    Route::post('/message/{id}', [ProjectController::class, 'message'])->name('message');
 });
 
 Route::get('/support',  [ProductsController::class, 'support'])->name('support')->middleware('auth');

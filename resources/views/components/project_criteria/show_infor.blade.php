@@ -1,11 +1,13 @@
-<div class="mt-3 ms-3">
+<div class="mt-5 ms-3">
     <div class="row">
         <h3 class="view-title col-10">Suggestion Service</h3>
-        <a href="{{ route('myProject.createNote', ['id' => $project->id ]) }}" class="col-2">
-            <button type="button" class="btn btn-outline-primary">
-                <i class="bi bi-plus-lg me-2"></i>Add requirements
-            </button>
-        </a>
+        @if($project->user_id == Auth::user()->id)
+            <a href="{{ route('myProject.createNote', ['id' => $project->id ]) }}" class="col-2">
+                <button type="button" class="btn btn-outline-primary">
+                    <i class="bi bi-plus-lg me-2"></i>Add requirements
+                </button>
+            </a>
+        @endif
     </div>
     <div class="row mb-2 mt-4">
         @foreach ($products as $product)
@@ -37,7 +39,17 @@
             </div>
         @endforeach
     </div>
-    <h3 class="view-title mt-5">Project information</h3> 
+    <div class="row mt-5">
+        <h3 class="view-title col-10">Project information</h3> 
+        @if($project->user_id == Auth::user()->id)
+            <form action="{{ route('myProject.share', ['id' => $project->id]) }}" method="POST" class="col-2">
+                @csrf
+                <button type="submit" class="btn btn-outline-primary d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Share information for experts to get advice.">
+                    <i class="bi bi-reply-all-fill me-2"></i>{{ $project->share ? 'Shared information' : 'Share information' }}
+                </button>
+            </form>
+        @endif
+    </div>
     @foreach ($project->notes as $note)
         <div class="mt-4 d-flex parent-all-inf">
             <div class="all-inf">
@@ -67,5 +79,39 @@
             @include('components.modal.modal_delete', ['project' => $project, 'note' => $note, 'id' => $note->id])
         </div>
     @endforeach
+    @if($project->share)
+        <h3 class="view-title mt-5">Expert advice</h3>
+        <div class="mt-3">
+            <form action="{{ route('myProject.message', ['id' => $project->id ]) }}" method="POST">
+                @csrf
+                <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                    <div class="d-flex flex-start w-100">
+                        <img class="rounded-circle shadow-1-strong me-3" src={{ (Auth::user()->role == 3) ? asset('vendors/dist/img/user2-160x160.jpg') : asset($project->user->avatar) }} alt="avatar" width="40" height="40">
+                        <div class="form-outline w-100">
+                        <label class="form-label fs-5" for="textAreaExample" style="margin-left: 0px;">Message</label>
+                        <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;" name="content"></textarea>
+                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div></div>
+                    </div>
+                    <div class="mt-2 w-100 text-end">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </form>
+            @foreach ($message as $item)
+                <div class="card-body">
+                    <div class="d-flex <?= ($item->user->role == 3) ? 'ps-end' : 'ps-start' ?> align-items-center">
+                        <img class="rounded-circle shadow-1-strong me-3" src={{ ($item->user->role == 3) ? asset('vendors/dist/img/user2-160x160.jpg') : asset($project->user->avatar) }} alt="avatar" width="60" height="60">
+                        <div>
+                            <p class="text-muted small mb-0 fs-4">{{ $item->user->name }}</p>
+                            <h6 class="fw-bold text-primary mb-1"></h6>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-4 pb-2 <?= ($item->user->role == 3) ? 'text-end' : 'text-start' ?>">
+                        {{ $item->content }}
+                    </p>
+                </div>
+            @endforeach
+        </div>
+    @endif
 </div>
 
