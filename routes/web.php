@@ -90,8 +90,8 @@ Route::group(['prefix' => 'my-project', 'middleware'=>'auth', 'as' => 'myProject
 Route::get('/support',  [ProductsController::class, 'support'])->name('support')->middleware('auth');
 Route::get('/profile',  [UserController::class, 'showUser'])->name('profile')->middleware('auth');
 Route::post('/profile', [UserController::class, 'editProfile'])->name('editProfile')->middleware('auth');
-Route::get('/{id}',     [ProductsController::class, 'show'])->name('show');
-Route::post('/{id}',    [ProductsController::class, 'review'])->name('review')->middleware('auth');
+Route::get('/{id}',     [ProductsController::class, 'show'])->name('show')->where('id', '[0-9]+');
+Route::post('/{id}',    [ProductsController::class, 'review'])->name('review')->middleware('auth')->where('id', '[0-9]+');
 Route::post('/comment/edit/{comment_id}', [ProductsController::class, 'editReview'])->name('editReview');
 Route::get('/detail-review/{id}',  [ProductsController::class, 'detailReview'])->name('detailReview')->middleware('auth');
 Route::post('/detail-review/{id}', [ProductsController::class, 'postDetailReview'])->name('postDetailReview')->middleware('auth');

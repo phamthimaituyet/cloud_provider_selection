@@ -8,3 +8,10 @@
         {{ session('error') }}
     </div>
 @endif
+
+<script>
+    const alert = document.querySelector('.alert');
+    const time = setTimeout(function() {
+        alert.style.display = 'none'
+    }, 2000);
+</script>

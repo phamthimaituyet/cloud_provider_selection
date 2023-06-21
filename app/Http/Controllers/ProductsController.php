@@ -19,6 +19,9 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+        if (!$product) {
+            abort(404);
+        }
         $reviews = Comment::leftJoin('ratings', function ($query) {
                 $query->on('ratings.user_id', '=', 'comments.user_id')
                     ->on('ratings.product_id', '=', 'comments.product_id');
