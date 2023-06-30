@@ -1,5 +1,5 @@
 <div class="tab-pane fade {{ app('request')->input('page') || app('request')->input('type') === 'reviews' ? 'show active' : ''}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <h1 style="font-weight: 400; color: #0e7f74;">Review Highlights</h1>
+    <h2>Review Highlights</h2>
     <div class="d-flex reviews">
         <div class="rating">
             <div class="c-1">5.0</div>
@@ -70,7 +70,7 @@
             @endif
         </div>
     </div>
-    <h1 style="font-weight: 400;">Reviews</h1>
+    <h2>Reviews</h2>
     @if(count($reviews))
         @foreach ($reviews as $review)
             <div class="parent-inf">

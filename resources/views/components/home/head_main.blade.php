@@ -12,7 +12,7 @@
             <div class="section section--color05" data-module="hero-basic" data-partial="">
                 <div class="row row--middled-small">
                     <div class="column medium-6">
-                        <h1>How to Choose a Cloud Service Provider ?</h1>
+                        <h1 class="ms-3">How to Choose a Cloud Service Provider ?</h1>
                     </div>
                     <div class="column medium-6 text-center">
                         <img loading="lazy" src="//azurecomcdn.azureedge.net/cvt-d0f6a2d46e5c6272660482ed313194be31abd00fcd96d583d09ce5c0ca6f5168/images/section/getstarted/visual-freetrial.png" alt="">

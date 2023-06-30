@@ -1,0 +1,213 @@
+.compare-form__title {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 36px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.l3 {
+    line-height: 26px;
+    line-height: 1.625rem;
+    margin-bottom: 16px;
+    margin-bottom: 1rem;
+    font-size: 21px;
+    font-size: 1.5rem;
+    font-family: "Barlow",sans-serif;
+    font-weight: 600;
+    color: #252530;
+}
+
+.my-half {
+    margin-top: .375rem;
+    margin-bottom: .375rem;
+}
+
+.jc-c {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.compare-vs--purple-circle {
+    border: 1px solid #5a39a2;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 100%;
+    color: #5a39a2;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-weight: 600;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    top: 52px;
+    height: 36px;
+    width: 36px;
+}
+
+.item {
+    border: 1px solid #cacaca;
+    background: #fefefe;
+    border-radius: 0;
+    margin-bottom: .75rem;
+    padding: 2rem 0;
+}
+
+.item:hover {
+    border: 1px solid #2690ce;
+    background-color: #deeef7;
+}
+
+.compare-list__imgs, .compare-list__texts {
+    height: 120px;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.compare-list--cards .compare-list__img {
+    width: 40%;
+}
+
+.compare-list__img {
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 3rem;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: .75rem 0;
+    text-align: center;
+    width: 50%;
+}
+
+.compare-list__img img {
+    height: auto;
+    width: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+    -ms-interpolation-mode: bicubic;
+}
+
+.compare-list__texts {
+    font-weight: 600;
+    margin-top: .75rem;
+    padding-bottom: 0;
+    padding-top: 0;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.compare-section-new {
+    width: 100%;
+    border: none;
+    background: #fff;
+    color: #000;
+    font-size: 17px;
+}
+
+.compare-section-new .sticky-header-container {
+    overflow-x: hidden;
+}
+
+.compare-section-new .header-section {
+    background-color: #e8e8e8;
+    color: #000;
+    height: 150px;
+}
+
+.compare-section-new .header-section .logo-and-name {
+    display: flex;
+    padding-top: 10px;
+}
+
+.compare-section-new .header-section .logo-and-name .imageContainer {
+    width: 25%;
+    background-color: #fff;
+    margin: 0 10px;
+}
+
+.imageContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 75px;
+    width: 75px;
+    padding: 5px;
+    border: 1px solid #cacaca;
+}
+
+.imageContainer>img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+}
+
+.compare-section-new .header-section .logo-and-name .product-vendor-name {
+    width: 70%;
+}
+
+.logo-and-name .close-icon {
+    width: 5%;
+}
+
+.compare-section-new .rating-section {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-flow: row wrap;
+    padding-bottom: 10px;
+}
+
+.rating-section .overall-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 40%;
+}
+
+.overall-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

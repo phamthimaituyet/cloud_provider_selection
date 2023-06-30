@@ -184,7 +184,7 @@ a.CybotCookiebotDialogDetailBodyContentTabsItem {
 
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 body {
-    margin: 0
+    margin: 0;
 }
 
 article,
@@ -11933,7 +11933,8 @@ only screen and (min-resolution:120dpi) {
 .shared-item_cards-item_name_component__root {
     font-size: var(--font-size--body-l);
     max-height: calc(var(--font-size--body-l)*2 + var(--spacing--xs));
-    max-width: 100%
+    max-width: 100%;
+    font-weight: 500!important;
 }
 
 .shared-item_cards-item_name_component__itemNameLink {
