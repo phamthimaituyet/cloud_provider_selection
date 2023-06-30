@@ -8,10 +8,14 @@ use App\Models\Product;
 use App\Models\Rating;
 use App\Models\Criteria;
 use App\Models\ProductCriteria;
+use App\Models\Vendor;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
@@ -169,7 +173,8 @@ class ProductsController extends Controller
         return view('support_select', compact('products'));
     }
 
-    public function editReview(Request $request, $comment_id) {
+    public function editReview(Request $request, $comment_id) 
+    {
         $datas = $request->except('_token');
         try {
             $comment = Comment::findOrFail($comment_id);
@@ -179,5 +184,57 @@ class ProductsController extends Controller
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Edit review failed!');
         }
+    }
+
+    public function compareProduct(Request $request)
+    {
+        // check ajax request
+        if($request->ajax())
+        {
+            $request = $request->all();
+            dd($request);
+            $products = Product::whereIn('id', $request)
+                ->withAvg('ratings', 'number_star')
+                ->withCount('ratings')
+                ->get(); 
+
+            if (count($products) != 2) {
+                return response('Id không chính xác', 400);
+            }
+
+            $product = Product::leftJoin('comments', 'comments.product_id', '=', 'products.id')
+                ->leftJoin('ratings', function ($join) {
+                    $join->on('ratings.user_id', '=', 'comments.user_id')
+                         ->on('ratings.product_id', '=', 'comments.product_id');
+                })
+                ->orderByDesc('ratings.number_star')
+                ->limit(3);
+            
+            $comment_product1 = (clone $product)->where('products.id', $request['product_id1'])->get();
+            $comment_product2 = (clone $product)->where('products.id', $request['product_id2'])->get();
+
+            return view('components.compare.comparison_product', compact('products', 'comment_product1', 'comment_product2'));
+        }
+
+        $products = Product::all();
+        $providers = Vendor::all();
+        $providers_compare = [];
+        for ($i = 0; $i < $providers->count() - 1; $i++) {
+            for ($j = $i + 1; $j < $providers->count(); $j++) {
+                $providers_compare[] = [$providers[$i], $providers[$j]];
+            }
+        }
+
+        $providers_compare = $this->paginate($providers_compare, 4, null, ['path' => 'product']);
+
+        return view('pages.product.prod_compare', compact('products', 'providers_compare', 'providers'));
+    }
+
+    public function paginate($items, $perPage = 4, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }
