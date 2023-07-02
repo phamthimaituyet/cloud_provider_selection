@@ -6,6 +6,7 @@ $(function() {
         category_name: '',
         provider_id: [],
         rating_value: 0,
+        certificate: '',
     };
 
     //search input
@@ -50,12 +51,23 @@ $(function() {
     });
 
     // search rating
-    $(".ratingRadio").on('click', function(){
+    $(".ratingRadio").on('click', function() {
         check = true;
         test(check);
         const radioValue = $(".ratingRadio:checked").val() ?? 0;
         if (radioValue) {
             options.rating_value = radioValue;
+        }
+        searchProduct(options);
+    });
+
+    // search certificate
+    $(".select_certificate").on('change', function(e) {
+        check = true;
+        test(check);
+        const certificate = e.target.value;
+        if (certificate) {
+            options.certificate = certificate;
         }
         searchProduct(options);
     });

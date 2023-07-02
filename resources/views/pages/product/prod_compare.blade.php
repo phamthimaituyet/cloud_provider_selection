@@ -101,5 +101,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/compare.js') }}"></script>
+<script src="{{ asset('assets/js/compare.js') }}"></script>
+<script src="{{ asset('assets/js/chart.min.js') }}"></script>
 @endsection

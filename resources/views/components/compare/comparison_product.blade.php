@@ -73,17 +73,93 @@
                 <?php $comments = $key ? $comment_product2 : $comment_product1 ?>
                 <ul style="list-style: disc;">
                     @foreach ($comments as $comment)
-                        <li class="mt-4 ms-3">{{ $comment->content }}</li>
+                        @if(isset($comment->content))
+                            <li class="mt-4 ms-3">{{ $comment->content }}</li>
+                        @else
+                            <p style="text-align: center; font-size: xx-large; margin-top: 100px;">No information</p>
+                        @endif
                     @endforeach
                 </ul>
             </div>
-            <div class="inf-section">
+            <div class="inf-section" style="height: 100px;">
                 <h3 class="mt-5 section-title">Certificate</h3>
                 <div class="mt-4">
                     <p>{{ $product->certificate }}</p>
                 </div>
             </div>
         </div>
+        <div class="mt-5" style="height: 600px;">
+            <h3>Rating score</h3>
+            <?php $product_criterias = $key ? $product_criterias2 : $product_criterias1 ?>
+            @if (!empty($product_criterias))
+                <canvas id={{ "myChart" . $key }} width="600" height="500"></canvas>
+            @else
+                <p style="text-align: center; font-size: xx-large; margin-top: 100px;">No information</p>
+            @endif
+        </div>
     </div>
+    <script type="module">
+        const id = "myChart" + {{ $key }} 
+        const array = {!! json_encode($product_criterias); !!}
+        const arrayLabel = array.map(value => value.name);
+        const arrayData = array.map(value => value.sum);
+        const ctx = document.getElementById(id);
+        const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: arrayLabel,
+            datasets: [{
+                label: '# of Score',
+                data: arrayData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 192, 203, 0.2)',
+                    'rgba(230, 230, 250, 0.2)',
+                    'rgba(173, 255, 47, 0.2)',
+                    'rgba(0, 255, 255, 0.2)',
+                    'rgba(25, 25, 112, 0.2)',
+                    'rgba(95, 158, 160, 0.2)',
+                    'rgba(255, 215, 0, 0.2)',
+                    'rgba(128, 0, 128, 0.2)',
+                    'rgba(255, 69, 0, 0.2)',
+                    'rgba(107, 142, 35, 0.2)',
+                    'rgba(0, 191, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 192, 203, 1)',
+                    'rgba(230, 230, 250, 1)',
+                    'rgba(173, 255, 47, 1)',
+                    'rgba(0, 255, 255, 1)',
+                    'rgba(25, 25, 112, 1)',
+                    'rgba(95, 158, 160, 1)',
+                    'rgba(255, 215, 0, 1)',
+                    'rgba(128, 0, 128, 1)',
+                    'rgba(255, 69, 0, 1)',
+                    'rgba(107, 142, 35, 1)',
+                    'rgba(0, 191, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+        });
+    </script>
     @endforeach
 </div>

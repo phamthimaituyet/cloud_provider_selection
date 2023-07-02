@@ -95,4 +95,4 @@ Route::post('/{id}',    [ProductsController::class, 'review'])->name('review')->
 Route::post('/comment/edit/{comment_id}', [ProductsController::class, 'editReview'])->name('editReview');
 Route::get('/detail-review/{id}',  [ProductsController::class, 'detailReview'])->name('detailReview')->middleware('auth');
 Route::post('/detail-review/{id}', [ProductsController::class, 'postDetailReview'])->name('postDetailReview')->middleware('auth');
-Route::get('compare/product',      [ProductsController::class, 'compareProduct'])->name('compareProduct');
+Route::get('compare/product',      [ProductsController::class, 'compare'])->name('compareProduct');

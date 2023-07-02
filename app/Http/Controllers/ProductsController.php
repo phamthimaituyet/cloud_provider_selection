@@ -186,34 +186,21 @@ class ProductsController extends Controller
         }
     }
 
-    public function compareProduct(Request $request)
+    public function compare(Request $request)
     {
         // check ajax request
         if($request->ajax())
         {
             $request = $request->all();
-            dd($request);
-            $products = Product::whereIn('id', $request)
-                ->withAvg('ratings', 'number_star')
-                ->withCount('ratings')
-                ->get(); 
+            if (isset($request['vendor_id1'])) {
+                $providers = $this->__compareVendor($request);
 
-            if (count($products) != 2) {
-                return response('Id không chính xác', 400);
+                return view('components.compare.comparison_provider', compact('providers'));                
+            } else {
+                list($products, $comment_product1, $comment_product2, $product_criterias1, $product_criterias2) = $this->__compareProduct($request);
+
+                return view('components.compare.comparison_product', compact('products', 'comment_product1', 'comment_product2', 'product_criterias1', 'product_criterias2'));
             }
-
-            $product = Product::leftJoin('comments', 'comments.product_id', '=', 'products.id')
-                ->leftJoin('ratings', function ($join) {
-                    $join->on('ratings.user_id', '=', 'comments.user_id')
-                         ->on('ratings.product_id', '=', 'comments.product_id');
-                })
-                ->orderByDesc('ratings.number_star')
-                ->limit(3);
-            
-            $comment_product1 = (clone $product)->where('products.id', $request['product_id1'])->get();
-            $comment_product2 = (clone $product)->where('products.id', $request['product_id2'])->get();
-
-            return view('components.compare.comparison_product', compact('products', 'comment_product1', 'comment_product2'));
         }
 
         $products = Product::all();
@@ -236,5 +223,52 @@ class ProductsController extends Controller
         $items = $items instanceof Collection ? $items : Collection::make($items);
 
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
+
+    // compare product
+    private function __compareProduct($request) 
+    {
+        $products = Product::whereIn('id', $request)
+        ->withAvg('ratings', 'number_star')
+        ->withCount('ratings')
+        ->get(); 
+
+        if (count($products) != 2) {
+            return response('Id không chính xác', 400);
+        }
+
+        $product = Product::leftJoin('comments', 'comments.product_id', '=', 'products.id')
+            ->leftJoin('ratings', function ($join) {
+                $join->on('ratings.user_id', '=', 'comments.user_id')
+                    ->on('ratings.product_id', '=', 'comments.product_id');
+            })
+            ->orderByDesc('ratings.number_star')
+            ->limit(3);
+        
+        $product_criterias = ProductCriteria::join('criterias', 'criterias.id', '=', 'product_criterias.criteria_id')
+            ->select(
+                'criterias.name',
+                DB::raw('SUM(value)/count(product_id) AS sum')
+            )
+            ->groupBy('product_id', 'criteria_id');
+       
+
+        $comment_product1 = (clone $product)->where('products.id', $request['product_id1'])->get();
+        $comment_product2 = (clone $product)->where('products.id', $request['product_id2'])->get();
+        $product_criterias1 = (clone $product_criterias)->where('product_id', $request['product_id1'])->get()->toArray();
+        $product_criterias2 = (clone $product_criterias)->where('product_id', $request['product_id2'])->get()->toArray();
+        
+        return [$products, $comment_product1, $comment_product2, $product_criterias1, $product_criterias2];
+    }
+
+    private function __compareVendor($request) 
+    {
+        $providers = Vendor::whereIn('id', $request)->get(); 
+
+        if (count($providers) != 2) {
+            return response('Id không chính xác', 400);
+        }
+
+        return $providers;
     }
 }

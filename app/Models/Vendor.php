@@ -14,6 +14,9 @@ class Vendor extends Model
     protected $fillable = [
         'name',
         'address',
+        'img_url',
+        'description',
+        'phone'
     ];
 
     public function product(){

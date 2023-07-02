@@ -15,12 +15,14 @@ class SearchController extends Controller
         $category_name = $request['category_name'] ?? '';
         $provider_id = $request['provider_id'] ?? [];
         $rating_value = $request['rating_value'] ?? 0;
+        $certificate = $request['certificate'] ?? '';
         $products = Product::select(
                 'products.id',
                 'products.name',
                 'products.description',
                 'products.img_url',
-                'products.vendor_id'
+                'products.vendor_id',
+                'products.certificate'
             )
             ->with('vendor')
             ->withAvg('ratings', 'number_star')
@@ -38,6 +40,9 @@ class SearchController extends Controller
             ->when($rating_value, function ($query) use ($rating_value) {
                 // su dung havingRaw de viet mySql co chua bieu thuc tinh toan ( round, count )
                 return $query->havingRaw("ROUND(ratings_avg_number_star) = $rating_value");
+            })
+            ->when($certificate, function ($query) use ($certificate) {
+                return $query->where('products.certificate', $certificate);
             })
             ->orderBy('products.created_at', 'desc')
             ->paginate(6);

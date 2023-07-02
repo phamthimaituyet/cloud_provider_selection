@@ -5367,7 +5367,7 @@ body.loading .layouts-application_layout__spinner {
     margin: var(--spacing--s) 0
 }
 
-.search-filters-category_filter_component__categoryLink {
+.search-filters-category_filter_component__categoryLink, .form-select {
     color: var(--color-ui--grey-20);
     flex: 3 0 auto;
     font-size: var(--font-size--body-s);
