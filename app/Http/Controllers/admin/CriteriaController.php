@@ -13,5 +13,7 @@ class CriteriaController extends Controller
 
         return view('admin.pages.criteria.index', ['criterias' => $criterias]);
     }
+
+    
     
 }

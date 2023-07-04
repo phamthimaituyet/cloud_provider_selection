@@ -8,7 +8,7 @@
     <title>@yield('title')</title>
     @include('admin.layouts.head_index')
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="zoom: 90%;">
     <div class="wrapper">
         <!-- Navbar -->
         <?php
@@ -22,7 +22,7 @@
             } else if (isset($criteria)) {
                 $page = 'criterias.index';
             } else if (isset($vendor)) {
-                $page = 'vendor';
+                $page = 'vendors.index';
             } else if (isset($dashboard)) {
                 $page = 'dashboard';
             }
@@ -43,6 +43,9 @@
             ])
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            {{-- Alert --}}
+            @include('admin.layouts.alert')
+            
             <!-- Content Header (Page header) -->
                 @yield('content_header')
             <!-- /.content-header -->

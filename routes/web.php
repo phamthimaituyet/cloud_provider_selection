@@ -66,9 +66,15 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
     }); 
-
-    Route::prefix('vendor')->group(function () {
-        Route::get('/', [VendorController::class, 'index'])->name('vendor');
+    
+    Route::prefix('vendors')->name('vendors.')->controller(VendorController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/edit', 'update')->name('update');
+        Route::post('/delete', 'delete')->name('delete');
+        Route::get('/{id}', 'show')->name('show');
     });
 });
 

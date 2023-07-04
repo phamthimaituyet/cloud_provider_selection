@@ -21,13 +21,6 @@
 @endsection
 
 @section('content')
-    @if (session('alert'))
-        <div style=" color: green;
-                    font-size: 18px;
-                    padding: 15px;">
-            <i class="fa fa-check" aria-hidden="true"></i> <b>{{ session('alert') }}</b>
-        </div>
-    @endif
     <button type="button" class="btn btn-primary" style="margin: 10px;" data-toggle="modal" data-target="#myModal">
         <i class="fa fa-plus" aria-hidden="true"></i> Add catergory
     </button>
