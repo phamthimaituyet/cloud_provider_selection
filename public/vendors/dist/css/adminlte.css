@@ -6070,8 +6070,8 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   top: 0;
   left: 0;
   z-index: 1040;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #000;
 }
 

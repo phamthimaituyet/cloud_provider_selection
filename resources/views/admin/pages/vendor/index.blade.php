@@ -21,6 +21,9 @@
 @endsection
 
 @section('content')
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin: 10px;">
+    <a href="{{ route('vendors.create') }}" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i> Add Vendor</a>
+</button>
 <section class="content">
 
     <!-- Default box -->
@@ -40,51 +43,68 @@
             <table class="table table-striped projects">
                 <thead>
                     <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Vendor Name
-                        </th>
-                        <th>
-                            Address
-                        </th>
-                        <th>
-                        </th>
+                        <th>ID</th>
+                        <th>Vendor Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($vendors as $vendor){ ?>
+                    @foreach($vendors as $vendor)
                     <tr>
+                        <td>{{ $vendor->id }}</td>
+                        <td>{{ $vendor->name }}</td>
+                        <td>{{ $vendor->address }}</td>
+                        <td>{{ $vendor->phone}}</td>
                         <td>
-                            {{$vendor->id}}
-                        </td>
-                        <td>
-                            {{$vendor->name}}
-                        </td>
-                        <td>
-                            {{$vendor->address}}
-                        </td>
-                        <td>
-                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">
+                            <a href="{{ route('vendors.show', ['id' => $vendor->id])}}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-user"></i> View
+                            </a>
+                            <a href="{{ route('vendors.edit', ['id' => $vendor->id])}}" class="btn btn-info btn-sm">
+                                <i class="fas fa-pencil-alt"></i>Edit
+                            </a>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $vendor->id }}">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
                             </button>
                         </td>
                     </tr>
-                    <?php }  ?>
+                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
+    <!-- modal  -->
+    <div class="modal fade" id="deleteModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Vendor</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form action="{{ route('vendors.delete') }}" method="post">
+                    @csrf
+                    <input id="idProductDelete" type="hidden" name="id" value="{{ $vendor->id }}">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <p>Are you sure to delete?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 
 </section>
 @endsection

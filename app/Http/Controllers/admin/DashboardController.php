@@ -16,6 +16,7 @@ class DashboardController extends Controller
         $categories = Category::orderBy('created_at', 'DESC');
         $products = Product::orderBy('created_at', 'DESC');
         $criterias = Criteria::orderBy('created_at', 'DESC');
+        
         return view('admin.pages.dashboard.index', ['users' => $users, 'categories' => $categories, 'products' => $products, 'criterias' => $criterias]);    
     }
 }

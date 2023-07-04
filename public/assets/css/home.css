@@ -149,3 +149,8 @@ main .carousel-inner .carousel-item .item-number{
 .comparison-font > svg {
     scale: 1.2;
 }
+
+.modal-backdrop {
+    width: 100% !important;
+    height: 100% !important;
+}

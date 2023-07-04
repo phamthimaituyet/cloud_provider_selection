@@ -16,7 +16,9 @@ class Vendor extends Model
         'address',
         'img_url',
         'description',
-        'phone'
+        'phone',
+        'link',
+        'link_iso'
     ];
 
     public function product(){

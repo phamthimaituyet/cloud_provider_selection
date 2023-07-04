@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('vendor')}}" class="nav-link {{ $vendor }}">
+                    <a href="{{ route('vendors.index') }}" class="nav-link {{ $vendor }}">
                         <i class="nav-icon fa fa-cogs"></i>
                         <p>
                             Vendor

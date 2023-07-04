@@ -134,6 +134,7 @@ class ProductsController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             DB::rollBack();
+            
             return redirect()->back()->withInput()->with('error', 'Create review detail failed!');
         }
 
@@ -179,9 +180,11 @@ class ProductsController extends Controller
         try {
             $comment = Comment::findOrFail($comment_id);
             $comment->update(['content' => $datas['content']]);
+
             return redirect()->back()->with('alert', 'Edit review success!');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', 'Edit review failed!');
         }
     }
