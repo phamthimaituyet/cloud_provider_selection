@@ -64,7 +64,10 @@
                                                     <input type="radio" value="{{ $i }}" {{ $default_value == $i ? 'checked' : '' }} name="{{ __('criteria_id_' . $child->id) }}" required />
                                                 </td>
                                                 @endfor
+                                                <th> </th>
+                                               
                                             </tr>
+                                            <tr><td colspan="5"><i>({{ $child->description }})</i></td></tr>
                                         @endforeach
                                     </tbody>
                                 </table>

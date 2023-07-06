@@ -18,9 +18,15 @@ class HomeController extends Controller
         $reviews = Comment::all();
         $ratings = Rating::all()->toArray();
         $ratings = collect($ratings);
-        $certificates = Product::where('certificate', '<>', '')
+        $certificates_pluck = Product::where('certificate', '<>', '')
             ->pluck('certificate');
-           
+        
+        $certificates = [];
+        foreach ($certificates_pluck as $certificate){
+            $certificates = array_merge($certificates, $certificate);
+        }
+        $certificates = array_unique($certificates);
+
         return view('home', compact('categories', 'providers', 'reviews', 'ratings', 'certificates'));
     }
 }

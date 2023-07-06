@@ -5367,11 +5367,18 @@ body.loading .layouts-application_layout__spinner {
     margin: var(--spacing--s) 0
 }
 
-.search-filters-category_filter_component__categoryLink, .form-select {
+.search-filters-category_filter_component__categoryLink {
     color: var(--color-ui--grey-20);
     flex: 3 0 auto;
-    font-size: var(--font-size--body-s);
-    text-decoration: none
+    font-size: var(--font-size--body-m);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    height: 32px;
+    width: 100px;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
 }
 
 .search-filters-category_filter_component__parent {
@@ -5436,7 +5443,7 @@ body.loading .layouts-application_layout__spinner {
     align-items: center;
     line-height: var(--line-height--l);
     margin: var(--spacing--s) 0;
-    font-size: var(--font-size--body-s);
+    font-size: var(--font-size--body-m);
 }
 
 .search-filters-checkbox_filter_component__subTitle {
@@ -6141,7 +6148,7 @@ body.loading .layouts-application_layout__spinner {
         overflow: initial;
         position: relative;
         top: 0;
-        width: 280px;
+        width: 320px;
         z-index: var(--z-index-1)
     }
 

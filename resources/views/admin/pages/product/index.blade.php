@@ -72,7 +72,11 @@
                                 <p>{{ $product->name }}</p>
                             </td>
                             <td>
-                                <p>{{ $product->certificate }}</p>
+                                @if (is_array($product->certificate)) 
+                                    @foreach ($product->certificate as $value)
+                                        <p>{{ $value }}</p>
+                                    @endforeach
+                                @endif
                             </td>
                             <td>
                                 <p>{{ $product->category->name }}</p>

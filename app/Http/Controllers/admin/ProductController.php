@@ -37,7 +37,7 @@ class ProductController extends Controller
         DB::beginTransaction();             
         try {
             $data_product = $request->only('name', 'description', 'support','vendor_id', 'category_id', 'image', 'certificate');
-        
+            $data_product['certificate'] = json_encode($data_product['certificate']);
             if($file = $request->file('image')){
                 $file_path = $file->store('public/images/' . Str::slug($data_product['name']));
                 unset($data_product['image']);
@@ -88,6 +88,7 @@ class ProductController extends Controller
         try{
             $dataProduct = Product::find($request->id);
             $datas = $request->only('name', 'description', 'support','vendor_id', 'category_id', 'image', 'certificate');
+            $datas['certificate'] = json_encode($datas['certificate']);
 
             if($file = $request->file('image')){
                 $file_path = $file->store('public/images/' . Str::slug($datas['name']));

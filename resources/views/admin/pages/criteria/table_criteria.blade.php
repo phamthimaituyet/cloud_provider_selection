@@ -11,6 +11,7 @@
                 <th>
                     Criteria Name
                 </th>
+                <th style="width: 30%;">Description</th>
                 <th>
                     Factor Name
                 </th>
@@ -24,22 +25,21 @@
             @if ($condition)
             <tr>
                 <td>
-                    <p>{{$criteria->id}}</p>
+                    <p>{{ $criteria->id }}</p>
                 </td>
                 <td>
                     <p>{{ $criteria->weight }}</p>
                 </td>
                 <td>
-                    <p>{{$criteria->name}}</p>
+                    <p>{{ $criteria->name }}</p>
+                </td>
+                <td>{{ $criteria->description }}</td>
+                <td>
+                    <p>{{ $criteria->getNameParent($criteria->parent_id) }}</p>
                 </td>
                 <td>
-                    <p>{{$criteria->getNameParent($criteria->parent_id)}}</p>
-                </td>
-                <td>
-                    <a class="btn btn-info btn-sm" href="#">
-                        <i class="fas fa-pencil-alt">
-                        </i>
-                        Edit
+                    <a class="btn btn-info btn-sm" href="{{ route('criterias.edit', ['id' => $criteria->id ])}}">
+                        <i class="fas fa-pencil-alt"></i>Edit
                     </a>
                     <a class="btn btn-danger btn-sm" href="#">
                         <i class="fas fa-trash">

@@ -9,6 +9,12 @@ class Criteria extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'weight',
+        'description',
+        'name',
+    ];
+
     public function products(){
         return $this->belongsToMany(Product::class,'product_criterias', 'criteria_id', 'product_id')->withPivot('value');
     }

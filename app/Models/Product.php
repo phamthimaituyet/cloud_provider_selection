@@ -18,6 +18,11 @@ class Product extends Model
         'certificate'
     ];
 
+    public function getCertificateAttribute()
+    {
+        return json_decode($this->attributes['certificate']);
+    }
+
     // protected $table = "products";
 
     public function category(){

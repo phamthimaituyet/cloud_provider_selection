@@ -62,10 +62,12 @@
                         <textarea id="inputDescription" name="description" class="form-control" rows="4"></textarea>
                     </div>
                     <div class="form-group">
-                        <div class="prod_name">
+                        <div class="prod_certificate" id="prod_certificate">
                             <label for="inputCertificate">Certificate</label>
-                            <input type="text" name="certificate" id="inputCertificate" class="form-control">
+                            <input type="text" name="certificate[]" id="inputCertificate" class="form-control mb-3">
                         </div>
+                        <span class="add-certificate-icon price-icon"><i class="fas fa-plus"></i>Add</span>
+                        <span class="remove-certificate-icon price-icon"><i class="fas fa-minus"></i>Remove</span>
                     </div>
                     <div class="form-group">
                         <label for="inputDescription">Product Support</label>

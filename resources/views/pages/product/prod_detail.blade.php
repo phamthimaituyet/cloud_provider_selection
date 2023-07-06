@@ -30,7 +30,15 @@
                     <a target="blank" href="{{ $product->vendor->link }}">See details</a>
                     <h2 class="mt-5">ISO Certificate</h2>
                     <p class="mt-3">
-                        <a target="blank" href="{{ $product->vendor->link_iso }}">{{ $product->certificate ? $product->certificate : 'Check it out here'}}</a>
+                        <a target="blank" href="{{ $product->vendor->link_iso }}">
+                            @if (is_array($product->certificate))
+                                @foreach ($product->certificate as $value)
+                                    {{ $value }} <br />
+                                @endforeach
+                            @else 
+                            Check it out here
+                            @endif
+                        </a>   
                     </p>
                     <h2 class="mt-5">Languages</h2>
                     <p class="mt-3">English</p>

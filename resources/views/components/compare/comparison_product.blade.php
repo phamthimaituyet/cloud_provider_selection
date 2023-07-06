@@ -84,13 +84,18 @@
             <div class="inf-section" style="height: 100px;">
                 <h3 class="mt-5 section-title">Certificate</h3>
                 <div class="mt-4">
-                    <p>{{ $product->certificate }}</p>
+                    @if (is_array($product->certificate))
+                        @foreach ($product->certificate as $value)
+                            <p>{{ $value }}</p>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
         <div class="mt-5" style="height: 600px;">
             <h3>Rating score</h3>
             <?php $product_criterias = $key ? $product_criterias2 : $product_criterias1 ?>
+            {{-- <i>Rating score by: {{ $product_criterias[0]->user_id }}</i> --}}
             @if (!empty($product_criterias))
                 <canvas id={{ "myChart" . $key }} width="600" height="500"></canvas>
             @else

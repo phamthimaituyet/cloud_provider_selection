@@ -103,7 +103,7 @@
                         <img class="rounded-circle shadow-1-strong me-3" src={{ ($item->user->role == 3) ? asset('vendors/dist/img/user2-160x160.jpg') : asset($project->user->avatar) }} alt="avatar" width="60" height="60">
                         <div>
                             <p class="text-muted small mb-0 fs-4">{{ $item->user->name }}</p>
-                            <h6 class="fw-bold text-primary mb-1"></h6>
+                            <p class="mb-1">{{ $item->created_at->format('d-m-Y') }}</p>
                         </div>
                     </div>
                     <p class="mt-3 mb-4 pb-2 <?= ($item->user->role == 3) ? 'text-end' : 'text-start' ?>">

@@ -251,6 +251,7 @@ class ProductsController extends Controller
         $product_criterias = ProductCriteria::join('criterias', 'criterias.id', '=', 'product_criterias.criteria_id')
             ->select(
                 'criterias.name',
+                DB::raw('COUNT(product_criterias.user_id) AS user_id'),
                 DB::raw('SUM(value)/count(product_id) AS sum')
             )
             ->groupBy('product_id', 'criteria_id');
