@@ -18,6 +18,15 @@ class Product extends Model
         'certificate'
     ];
 
+    protected static function booted()
+    {
+        static::deleting(function(Product $product) {
+            foreach ($product->product_criterias as $product_criteria) {
+                $product_criteria->where('product_id', $product->id)->delete();
+            }
+        });
+    }
+
     public function getCertificateAttribute()
     {
         return json_decode($this->attributes['certificate']);
