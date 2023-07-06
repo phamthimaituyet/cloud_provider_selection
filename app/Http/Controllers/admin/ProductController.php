@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Vendor;
 use App\Models\Price;
 use App\Models\Criteria;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -29,8 +30,9 @@ class ProductController extends Controller
     public function create(){
         $categories = Category::all();
         $vendors = Vendor::all();
+        $criterias = Criteria::whereNull('parent_id')->get();
 
-        return view('admin.pages.product.create', ['categories' => $categories, 'vendors' => $vendors]);
+        return view('admin.pages.product.create', compact('categories', 'vendors', 'criterias'));
     }
 
     public function store(Request $request){
@@ -44,7 +46,10 @@ class ProductController extends Controller
                 $data_product['img_url'] = 'storage/' . explode("public/", $file_path)[1];
             }
 
+            // tao thuoc tinh co ban trong product (name, image, description,...)
             $products = Product::create($data_product);
+
+            // luu gia (price)
             $data_prices = $request->only('type', 'price');
             $types = $data_prices['type'];
             $prices = $data_prices['price'];
@@ -56,6 +61,23 @@ class ProductController extends Controller
                 $price->product_id = $products->id;
                 $price->save();
             }
+
+            // luu value tieu chi (criteria)
+            $data_criterias = $request->except(['_token', 'name', 'description', 'support','vendor_id', 'category_id', 'image', 'certificate', 'type', 'price']);
+            $product_criterias = [];
+            $option = [
+                'product_id' => $products->id,
+                'user_id' => Auth::user()->id,
+                'criteria_id' => null,
+                'value' => null
+            ];
+            foreach ($data_criterias as $key => $request) {
+                $option['criteria_id'] = substr($key, strlen('criteria_id_'));  // cat chuoi de lay id
+                $option['value'] = $request;
+                $product_criterias[] = $option;
+            }
+            
+            $products->product_criterias()->createMany($product_criterias);
             DB::commit();
             return redirect()->back()->with('alert',"Success");
         } catch (\Exception $e) {

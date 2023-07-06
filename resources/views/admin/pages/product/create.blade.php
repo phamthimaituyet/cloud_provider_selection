@@ -90,6 +90,54 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <div class="prod_cri">
+                            <label for="inputCriteria">Add Score Criteria</label>
+                            <ul class="nav nav-pills nav-sidebar flex-column container" data-widget="treeview" role="menu" data-accordion="false">
+                                @foreach ($criterias as $criteria )
+                                    <li class="nav-item has-treeview">
+                                        <a href="#" class="nav-link">
+                                            <p class="fs-5 fst-italic">
+                                                {{ $criteria->name }}
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <div class="nav nav-treeview ms-5" style="display: none;">
+                                            <table class="table table-borderless">
+                                                <thead>
+                                                  <tr>
+                                                    <th scope="col" class="col-md-2"></th>
+                                                    <th scope="col" class="col-md-2 text-center">1</th>
+                                                    <th scope="col" class="col-md-2 text-center">2</th>
+                                                    <th scope="col" class="col-md-2 text-center">3</th>
+                                                    <th scope="col" class="col-md-2 text-center">4</th>
+                                                    <th scope="col" class="col-md-2 text-center">5</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $childs = in_array($criteria->name, ['Cost', 'Capability']) ? [$criteria] : $criteria->children ?>
+                                                    @foreach ($childs as $child)
+                                                        <tr>
+                                                            <th scope="row">
+                                                                {{ $child->name }} <i class="text-danger">*</i>
+                                                            </th>
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                            <td class="text-center">
+                                                                <input type="radio" value="{{ $i }}"  name="{{ __('criteria_id_' . $child->id) }}" required />
+                                                            </td>
+                                                            @endfor
+                                                            <th> </th>
+                                                        </tr>
+                                                        {{-- <tr><td colspan="5"><i>({{ $child->description }})</i></td></tr> --}}
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="prod_name">
                             <label for="inputImage">Add Image</label>
                             <input type="file" name="image" id="inputImage" class="form-control border-0">
