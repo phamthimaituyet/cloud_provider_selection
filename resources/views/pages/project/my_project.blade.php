@@ -3,8 +3,8 @@
 @section('title', 'Cloud Services')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/my_project.css') }}">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/my_project.css">
 
 @section('content')
     <main>

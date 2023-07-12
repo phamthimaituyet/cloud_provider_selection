@@ -3,10 +3,10 @@
 @section('title', 'Product Comparison')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/home_template.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/compare_product.css') }}">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/home_template.css">
+    <link rel="stylesheet" href="/assets/css/detail.css">
+    <link rel="stylesheet" href="/assets/css/compare_product.css">
 
 @section('content')
     <header class="details">
@@ -101,6 +101,6 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('assets/js/compare.js') }}"></script>
-<script src="{{ asset('assets/js/chart.min.js') }}"></script>
+<script src="/assets/js/compare.js"></script>
+<script src="/assets/js/chart.min.js"></script>
 @endsection

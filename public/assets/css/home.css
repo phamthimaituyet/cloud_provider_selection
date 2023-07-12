@@ -154,3 +154,33 @@ main .carousel-inner .carousel-item .item-number{
     width: 100% !important;
     height: 100% !important;
 }
+
+.tab-search {
+    display: flex;
+    align-items: center;
+    padding-top: 24px;
+}
+
+.tab-search .tab-items {
+    width: 10%;
+    border: 2px solid var(--color-ui--grey-90);
+    color: var(--color-ui--grey-30);
+    cursor: pointer;
+    font-size: var(--font-size--body-m);
+    font-weight: var(--font-weight--bold);
+    line-height: 1.15;
+    padding: var(--spacing--s) var(--spacing--m);
+    text-decoration: none;
+    border-right: none;
+    text-align: center;
+    text-decoration: none;
+}
+
+.tab-search .tab-items:hover {
+    background: var(--color-ui--grey-95);
+    outline-width: 0
+}
+
+.tab-search .action {
+    background-color: #e6e6e6;
+}

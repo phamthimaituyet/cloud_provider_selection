@@ -28,7 +28,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 mb-3 d-flex" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="image">
-            <img src="{{ asset('vendors/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+            <img src="/vendors/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
                 alt="User Image">
         </div>
         <div class="info">

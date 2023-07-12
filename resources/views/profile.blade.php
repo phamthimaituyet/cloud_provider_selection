@@ -3,7 +3,7 @@
 @section('title', 'Cloud Services')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <link rel="stylesheet" href="/assets/css/home.css">
 
 @section('content')
     <div class="container rounded bg-white mt-5 mb-5">
@@ -12,9 +12,9 @@
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     @if($user->avatar)
-                        <img class="rounded-circle mt-5" width="150px" src={{ asset($user->avatar) }}>
+                        <img class="rounded-circle mt-5" width="150px" src={{ '/' . $user->avatar }}>
                     @else
-                        <img class="rounded-circle mt-5" width="150px" src="{{ asset('storage/images/profile.jpg') }}">
+                        <img class="rounded-circle mt-5" width="150px" src="/storage/images/profile.jpg">
                     @endif
                     <p class="fs-3 mt-3">{{ $user->name }}</p>
                     <p class="text-black-50 mt-2">{{ $user->email }}</p>
@@ -96,6 +96,22 @@
                             <div class="d-flex align-items-center border-bottom">
                                 <i class="bi bi-list-ul fs-3 me-3"></i>
                                 <h3 class="pb-2 mb-0">Activity History</h3>
+                            </div>
+                            <div class="d-flex text-muted pt-3">
+                                <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
+                                    <div class="d-flex align-items-end mb-3">
+                                        <i class="bi bi-projector me-2 mb-1 fs-3"></i>
+                                        <strong class="text-gray-dark w-100 mb-1">Saved project information</strong>
+                                    </div>
+                                    <ul>
+                                        @foreach ($user_project_save as $key => $project)
+                                            <li class="ms-5 mb-3 row">
+                                                <a href="{{ route('myProject.showSaveLog', ['id' => $project->id]) }}" class="fix-text col-10">{{ $key + 1}}. {{ $project->name }}</a>
+                                                <span class="col-2" style="font-size: 18px;"><i>({{ $project->created_at->format('d-m-Y') }})</i></span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                             <div class="d-flex text-muted pt-3">
                                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100 fs-5">
@@ -193,5 +209,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/search.js') }}"></script>
+    <script src="/assets/js/search.js"></script>
 @endsection

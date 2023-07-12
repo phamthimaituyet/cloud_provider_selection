@@ -3,9 +3,9 @@
 @section('title', 'Product detail')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/project_criteria.css') }}">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/detail.css">
+    <link rel="stylesheet" href="/assets/css/project_criteria.css">
 
 @section('content')
     <div class="details">

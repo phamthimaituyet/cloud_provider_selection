@@ -4,7 +4,7 @@
     </div>
     <div class="search-filters-filters_panel_component__filter">
         <div class="search-filters-filters_panel_component__filterHeader">
-            <h3 class="search-filters-filters_panel_component__filterHeading">Category</h3>
+            <p class="search-filters-filters_panel_component__filterHeading">Category</p>
             <span class="search-filters-filters_panel_component__chevron search-filters-filters_panel_component__expanded">
                 <svg width="100%" height="100%">
                     <g xmlns="http://www.w3.org/2000/svg" fill="none" stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -34,7 +34,7 @@
     </div>
     <div class="search-filters-filters_panel_component__filter">
         <div class="search-filters-filters_panel_component__filterHeader">
-            <h3 class="search-filters-filters_panel_component__filterHeading">Certificate</h3>
+            <p class="search-filters-filters_panel_component__filterHeading">Certificate</p>
             <span
                 class="search-filters-filters_panel_component__chevron search-filters-filters_panel_component__expanded">
                 <svg width="100%" height="100%">
@@ -62,7 +62,7 @@
     </div>
     <div class="search-filters-filters_panel_component__filter">
         <div class="search-filters-filters_panel_component__filterHeader">
-            <h3 class="search-filters-filters_panel_component__filterHeading">Prodivers</h3>
+            <p class="search-filters-filters_panel_component__filterHeading">Prodivers</p>
             <span
                 class="search-filters-filters_panel_component__chevron search-filters-filters_panel_component__expanded">
                 <svg width="100%" height="100%">
@@ -86,7 +86,7 @@
     </div>
     <div class="search-filters-filters_panel_component__filter">
         <div class="search-filters-filters_panel_component__filterHeader">
-            <h3 class="search-filters-filters_panel_component__filterHeading">Rating</h3>
+            <p class="search-filters-filters_panel_component__filterHeading">Rating</p>
             <span class="search-filters-filters_panel_component__chevron search-filters-filters_panel_component__expanded">
                 <svg width="100%" height="100%">
                     <g xmlns="http://www.w3.org/2000/svg" fill="none" stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -122,5 +122,5 @@
 </div>
 
 @section('scripts')
-    <script src="{{ asset('assets/js/search.js') }}"></script>
+    <script src="/assets/js/search.js"></script>
 @endsection

@@ -13,7 +13,7 @@
                                         @if ($product->img_url)
                                             <img class="shared-item_cards-preview_image_component__image" style="display: block; margin-left: auto; margin-right: auto; max-width: 190px;" src={{ $product->img_url }} alt="">
                                         @else
-                                            <img class="shared-item_cards-preview_image_component__image" style="left: 0%" src={{ asset('assets/images/default_image.png') }} alt="">
+                                            <img class="shared-item_cards-preview_image_component__image" style="left: 0%" src="/assets/images/default_image.png" alt="">
                                         @endif
                                     </a>
                                 </div>
@@ -41,6 +41,7 @@
                                         </span>
                                     </a>
                                 </div>
+                                <div class="mb-1 text-muted">{{ !is_null($product->created_at) ? $product->created_at->format('d-m-Y') : '' }}</div>
                                 <div class="shared-item_cards-list-image_card_component__attrsWrapper">
                                     <p>{{ $product->description }}</p>
                                 </div>

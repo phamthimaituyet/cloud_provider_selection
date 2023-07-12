@@ -3,9 +3,9 @@
 @section('title', 'Cloud Services')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/my_project.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/project_criteria.css') }}">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/my_project.css">
+    <link rel="stylesheet" href="/assets/css/project_criteria.css">
 
 @section('content')
     <main>
@@ -40,27 +40,25 @@
                     @endif
                 </span>
                 <div>
-                    <div>
-                        @if(!is_null($products))
-                            @include('components.project_criteria.show_infor')
-                        @else
-                            <div>
-                                <p class="no-inf">This project has no information</p>
+                    @if(!is_null($products))
+                        @include('components.project_criteria.show_infor')
+                    @else
+                        <div>
+                            <p class="no-inf">This project has no information</p>
+                        </div>
+                        <div class="text-center fs-5">
+                            <p>Let's create requirements for the project</p>
+                        </div>
+                        <div>
+                            <div class="mt-4 text-center">
+                                <a href="{{ route('myProject.createNote', ['id' => $project->id ]) }}">
+                                    <button type="button" class="btn btn-outline-primary">
+                                        <i class="bi bi-plus-lg me-2"></i>Add requirements
+                                    </button>
+                                </a>
                             </div>
-                            <div class="text-center fs-5">
-                                <p>Let's create requirements for the project</p>
-                            </div>
-                            <div>
-                                <div class="mt-4 text-center">
-                                    <a href="{{ route('myProject.createNote', ['id' => $project->id ]) }}">
-                                        <button type="button" class="btn btn-outline-primary">
-                                            <i class="bi bi-plus-lg me-2"></i>Add requirements
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -68,5 +66,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/project_criteria.js') }}"></script>
+    <script src="/assets/js/project_criteria.js"></script>
 @endsection

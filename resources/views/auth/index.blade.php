@@ -12,13 +12,13 @@
 
     <!-- Styles custom -->
     @yield('styles')
-    <link rel="stylesheet" href= {{ asset('assets/css/login.css') }}>
+    <link rel="stylesheet" href="/assets/css/login.css" >
     
 </head>
 <body>
     @yield('content')
 
     @yield('scripts')
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>

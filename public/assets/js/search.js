@@ -1,12 +1,14 @@
 $(function() {
     let check = false;
     searchProduct();
+    // khoi tao options data
     let options = {
         key_word: '',
         category_name: '',
         provider_id: [],
         rating_value: 0,
         certificate: '',
+        text: '',
     };
 
     //search input
@@ -72,6 +74,16 @@ $(function() {
         searchProduct(options);
     });
 
+    // search newest
+    $(".tab-items").on('click', function(e) {
+        e.preventDefault();
+        $(".tab-items").removeClass("action");
+        $(this).last().addClass("action");
+        options.text = $(this).text();
+        searchProduct(options);
+
+    });
+
     let page_number = 1;
     $(document).on("click", "a.page-link", function(e) {
         e.preventDefault();
@@ -89,7 +101,8 @@ $(function() {
         searchProduct(options, page_number);
     });
 
-    // カレンダーの値を変更すると、ページをリフレッシュする
+    // カレンダーの値を変更すると、ページをリフレッシュする （ユーザ） Tim kiem cmt theo ngay
+    // Day data len tren duong dan, userController se thuc hien lay data, tim kiem
     $('.datepicker_input').on('change', function(e) {
         window.location.href =  window.location.origin + window.location.pathname + "?date=" + e.target.value;
     })

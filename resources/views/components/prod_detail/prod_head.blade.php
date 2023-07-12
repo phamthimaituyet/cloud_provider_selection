@@ -4,7 +4,7 @@
             @if ($product->img_url)
                 <img src="{{ url($product->img_url) }}" alt="">
             @else
-                <img src="{{ asset('assets/images/default_image.png') }}" alt="">
+                <img src="/assets/images/default_image.png" alt="">
             @endif
         </div>
         <div class="inf-2 flex-grow-1">

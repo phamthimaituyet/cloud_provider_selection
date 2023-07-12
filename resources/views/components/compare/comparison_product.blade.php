@@ -1,5 +1,5 @@
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">
+    <link rel="stylesheet" href="/assets/css/detail.css">
 @endsection
 
 <h2 class="my-4">{{ $products[0]->name }} and {{ $products[1]->name }}</h2>

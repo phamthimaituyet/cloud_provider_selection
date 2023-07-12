@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
+use App\Models\ProductSuggestLog;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -123,8 +124,11 @@ class UserController extends Controller
                 })
                 ->limit(5);
         }])->where('id', Auth::user()->id)->first();
+
+        $user_project_save = ProductSuggestLog::join('projects', 'projects.id', '=', 'product_suggest_logs.project_id')
+            ->where('projects.user_id', Auth::user()->id)->get();
         
-        return view('profile', compact('user')); 
+        return view('profile', compact('user', 'user_project_save')); 
     }
 
     public function editProfile(Request $request) {

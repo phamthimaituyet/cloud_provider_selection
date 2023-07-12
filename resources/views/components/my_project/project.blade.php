@@ -5,8 +5,8 @@
                 <div class="businessContainer center-button">
                     <a href="{{ route('myProject.showProduct', ['id' => $myProject->id]) }}" class="text-dark" style="text-decoration: none;">
                         <div class="d-flex align-items-end">
-                            <img class="d-block mt-2 ms-3" src="{{ asset('assets/images/project2.svg') }}">
-                            <p class="ms-3 fw-bold">{{ $myProject->name }}</p>
+                            <img class="d-block mt-2 ms-3" src="/assets/images/project2.svg">
+                            <p class="ms-3 fw-bold name-project">{{ $myProject->name }}</p>
                         </div>
                         <div class="mt-5 ms-3">
                             <p>Shared by: {{ $myProject->user->name }}</p>
@@ -35,8 +35,8 @@
                     </div>
                     <a href="{{ route('myProject.showProduct', ['id' => $myProject->id]) }}" class="text-dark" style="text-decoration: none;">
                         <div class="d-flex align-items-end">
-                            <img class="d-block mt-2 ms-3" src="{{ asset('assets/images/project2.svg') }}">
-                            <p class="ms-3 fw-bold">{{ $myProject->name }}</p>
+                            <img class="d-block mt-2 ms-3" src="/assets/images/project2.svg">
+                            <p class="ms-3 fw-bold name-project">{{ $myProject->name }}</p>
                         </div>
                         <div class="mt-5 ms-3">
                             <p>Last change</p>

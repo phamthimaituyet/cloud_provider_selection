@@ -10,6 +10,7 @@ use App\Models\ProductCriteria;
 use App\Models\Project;
 use App\Models\Question;
 use App\Models\Advise;
+use App\Models\ProductSuggestLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +51,7 @@ class ProjectController extends Controller
 
     public function updateMyProject(Request $request, $id) 
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $datas = $request->only('name');
         if ($project->update($datas)) {
             return redirect()->back()->withInput()->with('alert', 'Update project success');
@@ -62,7 +63,7 @@ class ProjectController extends Controller
 
     public function deleteMyProject($id) 
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         if ($project->delete()) {
             return redirect()->back()->withInput()->with('alert', 'Delete project success');
         }
@@ -72,7 +73,7 @@ class ProjectController extends Controller
     
     public function showProduct($id)
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $message = Advise::where('project_id', $id)->get();
         $questions_id = Question::join('notes', 'questions.note_id', '=', 'notes.id')
             ->where('notes.project_id', $id)
@@ -104,6 +105,8 @@ class ProjectController extends Controller
                     'product_id',
                     DB::raw('SUM(sum) AS Total')
                 )
+
+                
                 ->groupBy('product_id')
                 ->orderByDesc('Total')
                 ->take(2);
@@ -113,13 +116,13 @@ class ProjectController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->withAvg('ratings', 'number_star')->get();
         }
-        
-        return view('pages.project.project_criteria', compact(['project', 'products', 'message']));
+
+        return view('pages.project.project_criteria', compact(['project', 'products', 'message', 'questions_id', 'criterias_id']));
     }
 
     public function createNote($id) 
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $parent_criterias = Criteria::whereNull('parent_id')->get();
 
         return view('pages.project.create_note', compact(['project', 'parent_criterias']));
@@ -158,11 +161,11 @@ class ProjectController extends Controller
             return redirect()->back()->withInput()->with('error', 'Fail');
         }
      
-        return redirect()->route('myProject.showProduct', ['id' => $id])->with('alert', 'Success');
+        return redirect()->route('myProject.showProduct', ['id' => $id])->with('alert', 'Add Success');
     }
 
     public function editNote($project_id, $note_id) {
-        $project = Project::find($project_id);
+        $project = Project::findOrFail($project_id);
         $note = Note::find($note_id);
         $parent_criterias = Criteria::whereNull('parent_id')->get();
 
@@ -170,7 +173,7 @@ class ProjectController extends Controller
     }
 
     public function updateNote(Request $request, $project_id, $note_id) {
-        $note = Note::find($note_id);
+        $note = Note::findOrFail($note_id);
         $questions = Question::where('note_id', $note_id)->get();
         $datas = $request->except('_token');
         DB::beginTransaction();
@@ -199,7 +202,7 @@ class ProjectController extends Controller
 
     public function deleteNote($project_id, $note_id) 
     {
-        $note = Note::find($note_id);
+        $note = Note::findOrFail($note_id);
         if ($note->delete()) {
             return redirect()->route('myProject.showProduct', ['id' => $project_id])->with('alert', 'Success');
         }
@@ -209,7 +212,7 @@ class ProjectController extends Controller
 
     public function share($id)
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $share = 0;
         if (!$project->share) {
             $share = 1;
@@ -232,7 +235,45 @@ class ProjectController extends Controller
             ];
             Advise::create($options);
 
-            return redirect()->back()->withInput()->with('alert', 'Success');
+            return redirect()->back()->withInput()->with('alert', 'Message sent successfully');
+        }
+
+        return redirect()->back()->withInput()->with('error', 'Failed');
+    }
+
+    public function showSaveLog($id)
+    {
+        $project_save = ProductSuggestLog::join('projects', 'projects.id', '=', 'product_suggest_logs.project_id')
+            ->where('project_id', $id)->get();
+        
+        $products = Product::all();
+        
+        return view('pages.user_save.save_log', compact('project_save', 'products'));
+    }
+
+    public function saveLog(Request $request, $id) 
+    {
+        $project = Project::findOrFail($id);
+        $option = ['project_id' => $id];
+        $body = [];
+        $body['product_id'] = $request->product_id;
+        $notes = $project->notes;
+        foreach ($notes as $note) {
+            $body['notes'][$note->id]['text'] = $note->note;
+            $questions = $note->questions;
+
+            foreach($questions as $question) {
+                $body['notes'][$note->id]['questions'][$question->id]['text'] = $question->question;
+                $criterias = $question->criterias;
+                foreach($criterias as $criteria) {
+                    $body['notes'][$note->id]['questions'][$question->id]['criteria'][] = $criteria->name;
+                }
+            }
+        }
+
+        $option['body'] = json_encode($body);
+        if (ProductSuggestLog::create($option)) {
+            return redirect()->back()->withInput()->with('alert', 'Saved successfully');
         }
 
         return redirect()->back()->withInput()->with('error', 'Failed');

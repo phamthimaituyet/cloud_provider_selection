@@ -3,7 +3,7 @@
         <div class="d-flex flex-wrap justify-content-between">
             <div>
                 <a href="/" class="d-flex align-items-center p-0 text-dark">
-                    <img alt="logo" src="{{ asset('assets/images/logo.png') }}" width="50px" />
+                    <img alt="logo" src="/assets/images/logo.png" width="50px" />
                     <span class="ml-3 h3 font-weight-bold">Trust Quality</span>
                 </a>
                 <p class="my-3" style="width: 250px; font-style: italic; font-size: 20px; color: #6e5cff;">

@@ -4,9 +4,9 @@
 @section('title', 'Service selection support')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/support.css') }}">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/detail.css">
+    <link rel="stylesheet" href="/assets/css/support.css">
 
 @section('content')
     <main>
@@ -16,7 +16,7 @@
             <div class="d-flex mt-5">
                 <div class="me-5" style="width: 80%;">
                     <div class="top_product mb-5">
-                        <img src="{{ asset('assets/images/Cloud-computing-service-providers_Startuptalky.jpg') }}"
+                        <img src="/assets/images/Cloud-computing-service-providers_Startuptalky.jpg"
                             alt="">
                         <p>Top cloud products of the right provider</p>
                     </div>
@@ -34,13 +34,14 @@
                         <ul class="nav nav-pills nav-sidebar flex-column container" data-widget="treeview" role="menu"
                             data-accordion="false">
                             <li class="nav-item" style="font-size: 20px;">
-                                <a href="{{ route('home') }}">
-                                    <i class="bi bi-info-circle"></i> Information about cloud services of providers
+                                <a href="{{ route('myProject.show') }}">
+                                    <img class="" src="/assets/images/project2.svg" />
+                                    Suggest services tailored to each project requirement
                                 </a>
                             </li>
                             <li class="nav-item mt-5" style="font-size: 20px;">
-                                <a href="{{ route('myProject.show') }}">
-                                    Suggest services tailored to each project requirement
+                                <a href="{{ route('home') }}">
+                                    <i class="bi bi-info-circle"></i> Information about cloud services of providers
                                 </a>
                             </li>
                             <li class="nav-item mt-5" style="font-size: 20px;">
@@ -68,7 +69,7 @@
                             </li>
                             <li class="nav-item mt-5" style="font-size: 20px;">
                                 <a href="{{ route('myProject.show') }}">
-                                    <img class="" src={{ asset("assets/images/project2.svg") }} style="color: #1087d0"/>
+                                    <img class="" src="/assets/images/project2.svg" />
                                     Suggest services tailored to each project requirement
                                 </a>
                             </li>
