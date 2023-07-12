@@ -10,21 +10,21 @@
     <div class="container">
         <div class="mt-5 ms-3">
             <div class="row">
+                <h3>{{ count($project_save) ? $project_save[0]->name : '' }}</h3>
                 @foreach ($project_save as $project)
-                    <h3>{{ $project->name }}</h3>
-                    <span style="font-size: 18px;">
-                        <i>Saved date: ({{ $project->created_at }})</i>
-                    </span>
                     <?php
                     $product_ids = $project->body->product_id;
                     $notes = $project->body->notes;
                     ?>
                     {{-- Show information --}}
                     <div class="mt-4 parent-all-inf">
-                        <div class="row mt-5">
+                        <span style="font-size: 18px;">
+                            <i>Saved date: ({{ $project->created_at }})</i>
+                        </span>
+                        <div class="row mt-2">
                             <h3 class="view-title">Project information</h3>
                         </div>
-                        <div class="all-inf mt-5">
+                        <div class="all-inf mt-2">
                             @foreach ((array) $notes as $note)
                                 <div class="d-flex align-items-center mt-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="green"
@@ -101,6 +101,7 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="border-top"></div>
                 @endforeach
             </div>
         </div>

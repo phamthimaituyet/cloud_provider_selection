@@ -244,7 +244,12 @@ class ProjectController extends Controller
     public function showSaveLog($id)
     {
         $project_save = ProductSuggestLog::join('projects', 'projects.id', '=', 'product_suggest_logs.project_id')
+            ->select('product_suggest_logs.*', 'projects.name')
             ->where('project_id', $id)->get();
+
+        if (!count($project_save)) {
+            abort(404);
+        }
         
         $products = Product::all();
         

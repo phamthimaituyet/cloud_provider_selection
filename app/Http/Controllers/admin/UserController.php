@@ -126,7 +126,9 @@ class UserController extends Controller
         }])->where('id', Auth::user()->id)->first();
 
         $user_project_save = ProductSuggestLog::join('projects', 'projects.id', '=', 'product_suggest_logs.project_id')
-            ->where('projects.user_id', Auth::user()->id)->get();
+            ->where('projects.user_id', Auth::user()->id)
+            ->groupBy('project_id')
+            ->get();
         
         return view('profile', compact('user', 'user_project_save')); 
     }
