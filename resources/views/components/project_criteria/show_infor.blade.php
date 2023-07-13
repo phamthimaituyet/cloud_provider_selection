@@ -167,7 +167,7 @@
                 @csrf
                 <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                     <div class="d-flex flex-start w-100">
-                        <img class="rounded-circle shadow-1-strong me-3" src={{ (Auth::user()->role == 3) ? "/vendors/dist/img/user2-160x160.jpg" : '/' . $project->user->avatar }} alt="avatar" width="40" height="40">
+                        <img class="rounded-circle shadow-1-strong me-3" src={{ (Auth::user()->role == 3) ? "/vendors/dist/img/user2-160x160.jpg" : ($project->user->avatar ? '/' . $project->user->avatar : '/storage/images/profile.jpg') }} alt="avatar" width="40" height="40">
                         <div class="form-outline w-100">
                         <label class="form-label fs-5" for="textAreaExample" style="margin-left: 0px;">Message</label>
                         <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;" name="content"></textarea>
@@ -181,7 +181,7 @@
             @foreach ($message as $item)
                 <div class="card-body">
                     <div class="d-flex <?= ($item->user->role == 3) ? 'ps-end' : 'ps-start' ?> align-items-center">
-                        <img class="rounded-circle shadow-1-strong me-3" src={{ ($item->user->role == 3) ? '/vendors/dist/img/user2-160x160.jpg' : '/' . $project->user->avatar }} alt="avatar" width="60" height="60">
+                        <img class="rounded-circle shadow-1-strong me-3" src={{ ($item->user->role == 3) ? '/vendors/dist/img/user2-160x160.jpg' : ($project->user->avatar ? '/' . $project->user->avatar : '/storage/images/profile.jpg') }} alt="avatar" width="60" height="60">
                         <div>
                             <p class="text-muted small mb-0 fs-4">{{ $item->user->name }}</p>
                             <p class="mb-1">{{ $item->created_at->format('d-m-Y') }}</p>

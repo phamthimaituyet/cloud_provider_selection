@@ -158,7 +158,7 @@ class ProjectController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             DB::rollBack();
-            return redirect()->back()->withInput()->with('error', 'Fail');
+            return redirect()->back()->withInput()->with('error', 'Create Failed');
         }
      
         return redirect()->route('myProject.showProduct', ['id' => $id])->with('alert', 'Add Success');
@@ -194,20 +194,20 @@ class ProjectController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             DB::rollBack();
-            return redirect()->back()->withInput()->with('error', 'Fail');
+            return redirect()->back()->withInput()->with('error', 'Add Failed');
         }
      
-        return redirect()->route('myProject.showProduct', ['id' => $project_id])->with('alert', 'Success');
+        return redirect()->route('myProject.showProduct', ['id' => $project_id])->with('alert', 'Add Success');
     }
 
     public function deleteNote($project_id, $note_id) 
     {
         $note = Note::findOrFail($note_id);
         if ($note->delete()) {
-            return redirect()->route('myProject.showProduct', ['id' => $project_id])->with('alert', 'Success');
+            return redirect()->route('myProject.showProduct', ['id' => $project_id])->with('alert', 'Delete Success');
         }
 
-        return redirect()->route('myProject.showProduct', ['id' => $project_id])->with('alert', 'Failed');
+        return redirect()->route('myProject.showProduct', ['id' => $project_id])->with('alert', 'Delete Failed');
     }
 
     public function share($id)
@@ -281,6 +281,6 @@ class ProjectController extends Controller
             return redirect()->back()->withInput()->with('alert', 'Saved successfully');
         }
 
-        return redirect()->back()->withInput()->with('error', 'Failed');
+        return redirect()->back()->withInput()->with('error', 'Saved Failed');
     }
 }

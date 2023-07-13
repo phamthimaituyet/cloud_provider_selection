@@ -52,7 +52,7 @@
                                         <?php $childs = in_array($criteria->name, ['Cost', 'Capability']) ? [$criteria] : $criteria->children ?>
                                         @foreach ($childs as $child)
                                             <?php 
-                                                $product_criteria = $product->product_criterias()->where('criteria_id', $child->id)->first();
+                                                $product_criteria = $product->product_criterias()->where([['user_id', Auth::user()->id], ['criteria_id', $child->id]])->first();
                                                 $default_value = $product_criteria ? $product_criteria->value : 0;
                                             ?>
                                             <tr>
