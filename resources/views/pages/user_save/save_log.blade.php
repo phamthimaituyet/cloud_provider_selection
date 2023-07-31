@@ -77,7 +77,7 @@
                                         </h4>
                                         <strong class="d-inline-block mb-2 text-primary">By:
                                             {{ $product->vendor->name }}</strong>
-                                        <div class="mb-1 text-muted">
+                                        {{-- <div class="mb-1 text-muted">
                                             @include('components.helper.star', [
                                                 'count_star' => round($product->ratings_avg_number_star),
                                                 'class_star' => 'col-5',
@@ -92,7 +92,7 @@
                                                     {{ $product->commnets->count() }} reviews
                                                 </span>
                                             </a>
-                                        </div>
+                                        </div> --}}
                                         <p class="card-text mb-auto">{{ $product->description }}</p>
                                         <a href="{{ route('show', ['id' => $product->id]) }}"
                                             class="stretched-link">Continue reading</a>

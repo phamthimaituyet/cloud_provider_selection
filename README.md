@@ -62,3 +62,23 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Hướng dẫn cài đặt
+
+Bước 1: Cài đặt xampp 
+- Cài đặt version 8.0
+- [Link cài đặt](https://www.apachefriends.org/download.html)
+
+Bước 2: Cài đặt Composer
+- [Link cài đặt](https://getcomposer.org/download/)
+
+Bước 3: Thực hiện chạy project
+- Mở project
+- Cài đặt thư viện thực hiện câu lệnh: composer install
+- Tạo file env: cp .env.example .env
+- Tạo key cho project: php artisan key:generate
+- Chạy lệnh migrate: php artisan migrate
+- Chạy database: php artisan db:seed
+- Chạy tạo ảnh: php artisan storage:link
+- Khởi động xampp 
+- Chạy lệnh: php artisan serve
