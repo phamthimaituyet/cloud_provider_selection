@@ -16,6 +16,31 @@ class CriteriaController extends Controller
         return view('admin.pages.criteria.index', ['criterias' => $criterias]);
     }
 
+    public function create() 
+    {
+        $factors = Criteria::orWhereNull('parent_id')->get();
+
+        return view('admin.pages.criteria.create', compact('factors'));
+    }
+
+    public function store(Request $request)
+    {
+        DB::beginTransaction();             
+        try {
+            $datas = $request->all();
+
+            dd($datas);
+
+            DB::commit();
+            return redirect()->back()->with('alert',"Add Success");
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+        }
+        
+        return redirect()->back()->with('alert',"Add Failed");
+    }
+
     public function edit($id = null)
     {
         $criteria = Criteria::find($id);

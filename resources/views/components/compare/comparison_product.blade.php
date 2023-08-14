@@ -93,7 +93,7 @@
             </div>
         </div>
         <div class="mt-5" style="height: 600px;">
-            <h3>Rating score</h3>
+            <h3 class="mb-5">Rating score</h3>
             <?php $product_criterias = $key ? $product_criterias2 : $product_criterias1 ?>
             {{-- <i>Rating score by: {{ $product_criterias[0]->user_id }}</i> --}}
             @if (!empty($product_criterias))
@@ -114,7 +114,7 @@
         data: {
             labels: arrayLabel,
             datasets: [{
-                label: '# of Score',
+                // label: '# of Score',
                 data: arrayData,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -124,7 +124,7 @@
                     'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 159, 64, 0.2)',
                     'rgba(255, 192, 203, 0.2)',
-                    'rgba(230, 230, 250, 0.2)',
+                    'rgba(25, 52, 50, 0.3)',
                     'rgba(173, 255, 47, 0.2)',
                     'rgba(0, 255, 255, 0.2)',
                     'rgba(25, 25, 112, 0.2)',
@@ -143,7 +143,7 @@
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
                     'rgba(255, 192, 203, 1)',
-                    'rgba(230, 230, 250, 1)',
+                    'rgba(25, 52, 50, 1)',
                     'rgba(173, 255, 47, 1)',
                     'rgba(0, 255, 255, 1)',
                     'rgba(25, 25, 112, 1)',
@@ -158,6 +158,11 @@
             }]
         },
         options: {
+            plugins: {
+                legend: {
+                    display: false // This hides all text in the legend and also the labels.
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true

@@ -163,6 +163,22 @@
         @if($project->share)
         <h3 class="view-title mt-5">Expert advice</h3>
         <div class="mt-3">
+            @foreach ($message as $item)
+                <div class="card-body">
+                    {{-- ($item->user->role == 3) ? 'ps-end' : 'ps-start' --}}
+                    {{-- ($item->user->role == 3) ? 'text-end' : 'text-start' --}}
+                    <div class="d-flex align-items-center">
+                        <img class="rounded-circle shadow-1-strong me-3" src={{ ($item->user->role == 3) ? '/vendors/dist/img/user2-160x160.jpg' : ($project->user->avatar ? '/' . $project->user->avatar : '/storage/images/profile.jpg') }} alt="avatar" width="60" height="60">
+                        <div>
+                            <p class="text-muted small mb-0 fs-4">{{ $item->user->name }}</p>
+                            <p class="mb-1">{{ $item->created_at->format('d-m-Y') }}</p>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-4 pb-2">
+                        {{ $item->content }}
+                    </p>
+                </div>
+            @endforeach
             <form action="{{ route('myProject.message', ['id' => $project->id ]) }}" method="POST">
                 @csrf
                 <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
@@ -178,20 +194,6 @@
                     </div>
                 </div>
             </form>
-            @foreach ($message as $item)
-                <div class="card-body">
-                    <div class="d-flex <?= ($item->user->role == 3) ? 'ps-end' : 'ps-start' ?> align-items-center">
-                        <img class="rounded-circle shadow-1-strong me-3" src={{ ($item->user->role == 3) ? '/vendors/dist/img/user2-160x160.jpg' : ($project->user->avatar ? '/' . $project->user->avatar : '/storage/images/profile.jpg') }} alt="avatar" width="60" height="60">
-                        <div>
-                            <p class="text-muted small mb-0 fs-4">{{ $item->user->name }}</p>
-                            <p class="mb-1">{{ $item->created_at->format('d-m-Y') }}</p>
-                        </div>
-                    </div>
-                    <p class="mt-3 mb-4 pb-2 <?= ($item->user->role == 3) ? 'text-end' : 'text-start' ?>">
-                        {{ $item->content }}
-                    </p>
-                </div>
-            @endforeach
         </div>
         @endif
     </div>

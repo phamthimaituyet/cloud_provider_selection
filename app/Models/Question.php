@@ -26,6 +26,7 @@ class Question extends Model
         return $this->hasMany(QuestionCriteria::class);
     }
 
+    // tu bang question ->  bang criteria khong can qua bang trung gian (n-n)
     public function criterias() {
         return $this->hasManyThrough(Criteria::class, QuestionCriteria::class, 'question_id', 'id', 'id', 'criterias_id');
     }

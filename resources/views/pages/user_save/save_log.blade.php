@@ -34,7 +34,8 @@
                                     </svg>
                                     <p class="fs-5 ms-2">{{ $note->text }}</p>
                                 </div>
-                                <?php $questions = array_values((array) $note->questions); ?>
+                                {{-- Lay ra mang question voi array_values de set lai key --}}
+                                <?php $questions = array_values((array) $note->questions); ?> 
                                 @foreach ($questions as $key => $value_question)
                                     <ul class="list-unstyled faq-qa ms-5 mt-3">
                                         <li class="my-4">

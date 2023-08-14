@@ -27,6 +27,7 @@ class Product extends Model
         });
     }
 
+    // cerificate co dang blob -> customer gia tri, tra ve binh thuong
     public function getCertificateAttribute()
     {
         return json_decode($this->attributes['certificate']);

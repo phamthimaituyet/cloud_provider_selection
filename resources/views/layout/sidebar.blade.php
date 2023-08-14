@@ -110,7 +110,7 @@
                     <div class="search-filters-radio_filter_component__option">
                         <div class="form-check d-flex align-items-center" style="font-size: var(--font-size--body-m);">
                             <input class="form-check-input me-2 ratingRadio" type="radio" name="flexRadioDefault" value={{ $i }} id="{{ 'flexRadioDefault' . $i }}">
-                            <label class="form-check-label me-5" for="{{ 'flexRadioDefault' . $i }}">{{ $i }} star and higher </label>
+                            <label class="form-check-label me-5" for="{{ 'flexRadioDefault' . $i }}">{{ $i }} stars and higher </label>
                             {{-- <p>{{ $ratings->where($product->ratings_avg_number_star, $i)->count() }}</p> --}}
                         </div>
                     </div>
