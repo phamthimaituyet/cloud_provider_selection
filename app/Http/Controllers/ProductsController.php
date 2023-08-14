@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Rating;
@@ -217,7 +218,7 @@ class ProductsController extends Controller
 
         $providers_compare = $this->paginate($providers_compare, 4, null, ['path' => 'product']);
 
-        return view('pages.product.prod_compare', compact('products', 'providers_compare', 'providers'));
+        return view('pages.product.prod_compare', compact('products', 'providers_compare', 'providers',));
     }
 
     public function paginate($items, $perPage = 4, $page = null, $options = [])

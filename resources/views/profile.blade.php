@@ -163,7 +163,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="formDate" class="col-sm-2 col-form-label">
-                                        <strong>Date</strong>
+                                        <strong>Date of birth</strong>
                                     </label>
                                     <div class="input-group col-sm-10 mb-3" style="width: 83%;">
                                         <i class="bi bi-calendar-date input-group-text"></i>
@@ -196,7 +196,7 @@
                                 </div>
                                 <div class="form-group row">
                                   <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                   </div>
                                 </div>
                             </form>

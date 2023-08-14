@@ -29,13 +29,13 @@
                     <div class="input-group">
                         <select class="form-select" id="inputGroupSelect01" data-placeholder="Choose criteria" name="product_id">
                             <option selected value="0">Choose...</option>
-                           @foreach ($providers as $provider)
+                            @foreach ($providers as $provider)
                                 <optgroup label={{ $provider->name }}>
                                     @foreach ($provider->product as $product)
-                                        <option value={{ $product->id }}>{{ $product->name }}</option>
+                                        <option value={{ $product->id }}>{{ $product->name . " (" . $product->category->name . ")" }}</option>
                                     @endforeach
                                 </optgroup>
-                           @endforeach
+                            @endforeach
                         </select>
                     </div>
                     <div class="d-flex jc-c my-half">
@@ -44,13 +44,13 @@
                     <div class="input-group">
                         <select class="form-select" id="inputGroupSelect02" data-placeholder="Choose criteria" name="product_id">
                             <option selected value="0">Choose...</option>
-                           @foreach ($providers as $provider)
+                            @foreach ($providers as $provider)
                                 <optgroup label={{ $provider->name }}>
                                     @foreach ($provider->product as $product)
-                                        <option value={{ $product->id }}>{{ $product->name }}</option>
+                                        <option value={{ $product->id }}>{{ $product->name . " (" . $product->category->name . ")" }}</option>
                                     @endforeach
                                 </optgroup>
-                           @endforeach
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -60,10 +60,11 @@
             </form>
         </div>
         <div class="border-bottom"></div>
+        {{-- xu ly ajax va hien thi chen component --}}
         <div class="mt-5" id="root-compare-component">
-        </div>
+        </div> 
         <div class="mt-5">
-            <h2>Most Viewed Comparisons</h2>
+            <h2>Compare suppliers</h2>
             <div class="row my-5">
                 @foreach ($providers_compare as $provider_compare)
                     <div class="col-3">

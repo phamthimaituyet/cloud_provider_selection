@@ -21,7 +21,9 @@
 @endsection
 
 @section('content')
-
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin: 10px;">
+        <a href="{{ route('criterias.create') }}" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i> Add criteria</a>
+    </button>
     <section class="content">
         <div class="container-fluid">
             <div class="row">

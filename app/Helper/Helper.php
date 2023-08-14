@@ -8,6 +8,7 @@ if(!function_exists('user_email')){
     }
 }
 
+// tính % độ dài số lượng trong dashboard 
 if(!function_exists('getPercent')){
     function getPercent($current_value, $array){
         $max = max($array);

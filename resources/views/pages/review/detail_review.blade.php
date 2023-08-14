@@ -17,7 +17,7 @@
                 <i class="bi bi-emoji-heart-eyes"></i>
             </h2>
             <p class="fst-italic">
-                Please perform an assessment of the quality level of the cloud service. There are 5 rating levels: 1: very poor - 2: poor - 3: Normal - 4: Good - 5: Very good<br/>
+                Please perform an assessment of the quality level of the cloud service. There are 5 rating levels: 1: Very poor - 2: Poor - 3: Normal - 4: Good - 5: Very good<br/>
             </p>
             <p class="fst-italic">
                 Your answer will be very important to make the system more complete. Thank you very much for taking the time to rate the service in detail.
